@@ -29,8 +29,8 @@ function __construct($login,$password,$nombre,$apellidos,$email){
 
 	//$this->Comprobar_atributos();
 
-	//include_once '../Model/Access_DB.php';
-	//$this->mysqli = ConnectDB();
+	include_once '../Model/Access_DB.php';
+	$this->mysqli = ConnectDB();
 
 }
 
@@ -221,6 +221,7 @@ function RellenaDatos()
 }
 
 // funcion Edit: realizar el update de una tupla
+function EDIT()
 {
 	$sql = "UPDATE USUARIOS
 			SET 
@@ -256,7 +257,7 @@ function login(){
 	$this->query = "SELECT *
 					FROM USUARIOS
 					WHERE (
-						(login = '$this->login') 
+						(login = '".$this->login."') 
 					)";
 	
 	$this->get_results_from_query();
