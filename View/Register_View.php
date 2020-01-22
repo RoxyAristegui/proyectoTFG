@@ -11,22 +11,56 @@
 
 			include '../View/Header.php'; //header necesita los strings
 		?>
-			<h1><?php echo $strings['Registro']; ?></h1>	
-			<form name = 'Form' action='../Controller/Register_Controller.php' method='post' onsubmit="return comprobar_registro();"">
-			
-				 	Login : <input type = 'text' name = 'login' id = 'login' placeholder = 'Utiliza tu dni' size = '9' value = '' onblur="esNoVacio('login')  && comprobarDni('login')" ><br>
-					Password : <input type = 'text' name = 'password' id = 'password' placeholder = 'letras y numeros' size = '15' value = '' onblur="esNoVacio('password')  && comprobarLetrasNumeros('password',15)" ><br>
-					Nombre : <input type = 'text' name = 'nombre' id = 'nombre' placeholder = 'Solo letras' size = '30' value = '' onblur="esNoVacio('nombre')  && comprobarSoloLetras('nombre',30)" ><br>
-					Apellidos : <input type = 'text' name = 'apellidos' id = 'apellidos' placeholder = 'Solo letras' size = '50' value = '' onblur="esNoVacio('apellidos')  && comprobarSoloLetras('apellidos',50)" ><br>
-					Email : <input type = 'text' name = 'email' id = 'email' size = '40' value = '' onblur="esNoVacio('email')  && comprobarEmail('email')" ><br>
+		
+	 <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+          <div class="col-lg-7">
+            <div class="p-5">
+                <div class="text-center">
+                	<h1 class="h4 text-gray-900 mb-4"><?php echo $strings['Crear una cuenta']; ?></h1>
+                </div>
+				<form class="user" name = 'Form' action='../Controller/Register_Controller.php' method='post' onsubmit="return comprobar_registro();">
+					
+					<div class="form-group">
+					  <input type = 'text' name = 'login' id = 'login' class="form-control form-control-user"  placeholder = "<?php echo $strings['Login'] ?>" size = '9' value = '' onblur="esNoVacio('login')  && comprobarDni('login')" >
+					 </div>
+					 <div class="form-group">
+						<input type = 'text' name = 'password' id = 'password' class="form-control form-control-user"  placeholder =" <?php echo $strings['contrasena'] ?>" size = '15' value = '' onblur="esNoVacio('password')  && comprobarLetrasNumeros('password',15)" >
+					</div>
 
-					<input type='submit' name='action' value='REGISTER'>
+					 <div class="form-group">
+						 <input type = 'text' name = 'email' id = email' class="form-control form-control-user"  placeholder="email" size = '40' value = '' onblur="esNoVacio('email')  && comprobarEmail('email')" >
+					</div>
+					<div class="form-group row">
+					 	<div class="col-md-6 col-xs-12">
+							<input type = 'text' name = 'nombre' id = 'nombre' class="form-control form-control-user"  placeholder = "<?php echo $strings['nombre'] ?>" size = '30' value = '' onblur="esNoVacio('nombre')  && comprobarSoloLetras('nombre',30)" ></div>
+							<div class="col-md-6 col-xs-12">
+							<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control form-control-user"  placeholder = "<?php echo $strings['apellidos'] ?> " size = '50' value = '' onblur="esNoVacio('apellidos')  && comprobarSoloLetras('apellidos',50)" >
+						</div>
+					</div>
+						<input type='submit' name='action' value="<?php echo $strings['Registrar'] ?>" class="btn btn-primary btn-user btn-block">
 
-			</form>
+				</form>
 				
 		
-			<a href='../Controller/Index_Controller.php'>Volver </a>
-		
+				<div class="text-center">
+	                <a class="small" href='../Controller/Index_Controller.php'><?php echo $strings["Ya tienes una cuenta"]."? ".$strings["inicia sesión"];?>! </a>
+	            </div>
+			
+		    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
+
+
+
+
+
 		<?php
 			include '../View/Footer.php';
 		} //fin metodo render

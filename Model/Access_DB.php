@@ -16,6 +16,7 @@ function ConnectDB()
 	}
 	else{
 		return $mysqli;
+	
 	}
 }
 

@@ -67,6 +67,8 @@ function USUARIOS_login_test()
 // inserto la tupla
 	$usuarios->ADD();
 
+
+
 // cambio la password en el objeto modelo usuario
 	$usuarios->password = 'passwordfalsa';
 
@@ -120,7 +122,13 @@ function USUARIOS_login_test()
 // elimino la tupla
 	$usuarios->DELETE();
 
+
 }
+
+
+
+
+
 /*
 // function USUARIOS_Register_test()
 // Valida:

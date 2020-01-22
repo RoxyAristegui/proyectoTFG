@@ -3977,6 +3977,7 @@ input[type="button"].btn-block {
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
+  text-transform:uppercase;
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
@@ -4041,6 +4042,9 @@ input[type="button"].btn-block {
   .navbar-expand-sm > .container-fluid {
     padding-right: 0;
     padding-left: 0;
+  }
+  .navbar-brand{
+      font-size: 1rem;
   }
 }
 

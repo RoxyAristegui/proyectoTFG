@@ -21,7 +21,7 @@ class MESSAGE{
 		<br>
 		<p>
 		<H3>
-<?php		
+<?php	
 		echo $strings[$this->string];
 ?>
 		</H3>
