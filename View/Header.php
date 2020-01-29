@@ -78,7 +78,7 @@ ini_set('display_errors', '1');
           <div class="nav-item ">
           <a class="nav-link navbar-brand " href="../Controller/Index_Controller.php">
           
-          	SiGePeIn
+          	SiGePIn
           </a>
           </div>
 

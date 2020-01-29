@@ -1,6 +1,22 @@
 <?php 
 $strings = 
 array(
+
+	//Errores de BD
+	'00001'=>'Inserción realizada con éxito',
+'00006'=>'Consulta no ejecutada, algo ha ocurrido.',
+'00007'=>'La consulta vuelva vacía',
+'00005'=>'Error de conexión con la base de datos',
+'000051'=>'Error de gestor de base de datos',
+//errores de validacion de usuario
+	'000020'=>'Ya existe un usuario con ese Login o email',
+	'000021'=>'La longitu debe ser mayor a 3',
+	'000022'=>'La longitud debe ser menor de 30 caracteres',
+	'000023'=>'Sólo se admiten carácteres alfanuméricos',
+	'000024'=>'Introduce un email valido',
+
+	'password'=>'contraseña',
+	'Error en '=>'Error en ',
 	'Portal de Gestión' => 'Portal de Gestión',
 	'Usuario no autenticado' => 'Usuario no autenticado',
 	'Ejemplo arquitectura IU' => 'Ejemplo arquitectura IU',

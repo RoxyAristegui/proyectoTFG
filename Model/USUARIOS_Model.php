@@ -6,6 +6,7 @@
 // modificado en 6/11/2019 para incluir clase abstracta de modelo
 //-------------------------------------------------------
 include 'Abstract_Model_Class.php';
+include 'Validar_Model.php';
 
 class USUARIOS_Model extends Abstract_Model {
 
@@ -15,6 +16,7 @@ class USUARIOS_Model extends Abstract_Model {
 	var $apellidos;
 	var $email;
 	var $mysqli;
+	var $erroresdatos;
 
 //Constructor de la clase
 //
@@ -37,17 +39,13 @@ function __construct($login,$password,$nombre,$apellidos,$email){
 // function Comprobar_atributos
 // si todas las funciones de comprobacion de atributos individuales son true devuelve true
 // si alguna es false, devuelve el array de errores de datos
-function Comprobar_atributos()
-{
-	if ($this->Comprobar_login &
-		$this->Comprobar_nombre)
-	{
-		return true;
-	}
-	else
-		{
-			return $this->erroresdatos;
-		}
+
+function Comprobar_atributos(){
+	$this->Comprobar_nombre();
+	$this->comprobar_password();
+	$this->Comprobar_login();
+	$this->Comprobar_email();
+	return $this->erroresdatos;
 }
 
 // function Comprobar_login()
@@ -59,18 +57,14 @@ function Comprobar_atributos()
 // devuelve un true o un false y rellena en caso de error el array de errores de datos
 function Comprobar_login()
 {
-	if (!preg_match("^([a-zA-Z][0-9]){5,15}^",$this->login)){
-		$error = 'Error en login: ';
-		array_push($this->erroresdatos, $error);
-		return false;
-	}
-	else
-	{
-		return true;
-	}
+	$validacion= new Validar($this->login,'Login',$this->erroresdatos);
+	$valido=$validacion->stringAlfanumerico();
+	$this->erroresdatos= $valido;
+	return $valido;
 }
 
-// function Comprobar_login()
+
+// function Comprobar_nombre()
 // Comprueba el formato del login 
 //	alfanumerico
 //	mayor o igual a 5
@@ -79,71 +73,78 @@ function Comprobar_login()
 // devuelve un true o un false y rellena en caso de error el array de errores de datos
 function Comprobar_nombre()
 {
-	$correcto = true;
-
-	if (strlen($this->nombre)<3)
-	{
-		$error = 'Error en nombre: longitud menor que 3';
-		array_push($this->erroresdatos, $error);
-		$correcto = false;
-	}
-	if (strlen($this->nombre)>30)
-	{
-		$error = 'Error en nombre: longitud mayor de 30';
-		array_push($this->erroresdatos, $error);
-		$correcto = false;
-	}
-	if (!preg_match("^([a-zA-Z])^",$this->nombre)){
-		$error = 'Error en nombre: Solo se admiten alfabéticos';
-		array_push($this->erroresdatos, $error);
-		$correcto = false;
-	}
+	$validacion= new Validar($this->nombre,'nombre',$this->erroresdatos);
+	$valido=$validacion->stringAlfanumerico();
+	$this->erroresdatos= $valido;
+	return $valido;
 	
-	return $correcto;
 }
 
+// comprueba la pass, letras y números, entre 3 y 30 carácteres
+function Comprobar_password(){
+	
+	$validacion= new Validar($this->password,'password',$this->erroresdatos);
+	$valido=$validacion->stringAlfanumerico();
+	$this->erroresdatos= $valido;
+	return $valido;
+}
+
+function Comprobar_email(){
+	$validacion= new Validar($this->email,'email',$this->erroresdatos);
+	$valido=$validacion->EsEmail();;
+	$this->erroresdatos= $valido;
+	return $valido;
+}
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
 //existe ya en la tabla
 function ADD()
 {
-		$this->query = "select * from USUARIOS where login = '".$this->login."'";
+	$comprobar= $this->Comprobar_atributos();
 
-		/*if (!$result = $this->mysqli->query($sql))
-		{
-			return 'Error de gestor de base de datos';
-		}*/
+	if($comprobar==[]){
+	$this->query = "select * from USUARIOS where login = '".$this->login."' or email = '".$this->email."'";
 
-		$this->get_results_from_query();
+	/*if (!$result = $this->mysqli->query($sql))
+	{
+		return 'Error de gestor de base de datos';
+	}*/
 
-		if ($this->feedback['code'] == '00008'){  // existe el usuario
-				//return 'Inserción fallida: el elemento ya existe';
-				echo 'el select previo del add dice que hay un elemento<BR>';
-			}
-		else{
-			$this->query = "INSERT INTO USUARIOS (
-				login,
-				password,
-				nombre,
-				apellidos,
-				email) 
-					VALUES (
-						'".$this->login."',
-						'".$this->password."',
-						'".$this->nombre."',
-						'".$this->apellidos."',
-						'".$this->email."'
-						)";
+	$this->get_results_from_query();
 
-			if (!$this->execute_single_query()) {
-				return 'Error de gestor de base de datos';
-			}
-			else{
-				return 'Inserción realizada con éxito'; //operacion de insertado correcta
-			}
+	if ($this->feedback['code'] == '00008'){  // existe el usuario
+			//return 'Inserción fallida: el elemento ya existe';
+			return '000020';
+	}else{
+		$this->query = "INSERT INTO USUARIOS (
+			login,
+			password,
+			nombre,
+			apellidos,
+			email) 
+				VALUES (
+					'".$this->login."',
+					'".$this->password."',
+					'".$this->nombre."',
+					'".$this->apellidos."',
+					'".$this->email."'
+					)";
+
+		if (!$this->execute_single_query()) {
+			//return 'Error de gestor de base de datos';
+			return '000051';
+
 		}
-	return $this->feedback;	
+		else{
+			return $this->feedback['code']; //operacion de insertado correcta
+		}
+		
+	}
+	return $this->feedback['code'];	
+}else{
+	return $comprobar;
+}
 }
     
 
