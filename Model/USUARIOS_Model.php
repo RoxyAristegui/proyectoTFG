@@ -41,9 +41,9 @@ function __construct($login,$password,$nombre,$apellidos,$email){
 // si alguna es false, devuelve el array de errores de datos
 
 function Comprobar_atributos(){
-	$this->Comprobar_nombre();
-	$this->comprobar_password();
-	$this->Comprobar_login();
+	//$this->Comprobar_nombre();
+	//$this->comprobar_password();
+	//$this->Comprobar_login();
 	$this->Comprobar_email();
 	return $this->erroresdatos;
 }
@@ -90,8 +90,8 @@ function Comprobar_password(){
 }
 
 function Comprobar_email(){
-	$validacion= new Validar($this->email,'email',$this->erroresdatos);
-	$valido=$validacion->EsEmail();;
+	$validacion= new Validar();
+	$valido=$validacion->EsEmail($this->email,'email',$this->erroresdatos);;
 	$this->erroresdatos= $valido;
 	return $valido;
 }
@@ -105,17 +105,11 @@ function ADD()
 
 	if($comprobar==[]){
 	$this->query = "select * from USUARIOS where login = '".$this->login."' or email = '".$this->email."'";
-
-	/*if (!$result = $this->mysqli->query($sql))
-	{
-		return 'Error de gestor de base de datos';
-	}*/
-
 	$this->get_results_from_query();
 
 	if ($this->feedback['code'] == '00008'){  // existe el usuario
-			//return 'Inserción fallida: el elemento ya existe';
-			return '000020';
+			//return 'Inserción fallida: el usuario ya existe';
+			return '000071';
 	}else{
 		$this->query = "INSERT INTO USUARIOS (
 			login,
@@ -289,7 +283,9 @@ function Register(){
 	$this->query = "select * from USUARIOS where login = '".$this->login."'";
 	$this->get_results_from_query();
 
-	if ($this->feedback['code'] = '00008'){  // el recordset vuelve con datos
+	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
+		$this->ok=false;
+		$this->resource="Registro";
 		$this->code  = '00071'; // el login ya existe
 		$this->construct_response();
 		}
