@@ -8,7 +8,7 @@ if(!isset($_REQUEST['login']) && !(isset($_REQUEST['password']))){
 else{
 
 	include '../Model/Access_DB.php';
-	include '../test/errors.php';
+	include '../Locale/Strings_SPANISH.php';
 	include '../Model/USUARIOS_Model.php';
 	$usuario = new USUARIOS_Model($_REQUEST['login'],$_REQUEST['password'],'','','');
 	$respuesta = $usuario->login();
@@ -20,7 +20,7 @@ else{
 	}
 	else{
 		include '../View/MESSAGE_View.php';
-		new MESSAGE($errors[$respuesta['code']], './Login_Controller.php');
+		new MESSAGE($strings[$respuesta['code']], './Login_Controller.php');
 	}
 
 }

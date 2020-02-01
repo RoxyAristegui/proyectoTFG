@@ -27,7 +27,7 @@ function USUARIOS_login_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'login';
 	$USUARIOS_array_test1['error'] = 'El login no existe';
-	$USUARIOS_array_test1['error_esperado'] = '00072';
+	$USUARIOS_array_test1['error_esperado'] = '000072';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
@@ -52,7 +52,7 @@ function USUARIOS_login_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'login';
 	$USUARIOS_array_test1['error'] = 'La password para este usuario no es correcta';
-	$USUARIOS_array_test1['error_esperado'] = '00073';
+	$USUARIOS_array_test1['error_esperado'] = '000073';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
@@ -93,7 +93,7 @@ function USUARIOS_login_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'login';
 	$USUARIOS_array_test1['error'] = 'Login Correcto';
-	$USUARIOS_array_test1['error_esperado'] = '00051';
+	$USUARIOS_array_test1['error_esperado'] = '000010';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 
@@ -129,11 +129,11 @@ function USUARIOS_login_test()
 
 
 
-/*
+
 // function USUARIOS_Register_test()
 // Valida:
 //		usuario ya existe
-//		el usuario no existe
+//		el usuario no existe, inserción correcta
 //		
 
 function USUARIOS_Registrar_test()
@@ -147,7 +147,7 @@ function USUARIOS_Registrar_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'register';
 	$USUARIOS_array_test1['error'] = 'El usuario ya existe';
-	$USUARIOS_array_test1['error_esperado'] = 'El usuario ya existe';
+	$USUARIOS_array_test1['error_esperado'] = '000071';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
@@ -162,7 +162,7 @@ function USUARIOS_Registrar_test()
 // inserto la tupla
 	$usuarios->ADD();
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->register();
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register()["code"];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -176,73 +176,24 @@ function USUARIOS_Registrar_test()
 
 	$usuarios->DELETE();	
 
-// Comprobar el usuario no existe
-	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'register';
-	$USUARIOS_array_test1['error'] = 'El usuario no existe';
-	$USUARIOS_array_test1['error_esperado'] = true;
-	$USUARIOS_array_test1['error_obtenido'] = '';
-	$USUARIOS_array_test1['resultado'] = '';
-	
-	$login = 'jrodeiro23223';
-	$usuarios = new USUARIOS_Model($login,'','','','');
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->register();
-	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
-	{
-		$USUARIOS_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$USUARIOS_array_test1['resultado'] = 'FALSE';
-	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
-
-// Comprobar error en la inserción
-	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'registrar';
-	$USUARIOS_array_test1['error'] = 'Error en la inserción';
-	$USUARIOS_array_test1['error_esperado'] = 'Error de gestor de base de datos';
-	$USUARIOS_array_test1['error_obtenido'] = '';
-	$USUARIOS_array_test1['resultado'] = '';
-	
-	$login = 'jrodeiro887';
-	$password = 'javi';
-	$nombre = 'javi\' ,\'kdfalkj'; 
-	$apellidos = 'rodeiro';
-	$email = 'jrodeiro@uvigo.es';
-
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register();
-	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
-	{
-		$USUARIOS_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$USUARIOS_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);	
-
-	$usuarios->DELETE();
 
 // Comprobar Inserción realizada con éxito
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'registrar';
 	$USUARIOS_array_test1['error'] = 'Inserción realizada con éxito';
-	$USUARIOS_array_test1['error_esperado'] = 'Inserción realizada con éxito';
+	$USUARIOS_array_test1['error_esperado'] = '000053';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
-	$login = 'jrodeiro1';
-	$password = 'javi';
-	$nombre = 'javi'; 
-	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1@uvigo.es';
+	$login = 'prueba1';
+	$password = 'pruebita';
+	$nombre = 'superprueba'; 
+	$apellidos = 'pribando';
+	$email = 'proba@uvigo.es';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register();
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register()["code"];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -276,7 +227,7 @@ function USUARIOS_ADD_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'ADD';
 	$USUARIOS_array_test1['error'] = 'El usuario ya existe';
-	$USUARIOS_array_test1['error_esperado'] = 'Inserción fallida: el elemento ya existe';
+	$USUARIOS_array_test1['error_esperado'] = '000071';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
@@ -310,7 +261,7 @@ function USUARIOS_ADD_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'ADD';
 	$USUARIOS_array_test1['error'] = 'Error en la inserción';
-	$USUARIOS_array_test1['error_esperado'] = 'Error de gestor de base de datos';
+	$USUARIOS_array_test1['error_esperado'] = '000051';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
@@ -339,15 +290,15 @@ function USUARIOS_ADD_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'ADD';
 	$USUARIOS_array_test1['error'] = 'Inserción realizada con éxito';
-	$USUARIOS_array_test1['error_esperado'] = 'Inserción realizada con éxito';
+	$USUARIOS_array_test1['error_esperado'] = '00001';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
-	$login = 'jrodeiro1';
-	$password = 'javi';
-	$nombre = 'javi'; 
-	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1@uvigo.es';
+	$login = 'prueba1';
+	$password = 'prueba';
+	$nombre = 'proooo'; 
+	$apellidos = 'bando bando';
+	$email = 'preuba@uvigo.es';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
@@ -369,7 +320,7 @@ function USUARIOS_ADD_test()
 
 
 
-function USUARIOS_RellenaDatos_test()
+function USUARIOS_BuscarUsuarioPorLogin_test()
 {
 
 	global $ERRORS_array_test;
@@ -379,20 +330,20 @@ function USUARIOS_RellenaDatos_test()
 // Comprobar el login no existe
 //--------------------------------------------------
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'RellenaDatos';
+	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioLogin';
 	$USUARIOS_array_test1['error'] = 'El usuario a rellenar no existe';
-	$USUARIOS_array_test1['error_esperado'] = 'Error de gestor de base de datos';
+	$USUARIOS_array_test1['error_esperado'] = '000072';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
 	// Relleno los datos de usuario	
-	$login = 'javi ,\'hola';
+	$login = 'noexistes';
 	
 // creo el modelo
 	$usuarios = new USUARIOS_Model($login,'','','','');
 
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->RellenaDatos();
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarUsuarioPorLogin();
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -407,23 +358,23 @@ function USUARIOS_RellenaDatos_test()
 // Comprobar devuelve recordset
 //----------------------------------------------
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'RellenaDatos';
+	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioLogin';
 	$USUARIOS_array_test1['error'] = 'Devuelve el recordset';
 	$USUARIOS_array_test1['error_esperado'] = 'array';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
-	$login = 'jrodeiro1';
-	$password = 'javi';
-	$nombre = 'javi'; 
-	$apellidos = 'rodeiro';
-	$email = 'jrodeiro1@uvigo.es';
+	$login = 'prueba1';
+	$password = 'prueba';
+	$nombre = 'proooo'; 
+	$apellidos = 'bando bando';
+	$email = 'preuba@uvigo.es';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
 
 
-	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->RellenaDatos());
+	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->BuscarUsuarioPorLogin());
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -438,11 +389,11 @@ function USUARIOS_RellenaDatos_test()
 	$usuarios->DELETE();
 
 }
-*/
+
 	USUARIOS_login_test();
-//	USUARIOS_Registrar_test();
-//	USUARIOS_ADD_test();
-//	USUARIOS_RellenaDatos_test();
+	USUARIOS_Registrar_test();
+	USUARIOS_ADD_test();
+	USUARIOS_BuscarUsuarioPorLogin_test();
 
 ?>
 

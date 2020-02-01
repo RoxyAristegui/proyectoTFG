@@ -61,7 +61,7 @@ include '../test/USUARIOS_test.php';
 			<?php echo $test['error_esperado']; ?>
 		</td>
 		<td>
-			<?php echo $test['error_obtenido']; ?>
+			<?php var_dump($test['error_obtenido']); ?>
 		</td>
 		<td>
 			<?php echo $test['resultado']; ?>

@@ -37,64 +37,75 @@ function __construct($login,$password,$nombre,$apellidos,$email){
 }
 
 // function Comprobar_atributos
-// si todas las funciones de comprobacion de atributos individuales son true devuelve true
-// si alguna es false, devuelve el array de errores de datos
+// se lanzan las funciones de comprobacion de atributos de usuario, 
+//sino hay errores devuelve true, sino el array de errores.
 
 function Comprobar_atributos(){
-	//$this->Comprobar_nombre();
-	//$this->comprobar_password();
-	//$this->Comprobar_login();
+	$this->Comprobar_nombre();
+	$this->Comprobar_apellidos();
+	$this->Comprobar_password();
+	$this->Comprobar_login();
 	$this->Comprobar_email();
+	if($this->erroresdatos==[]){
+		return true;
+	}else{
 	return $this->erroresdatos;
+	}
 }
 
-// function Comprobar_login()
 // Comprueba el formato del login 
-//	alfanumerico
-//	mayor o igual a 5
-// 	menor o igual a 15
+//	alfanumericol, entre 3 y 30 carácteres
 //	no vacio
-// devuelve un true o un false y rellena en caso de error el array de errores de datos
+// si se detectaron errores los añade al array de erroers
 function Comprobar_login()
 {
-	$validacion= new Validar($this->login,'Login',$this->erroresdatos);
-	$valido=$validacion->stringAlfanumerico();
+	$validacion= new Validar();
+	$valido=$validacion->Validar_login($this->login,$this->erroresdatos);
 	$this->erroresdatos= $valido;
 	return $valido;
 }
 
-
-// function Comprobar_nombre()
 // Comprueba el formato del login 
-//	alfanumerico
-//	mayor o igual a 5
-// 	menor o igual a 15
+//	alfanumericol, entre 3 y 30 carácteres
 //	no vacio
-// devuelve un true o un false y rellena en caso de error el array de errores de datos
+// si se detectaron errores los añade al array de erroers
 function Comprobar_nombre()
 {
-	$validacion= new Validar($this->nombre,'nombre',$this->erroresdatos);
-	$valido=$validacion->stringAlfanumerico();
+	$validacion= new Validar();
+	$valido=$validacion->Validar_nombre($this->nombre,$this->erroresdatos);
 	$this->erroresdatos= $valido;
 	return $valido;
 	
+}
+
+//Comrpeuba el formato de los apellidos, alfanumérico con espacios
+function Comprobar_apellidos(){
+	$validacion= new Validar();
+	$valido=$validacion->Validar_apellidos($this->apellidos,$this->erroresdatos);
+$this->erroresdatos= $valido;
+	return $valido;
 }
 
 // comprueba la pass, letras y números, entre 3 y 30 carácteres
+// si se detectaron errores los añade al array de erroers
 function Comprobar_password(){
 	
-	$validacion= new Validar($this->password,'password',$this->erroresdatos);
-	$valido=$validacion->stringAlfanumerico();
+	$validacion= new Validar();
+	$valido=$validacion->Validar_password($this->password,$this->erroresdatos);
 	$this->erroresdatos= $valido;
 	return $valido;
 }
 
+//comprueba que el email tenga un formato válido
+// si se detectaron errores los añade al array de erroers
 function Comprobar_email(){
 	$validacion= new Validar();
-	$valido=$validacion->EsEmail($this->email,'email',$this->erroresdatos);;
+	$valido=$validacion->Validar_email($this->email,$this->erroresdatos);
 	$this->erroresdatos= $valido;
 	return $valido;
 }
+
+
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
@@ -103,41 +114,37 @@ function ADD()
 {
 	$comprobar= $this->Comprobar_atributos();
 
-	if($comprobar==[]){
-	$this->query = "select * from USUARIOS where login = '".$this->login."' or email = '".$this->email."'";
-	$this->get_results_from_query();
+	if($comprobar===true){
+		$this->query = "select * from USUARIOS where login = '".$this->login."' or email = '".$this->email."'";
+		$this->get_results_from_query();
 
-	if ($this->feedback['code'] == '00008'){  // existe el usuario
-			//return 'Inserción fallida: el usuario ya existe';
-			return '000071';
+		if ($this->feedback['code'] == '00008'){  // existe el usuario
+				//return 'Inserción fallida: el usuario ya existe';
+				return '000071';
+		}else{
+			$this->query = "INSERT INTO USUARIOS (
+				login,
+				password,
+				nombre,
+				apellidos,
+				email) 
+					VALUES (
+						'".$this->login."',
+						'".$this->password."',
+						'".$this->nombre."',
+						'".$this->apellidos."',
+						'".$this->email."'
+						)";
+
+			$this->execute_single_query();
+			
+				return $this->feedback['code']; //operacion de insertado correcta
+			
+			
+		}
+		return $this->feedback['code'];	
 	}else{
-		$this->query = "INSERT INTO USUARIOS (
-			login,
-			password,
-			nombre,
-			apellidos,
-			email) 
-				VALUES (
-					'".$this->login."',
-					'".$this->password."',
-					'".$this->nombre."',
-					'".$this->apellidos."',
-					'".$this->email."'
-					)";
-
-		if (!$this->execute_single_query()) {
-			//return 'Error de gestor de base de datos';
-			return '000051';
-
-		}
-		else{
-			return $this->feedback['code']; //operacion de insertado correcta
-		}
-		
-	}
-	return $this->feedback['code'];	
-}else{
-	return $comprobar;
+		return $this->erroresdatos;
 }
 }
     
@@ -154,8 +161,7 @@ function __destruct()
 //los datos proporcionados. Si van vacios devuelve todos
 function SEARCH()
 {
-
-	$sql = "SELECT *
+    $this->query = "SELECT *
 			FROM USUARIOS
 			WHERE (
 				login LIKE '%".$this->login."%' AND
@@ -165,12 +171,14 @@ function SEARCH()
 				email LIKE '%".$this->email."%'
 			)
 	";
-	if (!$resultado = $this->mysqli->query($sql))
-		{
-			return 'Error de gestor de base de datos';
-		}
-	return $resultado;
-    
+	$this->get_results_from_query();
+	if ($this->feedback['code'] == '00007')
+	{
+			return $this->feedback; //error de ejecucion de la sql de recuperación de datos
+	}
+
+	return $this->rows;
+
 }
 
 //funcion DELETE : comprueba que la tupla a borrar existe y una vez
@@ -190,24 +198,46 @@ function DELETE()
 		$resultado = 'Borrado realizado con éxito';
 	}
 	else
-	{
-		$resultado = 'Error de gestor de base de datos';
+	{	//Error de gestor de base de datos
+		$resultado = '000051';
 	}
 	return $resultado;
 }
 
-// funcion RellenaDatos: recupera todos los atributos de una tupla a partir de su clave
-function RellenaDatos()
+// funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su clave [login]
+//devuelve un array [clave]=valor;
+function BuscarUsuarioPorLogin()
 {
-    $sql = "SELECT *
+    $this->query = "SELECT *
 			FROM USUARIOS
-			WHERE (
-				(login = '$this->login') 
-			)";
+			WHERE 
+				login = '$this->login'
+			";
 
-	$this->get_results_from_query();
+	$this->get_one_result_from_query();
 	
-	if ($this->feedback['code'] = '00007')
+	if ($this->feedback['code'] == '00007')
+	{
+			return "000072"; //error de ejecucion de la sql, noe xiste usuario con ese login
+	}
+
+	return $this->rows;
+}
+
+
+// funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su email
+//devuelve un array [clVE]=valor;
+function BuscarUsuarioPorEmail()
+{
+    $this->query = "SELECT *
+			FROM USUARIOS
+			WHERE 
+				email = '$this->email'
+			";
+
+	$this->get_one_result_from_query();
+	
+	if ($this->feedback['code'] == '00007')
 	{
 			return $this->feedback; //error de ejecucion de la sql de recuperación de datos
 	}
@@ -233,11 +263,11 @@ function EDIT()
 
 	if ($this->feedback['code'] == '00001')
 	{
-		$this->code  = '00052'; //modificacion en bd correcta
+		$this->code  = '000052'; //modificacion en bd correcta
 	}
 	else
 	{
-		$this->code  = '00074'; //error al modificar el usuario en la bd
+		$this->code  = '000074'; //error al modificar el usuario en la bd
 	}
 
 	return $this->construct_response();
@@ -259,17 +289,17 @@ function login(){
 	
 	if ($this->feedback['code'] == '00007'){
 		$this->ok = false;
-		$this->code  = '00072'; // el login no existe	
+		$this->code  = '000072'; // el login no existe	
 	}
 	else{
 		$fila = $this->rows[0];
 		if ($fila['password'] == $this->password){
 			$this->ok = true;
-			$this->code  = '00051'; //usuario y pass correctos
+			$this->code  = '000010'; //usuario y pass correctos
 		}
 		else{
 			$this->ok = false;
-			$this->code  = '00073'; // la pass no coincide
+			$this->code  = '000073'; // la pass no coincide
 		}
 	}
 	$this->construct_response();
@@ -280,13 +310,15 @@ function login(){
 //
 function Register(){
 
+$comprobar=$this->Comprobar_atributos();
+if($comprobar===true){
 	$this->query = "select * from USUARIOS where login = '".$this->login."'";
 	$this->get_results_from_query();
 
 	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
 		$this->ok=false;
 		$this->resource="Registro";
-		$this->code  = '00071'; // el login ya existe
+		$this->code  = '000071'; // el login ya existe
 		$this->construct_response();
 		}
 	else{
@@ -307,15 +339,18 @@ function Register(){
 								
 			$this->execute_single_query();
 
-			if ($this->feedback['code'] = '00052'){ //sql ejecutado con exito
+			if ($this->feedback['code'] = '000052'){ //sql ejecutado con exito
 				$this->ok = true;
-				$this->code  = '00053'; //registro realizado con exito
+				$this->code  = '000053'; //registro realizado con exito
 				$this->construct_response();
 			}
 										
 		}
 
 	return $this->feedback;
+	}else{
+		return $this->erroresdatos;
+	}
 }
 
 }//fin de clase

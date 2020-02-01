@@ -79,7 +79,7 @@ abstract class Abstract_Model{
 # Traer resultados de una consulta en un Array
 
 	protected function get_results_from_query() {
-		echo 'select query : '.$this->query.'<br>';
+	//	echo 'select query : '.$this->query.'<br>';
 		$this->open_connection();
 		if ($this->conn == false){
 			$this->ok = false;
@@ -99,6 +99,36 @@ abstract class Abstract_Model{
 					$this->construct_response();
 				}else{
 					while ($this->rows[] = $result->fetch_assoc());
+					$result->close();
+					$this->ok = true;
+					$this->code  = '00008'; // el recordset vuelve con datos
+					$this->construct_response();
+				}
+			}		
+			$this->close_connection();
+		}
+	}
+		protected function get_one_result_from_query() {
+	//	echo 'select query : '.$this->query.'<br>';
+		$this->open_connection();
+		if ($this->conn == false){
+			$this->ok = false;
+			$this->code  = '00005'; //error conexion bd
+			$this->construct_response();
+		}else{
+			$result = $this->conn->query($this->query);
+			if ($result != true){
+				$this->ok = false;
+				$this->code  = '00006'; //sql no ejecutada
+				$this->construct_response();
+			}else{
+			//
+				if ($result->num_rows == 0){
+					$this->ok = true;
+					$this->code  = '00007'; // el recordset viene vacio
+					$this->construct_response();
+				}else{
+					$this->rows= $result->fetch_assoc();
 					$result->close();
 					$this->ok = true;
 					$this->code  = '00008'; // el recordset vuelve con datos
