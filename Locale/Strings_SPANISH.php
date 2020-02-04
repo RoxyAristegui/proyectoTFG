@@ -11,6 +11,7 @@ array(
 '00005'=>'Error de conexión con la base de datos',
 '000051'=>'Error de gestor de base de datos',
 '000052'=>'Sql realizada con exito',
+'000053'=>'Modificación realizada con éxito',
 
 '000071'=>'Ya existe un usuario con ese Login o email',
 '000072'=>'No existe usuario con ese nombre',

@@ -248,30 +248,41 @@ function BuscarUsuarioPorEmail()
 // funcion Edit: realizar el update de una tupla
 function EDIT()
 {
-	$sql = "UPDATE USUARIOS
-			SET 
-				password = '$this->password',
-				nombre = '$this->nombre',
-				apellidos = '$this->apellidos',
-				email = '$this->email'
-			WHERE (
-				login = '$this->login'
-			)
-			";
+	$comprobar=$this->Comprobar_atributos();
+	if($comprobar===true){
+		$this->query = "UPDATE USUARIOS
+				SET 
+					password = '$this->password',
+					nombre = '$this->nombre',
+					apellidos = '$this->apellidos',
+					email = '$this->email'
+				WHERE (
+					login = '$this->login'
+				)
+				";
 
-	$this->execute_single_query();
+		$this->execute_single_query();
 
-	if ($this->feedback['code'] == '00001')
-	{
-		$this->code  = '000052'; //modificacion en bd correcta
-	}
-	else
-	{
-		$this->code  = '000074'; //error al modificar el usuario en la bd
-	}
+		if ($this->feedback['code']==='00001')
+		{
+			$this->ok=true;
+			$this->resource='EDIT';
+			$this->code  = '000053';
+			$this->construct_response(); //modificacion en bd correcta
+		}
+		else
+		{	$this->ok=false;
+			$this->resource='EDIT';
+			$this->code  = '000074'; //error al modificar el usuario en la bd
+			$this->construct_response();
+		}
 
-	return $this->construct_response();
+		return $this->feedback;
 	
+		
+	}else{
+		return $this->erroresdatos;
+	}
 }
 
 // funcion login: realiza la comprobación de si existe el usuario en la bd y despues si la pass

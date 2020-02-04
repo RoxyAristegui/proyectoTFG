@@ -64,7 +64,7 @@ abstract class Abstract_Model{
 			$this->open_connection();
 			if ($this->conn->query($this->query)){
 				$this->close_connection();
-				$this->save_log();
+			//	$this->save_log();
 				$this->ok = true;
 				$this->code  = '00001'; //sql ejecutada con exito
 				$this->construct_response();

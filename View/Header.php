@@ -6,8 +6,8 @@
 	else{
 	}
 	include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 ?>
 <html>
 <head>
@@ -30,10 +30,15 @@ ini_set('display_errors', '1');
     <!-- Custom styles for this page -->
   <link href="../Locale/template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+  <script type="text/javascript" src="../Locale/Lang_ES.js"></script>
+  <script type="text/javascript" src="../Locale/Lang_EN.js"></script>
+  <script type="text/javascript" src="../Locale/Lang_GA.js"></script>
+  <script type="text/javascript" src="../Locale/idioma.js"></script>
+
 	
 
 </head>
-<body id="page-top">
+<body id="page-top" onload='setLang()'>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -76,7 +81,7 @@ ini_set('display_errors', '1');
             </div>
           </form-->
           <div class="nav-item ">
-          <a class="nav-link navbar-brand " href="../Controller/Index_Controller.php">
+          <a class="nav-link navbar-brand NomProyect" href="../Controller/Index_Controller.php">
           
           	SiGePIn
           </a>
@@ -108,8 +113,8 @@ ini_set('display_errors', '1');
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
-            	<a class="nav-link dropdown-toggle text-gray-600 "  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            			<?php echo $strings['idioma']; ?>
+            	<a class="nav-link dropdown-toggle text-gray-600 idioma"  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            			idioma
             	</a>
         	    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="idiomaDropdown">
 	                <h6 class="dropdown-header">
@@ -117,13 +122,17 @@ ini_set('display_errors', '1');
 	                </h6>
 	                 <a class="dropdown-item d-flex align-items-center" href="#">
 
-		              <form name='idiomaform' action="../Functions/CambioIdioma.php" method="post">
+		              <!--form name='idiomaform' action="../Functions/EstablecerIdioma.php" method="post">
 						<select name="idioma" onChange='this.form.submit()'>
 					        <option value="SPANISH"> </option>
 							<option value="ENGLISH"><?php echo $strings['INGLES']; ?></option>
 					        <option value="SPANISH"><?php echo $strings['ESPAÑOL']; ?></option>
 						</select>
-					</form>
+					</form--> 
+            <a  onclick="setLang('GA',true)"><img src="../View/img/galicia.png" height="40" width="60"></a>
+   <a href="#" onclick="setLang('ES',true)"><img src="../View/img/spain.png" height="40" width="60"></a>
+   <a onclick="setLang('EN',true)"><img src="../View/img/uk.png" height="40" width="60"></a>
+
 					</a>
 				</div>
              

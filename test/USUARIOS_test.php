@@ -189,7 +189,7 @@ function USUARIOS_Registrar_test()
 	$login = 'prueba1';
 	$password = 'pruebita';
 	$nombre = 'superprueba'; 
-	$apellidos = 'pribando';
+	$apellidos = 'probando';
 	$email = 'proba@uvigo.es';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
@@ -261,7 +261,7 @@ function USUARIOS_ADD_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'ADD';
 	$USUARIOS_array_test1['error'] = 'Error en la inserción';
-	$USUARIOS_array_test1['error_esperado'] = '000051';
+	$USUARIOS_array_test1['error_esperado'] = 'array';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
@@ -272,7 +272,7 @@ function USUARIOS_ADD_test()
 	$email = 'jrodeiro@uvigo.es';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
+	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->ADD());
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -318,7 +318,153 @@ function USUARIOS_ADD_test()
 
 }
 
+function USUARIOS_EDIT_test(){
+	
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$USUARIOS_array_test1 = array();
 
+// Comprobar Loginno existe
+//-------------------------------------------------------------------------------
+
+// Comprobar edidicion correcta
+	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'EDIT';
+	$USUARIOS_array_test1['error'] = 'Modificar correcta';
+	$USUARIOS_array_test1['error_esperado'] = '000053';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+
+		$login = 'miusuario';
+	$password = 'mipassword';
+	$nombre = 'minombre'; 
+	$apellidos = 'miapellido2';
+	$email = 'miemail@uvigo.es';
+
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios->ADD();
+	$nombre = 'otronombre'; 
+	$usuarios2=new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios2->EDIT()['code'];
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+	$usuarios->DELETE();
+	$usuarios2->DELETE();
+
+	//Los datos nuevos son incorrectos
+		$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'EDIT';
+	$USUARIOS_array_test1['error'] = 'datosincorrectos';
+	$USUARIOS_array_test1['error_esperado'] = '000121';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+
+		$login = 'miusuario';
+	$password = 'mipassword';
+	$nombre = 'minombre'; 
+	$apellidos = 'miapellido2';
+	$email = 'miemail@uvigo.es';
+
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios->ADD();
+	$nombre = 'mi'; 
+	$usuarios2= new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios2->EDIT()[0];
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+	$usuarios->DELETE();
+
+
+
+}
+function USUARIOS_SEARCH_test(){
+
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$USUARIOS_array_test1 = array();
+
+//comprobar bśqueda errónea
+		$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'SEARCH';
+	$USUARIOS_array_test1['error'] = 'Error al realizar una búsqueda';
+	$USUARIOS_array_test1['error_esperado'] = '00007';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+
+		$login = 'miusuario';
+	$password = 'mipassword';
+	$nombre = 'minombre'; 
+	$apellidos = 'miapellido2';
+	$email = 'miemail@uvigo.es';
+
+	$usuarios = new USUARIOS_Model($login,$password,'','','');
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->SEARCH()["code"];
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+	$usuarios->DELETE();
+
+
+//comprobar búsqueda correcta
+		$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'SEARCH';
+	$USUARIOS_array_test1['error'] = 'Devuelve el recordset';
+	$USUARIOS_array_test1['error_esperado'] = 'array';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+
+		$login = 'miusuario';
+	$password = 'mipassword';
+	$nombre = 'minombre'; 
+	$apellidos = 'miapellido2';
+	$email = 'miemail@uvigo.es';
+
+	$usuarios= new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios->ADD();
+	$buscar= new  USUARIOS_Model($login,'','','','');
+	$USUARIOS_array_test1['error_obtenido'] = gettype($buscar->SEARCH());
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+	$usuarios->DELETE();
+	$buscar->DELETE();
+}
 
 function USUARIOS_BuscarUsuarioPorLogin_test()
 {
@@ -390,10 +536,84 @@ function USUARIOS_BuscarUsuarioPorLogin_test()
 
 }
 
+
+function USUARIOS_BuscarUsuarioPorEmail_test()
+{
+
+	global $ERRORS_array_test;
+// creo array de almacen de test individual
+	$USUARIOS_array_test1 = array();
+
+// Comprobar el login no existe
+//--------------------------------------------------
+	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioEmail';
+	$USUARIOS_array_test1['error'] = 'El usuario a rellenar no existe';
+	$USUARIOS_array_test1['error_esperado'] = '000072';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+	
+	// Relleno los datos de usuario	
+	$login = 'noexistes';
+	
+// creo el modelo
+	$usuarios = new USUARIOS_Model($login,'','','','');
+
+
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarUsuarioPorLogin();
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+// Comprobar devuelve recordset
+//----------------------------------------------
+	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioEmail';
+	$USUARIOS_array_test1['error'] = 'Devuelve el recordset';
+	$USUARIOS_array_test1['error_esperado'] = 'array';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+	
+	$login = 'prueba1';
+	$password = 'prueba';
+	$nombre = 'proooo'; 
+	$apellidos = 'bando bando';
+	$email = 'preuba@uvigo.es';
+
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
+
+
+	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->BuscarUsuarioPorLogin());
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+	$usuarios->DELETE();
+
+}
+
 	USUARIOS_login_test();
 	USUARIOS_Registrar_test();
 	USUARIOS_ADD_test();
+	USUARIOS_EDIT_test();
+	USUARIOS_SEARCH_test();
 	USUARIOS_BuscarUsuarioPorLogin_test();
+	USUARIOS_BuscarUsuarioPorEmail_test();
 
 ?>
 
