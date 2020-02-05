@@ -466,7 +466,7 @@ function USUARIOS_SEARCH_test(){
 	$buscar->DELETE();
 }
 
-function USUARIOS_BuscarUsuarioPorLogin_test()
+function USUARIOS_BuscarUsuarioPorClave_test()
 {
 
 	global $ERRORS_array_test;
@@ -476,7 +476,7 @@ function USUARIOS_BuscarUsuarioPorLogin_test()
 // Comprobar el login no existe
 //--------------------------------------------------
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioLogin';
+	$USUARIOS_array_test1['metodo'] = 'BuscarPrCLave';
 	$USUARIOS_array_test1['error'] = 'El usuario a rellenar no existe';
 	$USUARIOS_array_test1['error_esperado'] = '000072';
 	$USUARIOS_array_test1['error_obtenido'] = '';
@@ -489,7 +489,7 @@ function USUARIOS_BuscarUsuarioPorLogin_test()
 	$usuarios = new USUARIOS_Model($login,'','','','');
 
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarUsuarioPorLogin();
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorClave();
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -504,7 +504,7 @@ function USUARIOS_BuscarUsuarioPorLogin_test()
 // Comprobar devuelve recordset
 //----------------------------------------------
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioLogin';
+	$USUARIOS_array_test1['metodo'] = 'BuscarPorClave';
 	$USUARIOS_array_test1['error'] = 'Devuelve el recordset';
 	$USUARIOS_array_test1['error_esperado'] = 'array';
 	$USUARIOS_array_test1['error_obtenido'] = '';
@@ -520,7 +520,7 @@ function USUARIOS_BuscarUsuarioPorLogin_test()
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
 
 
-	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->BuscarUsuarioPorLogin());
+	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->BuscarPorClave());
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -560,7 +560,7 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	$usuarios = new USUARIOS_Model($login,'','','','');
 
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarUsuarioPorLogin();
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorEmail();
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -591,7 +591,7 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
 
 
-	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->BuscarUsuarioPorLogin());
+	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->BuscarPorEmail());
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -612,7 +612,7 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	USUARIOS_ADD_test();
 	USUARIOS_EDIT_test();
 	USUARIOS_SEARCH_test();
-	USUARIOS_BuscarUsuarioPorLogin_test();
+	USUARIOS_BuscarUsuarioPorClave_test();
 	USUARIOS_BuscarUsuarioPorEmail_test();
 
 ?>

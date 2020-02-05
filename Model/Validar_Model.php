@@ -7,67 +7,7 @@ class Validar{
 	
 	}
 	function __destruct(){
-
-	}
-/*
-	function stringAlfanumerico($valor,$string,$erroresdatos){		
-
-		if (strlen($valor)<3)
-		{
-		//	$error = 'Error en nombre: longitud menor que 3';
-			$error='000021';
-			array_push($erroresdatos,["ok"=>false,"code"=>$error,"resource"=>$string]);		
-		}		
-		if (strlen($valor)>30)
-		{
-			//$error = 'Error en nombre: longitud mayor de 30';
-			$error='000022';
-			array_push($erroresdatos,["ok"=>false,"code"=>$error,"resource"=>$string]);
-			
-		}
-		if (preg_match('/[^a-zA-Z0-9]/',$valor)){
-			//solo alfanumerícos
-			$error = '000023';
-			array_push($erroresdatos,["ok"=>false,"code"=>$error,"resource"=>$string]);
-		
-		}
-		
-		return $erroresdatos;
-	}
-
-	function stringConEspacios($valor,$string,$erroresdatos){
-	if (strlen($valor)<3)
-		{
-		//	$error = 'Error en nombre: longitud menor que 3';
-			$error='000021';
-			array_push($erroresdatos,["ok"=>false,"code"=>$error,"resource"=>$string]);		
-		}		
-		if (strlen($valor)>50)
-		{
-			//$error = 'Error en nombre: longitud mayor de 30';
-			$error='000022';
-			array_push($erroresdatos,["ok"=>false,"code"=>$error,"resource"=>$string]);
-			
-		}
-		if (preg_match('/[^a-zA-Z0-9\s]/',$valor)){
-			//solo alfanumerícos
-			$error = '000023';
-			array_push($erroresdatos,["ok"=>false,"code"=>$error,"resource"=>$string]);
-		
-		}
-		
-		return $erroresdatos;
-	}
-
-	function EsEmail($email,$string,$erroresdatos){
-		 if (!filter_var($email, FILTER_VALIDATE_EMAIL)){ //email incorrecto
-      		$error='000024';
-			array_push($erroresdatos,["ok"=>false,"code"=>$error,"resource"=>$string]);
-		}
-		return $erroresdatos;
-	
-	}
-*/
+}
 
 function Validar_nombre($string,$errores){
 

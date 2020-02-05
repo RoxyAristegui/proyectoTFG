@@ -27,7 +27,7 @@ function __construct($login,$password,$nombre,$apellidos,$email){
 	$this->nombre = $nombre;
 	$this->apellidos = $apellidos;
 	$this->email = $email;
-	$this->erroresdatos = array(); 
+	$this->erroresdatos = array();
 
 	//$this->Comprobar_atributos();
 
@@ -37,7 +37,7 @@ function __construct($login,$password,$nombre,$apellidos,$email){
 }
 
 // function Comprobar_atributos
-// se lanzan las funciones de comprobacion de atributos de usuario, 
+// se lanzan las funciones de comprobacion de atributos de usuario,
 //sino hay errores devuelve true, sino el array de errores.
 
 function Comprobar_atributos(){
@@ -206,7 +206,7 @@ function DELETE()
 
 // funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su clave [login]
 //devuelve un array [clave]=valor;
-function BuscarUsuarioPorLogin()
+function BuscarPorClave()
 {
     $this->query = "SELECT *
 			FROM USUARIOS
@@ -227,7 +227,7 @@ function BuscarUsuarioPorLogin()
 
 // funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su email
 //devuelve un array [clVE]=valor;
-function BuscarUsuarioPorEmail()
+function BuscarPorEmail()
 {
     $this->query = "SELECT *
 			FROM USUARIOS

@@ -3,8 +3,7 @@
 var traduccion;
 
 //si no se env´ia idioma el idioma por defecto es ES
-function setLang(lang='',cambiarOnblur=false){
-	console.log("setLAng working");
+function setLang(lang =''){
 
 //comprobamos si recibimos un idioma por parámetro, si no lo recibimos le damos el valor a lang
 if(lang==''){
@@ -35,10 +34,7 @@ switch(lang){
 	traduccion=arrayES;
 	break;
 }
-console.log("taqui");
-if(cambiarOnblur){ //en caso de que la variable cambiarOnblur sea true
-      	lanzarOnblur(); //Para cambiar, en caso de que sea necesario, el idoma de los mensajes
-      }
+
    // se recorre el array de traducciones buscando coincidencias una por una
    for(var clave in traduccion) {
 		//si un elemento del array de traducciones está en el DOM se guarda en el array elementos
@@ -49,8 +45,6 @@ if(cambiarOnblur){ //en caso de que la variable cambiarOnblur sea true
         //Se recorre el nuevo array y se colocan en el DOM los textos
           elementos[elem].innerHTML = traduccion[clave];
         }
-        console.log("e");
-
 	}
 }
 

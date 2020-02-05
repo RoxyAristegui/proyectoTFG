@@ -83,7 +83,7 @@
           <div class="nav-item ">
           <a class="nav-link navbar-brand NomProyect" href="../Controller/Index_Controller.php">
           
-          	SiGePIn
+
           </a>
           </div>
 
@@ -114,24 +114,18 @@
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
             	<a class="nav-link dropdown-toggle text-gray-600 idioma"  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            			idioma
+            		/*	idioma */
             	</a>
         	    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="idiomaDropdown">
-	                <h6 class="dropdown-header">
+	                <h6 class="dropdown-header seleccionaIdioma">
 	                  Selecciona un idioma
 	                </h6>
 	                 <a class="dropdown-item d-flex align-items-center" href="#">
 
-		              <!--form name='idiomaform' action="../Functions/EstablecerIdioma.php" method="post">
-						<select name="idioma" onChange='this.form.submit()'>
-					        <option value="SPANISH"> </option>
-							<option value="ENGLISH"><?php echo $strings['INGLES']; ?></option>
-					        <option value="SPANISH"><?php echo $strings['ESPAÑOL']; ?></option>
-						</select>
-					</form--> 
-            <a  onclick="setLang('GA',true)"><img src="../View/img/galicia.png" height="40" width="60"></a>
-   <a href="#" onclick="setLang('ES',true)"><img src="../View/img/spain.png" height="40" width="60"></a>
-   <a onclick="setLang('EN',true)"><img src="../View/img/uk.png" height="40" width="60"></a>
+
+            <a  onclick="setLang('GA')"><img src="../Locale/img/gallego.png" height="40" width="60"></a>
+   <a href="#" onclick="setLang('ES')"><img src="../Locale/img/espanol.png" height="40" width="60"></a>
+   <a onclick="setLang('EN')"><img src="../Locale/img/ingles.png" height="40" width="60"></a>
 
 					</a>
 				</div>
@@ -147,18 +141,18 @@
           <?php	if (IsAuthenticated()){	?>
 
 			   <a class="nav-link dropdown-toggle text-gray-600" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="mr-2 d-none d-lg-inline"><?php echo $strings['Usuario'] . ' :</span> ' . $_SESSION['login'] ?>
+				<span class="mr-2 d-none d-lg-inline Usuario">/* Usuario */</span> <?php echo $_SESSION['login'] ?>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-	                <a class="dropdown-item" href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>
-	                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-	                   <?php echo $strings['Ver perfil']; ?>
+	                <a class="dropdown-item " href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>
+	                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 "></i>
+	                  <span class="verPerfil"> </span>
 	                </a>
 	               
 	                <div class="dropdown-divider"></div>
 	                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
 	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-	                   <?php echo $strings['Desconectar']; ?>
+	                  <span class="Desconectar">  </span>
 	                </a>
 	              </div>
 
@@ -167,7 +161,7 @@
 			else{
 				?>
 				    <a class="nav-link text-gray-600 " href="../Controller/Register_Controller.php" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-				<span class="mr-2 d-none d-lg-inline small"> <?php echo $strings['Usuario no autenticado'] ?> </span> 	<?php echo $strings["Registrar"]?>
+				 <span class="Registrar"> </span>
 			
 			</a>
 			<?php

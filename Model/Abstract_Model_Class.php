@@ -26,10 +26,10 @@ abstract class Abstract_Model{
 	abstract protected function DELETE();
 	abstract protected function ADD();
 	abstract protected function SEARCH();
-	//abstract protected function SEARCHONE();
+	abstract protected function BuscarPorClave();
 	abstract protected function login();
 	abstract protected function Register();
-	//abstract protected function attributes_validation();
+	abstract protected function Comprobar_atributos();
 
 # los siguientes métodos pueden definirse con exactitud y
 # no son abstractos
