@@ -114,7 +114,7 @@
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
             	<a class="nav-link dropdown-toggle text-gray-600 idioma"  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            		/*	idioma */
+            			idioma 
             	</a>
         	    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="idiomaDropdown">
 	                <h6 class="dropdown-header seleccionaIdioma">
@@ -141,7 +141,7 @@
           <?php	if (IsAuthenticated()){	?>
 
 			   <a class="nav-link dropdown-toggle text-gray-600" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<span class="mr-2 d-none d-lg-inline Usuario">/* Usuario */</span> <?php echo $_SESSION['login'] ?>
+				<img src='../Locale/img/ninjaicon.png' class="" width="50px" height="50px"> <?php echo $_SESSION['login'] ?>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 	                <a class="dropdown-item " href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>
