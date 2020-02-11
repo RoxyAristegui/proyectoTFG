@@ -18,14 +18,14 @@ class MESSAGE{
 
 	//	<div class="container-fluid">
 	var_dump($this->string);
-			if(is_array($this->string)){ 
+			if(isset($this->string[0]['code'])){ 
 
 		
 				foreach($this->string as $error){ //Si a la vista MESSAGE llega un array
 					?>
-					<div class=" <?php echo $error; ?> ">
+					<div class=" <?php echo $error['code']; ?> ">
 					<?php
-					echo $strings[$error];
+					echo $strings[$error['code']];
 					
 					?> 
 

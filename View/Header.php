@@ -81,7 +81,7 @@
             </div>
           </form-->
           <div class="nav-item ">
-          <a class="nav-link navbar-brand NomProyect" href="../Controller/Index_Controller.php">
+          <a class="nav-link navbar-brand NomProyect d-none d-md-inline" href="../Controller/Index_Controller.php">
           
 
           </a>
@@ -120,15 +120,15 @@
 	                <h6 class="dropdown-header seleccionaIdioma">
 	                  Selecciona un idioma
 	                </h6>
-	                 <a class="dropdown-item d-flex align-items-center" href="#">
+	                 <div class="dropdown-item d-flex align-items-center" href="#">
 
 
-            <a  onclick="setLang('GA')"><img src="../Locale/img/gallego.png" height="40" width="60"></a>
-   <a href="#" onclick="setLang('ES')"><img src="../Locale/img/espanol.png" height="40" width="60"></a>
-   <a onclick="setLang('EN')"><img src="../Locale/img/ingles.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="setLang('GA')"><img src="../Locale/img/gallego.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="setLang('ES')"><img src="../Locale/img/espanol.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="setLang('EN')"><img src="../Locale/img/ingles.png" height="40" width="60"></a>
 
-					</a>
-				</div>
+					         </div>
+				      </div>
              
             </li>
 
@@ -141,7 +141,9 @@
           <?php	if (IsAuthenticated()){	?>
 
 			   <a class="nav-link dropdown-toggle text-gray-600" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-				<img src='../Locale/img/ninjaicon.png' class="" width="50px" height="50px"> <?php echo $_SESSION['login'] ?>
+			  <img src='../Locale/img/ninjaicon.png' class="img-profile" width="50px" height="50px">
+         <span class="ml-2 d-none d-lg-inline text-gray-600 "><?php echo $_SESSION['login'] ?></span>
+
 				</a>
 				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 	                <a class="dropdown-item " href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>

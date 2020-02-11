@@ -8,3 +8,8 @@
   text-transform: uppercase;
   letter-spacing: 0.05rem;
 }
+.bg-gradient-menu{
+	     background-color: #5f2525;
+    background-image: linear-gradient(180deg, #9e3859 10%, #8e2c39 100%);
+    background-size: cover;
+}

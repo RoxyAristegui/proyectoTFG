@@ -59,10 +59,29 @@ function Comprobar_atributos(){
 // si se detectaron errores los añade al array de erroers
 function Comprobar_login()
 {
-	$validacion= new Validar();
-	$valido=$validacion->Validar_login($this->login,$this->erroresdatos);
-	$this->erroresdatos= $valido;
-	return $valido;
+
+	$validar= new Validar();
+	if($validar->Longitud_minima($this->nombre,5)===false){
+		$this->code='000131';
+		$this->ok=false;
+		$this->resource='Login';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Longitud_maxima($this->nombre,30)===false){
+		$this->code='000132';
+		$this->ok=false;
+		$this->resource='Login';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Es_alfanumerico($string)===false){
+		$this->code='000133';
+		$this->ok=false;
+		$this->resource='Login';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
 }
 
 // Comprueba el formato del login 
@@ -71,38 +90,96 @@ function Comprobar_login()
 // si se detectaron errores los añade al array de erroers
 function Comprobar_nombre()
 {
-	$validacion= new Validar();
-	$valido=$validacion->Validar_nombre($this->nombre,$this->erroresdatos);
-	$this->erroresdatos= $valido;
-	return $valido;
+	$validar= new Validar();
+	if($validar->Longitud_minima($this->nombre,3)===false){
+		$this->code='000121';
+		$this->ok=false;
+		$this->resource='Nombre';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Longitud_maxima($this->nombre,30)===false){
+		$this->code='000122';
+		$this->ok=false;
+		$this->resource='Nombre';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Es_string($string)===false){
+		$this->code='000123';
+		$this->ok=false;
+		$this->resource='Nombre';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
 	
 }
 
 //Comrpeuba el formato de los apellidos, alfanumérico con espacios
 function Comprobar_apellidos(){
-	$validacion= new Validar();
-	$valido=$validacion->Validar_apellidos($this->apellidos,$this->erroresdatos);
-$this->erroresdatos= $valido;
-	return $valido;
+	$validar= new Validar();
+	if($validar->Longitud_minima($this->nombre,3)===false){
+		$this->code='000151';
+		$this->ok=false;
+		$this->resource='Apellidos';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Longitud_maxima($this->nombre,50)===false){
+		$this->code='000152';
+		$this->ok=false;
+		$this->resource='Apellidos';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Es_string_espacios($string)===false){
+		$this->code='000153';
+		$this->ok=false;
+		$this->resource='Apellidos';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
 }
 
 // comprueba la pass, letras y números, entre 3 y 30 carácteres
 // si se detectaron errores los añade al array de erroers
 function Comprobar_password(){
-	
-	$validacion= new Validar();
-	$valido=$validacion->Validar_password($this->password,$this->erroresdatos);
-	$this->erroresdatos= $valido;
-	return $valido;
+	$validar= new Validar();
+	if($validar->Longitud_minima($this->nombre,5)===false){
+		$this->code='000141';
+		$this->ok=false;
+		$this->resource='Password';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Longitud_maxima($this->nombre,30)===false){
+		$this->code='000142';
+		$this->ok=false;
+		$this->resource='Password';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Es_alfanumerico($string)===false){
+		$this->code='000143';
+		$this->ok=false;
+		$this->resource='Password';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
 }
 
 //comprueba que el email tenga un formato válido
 // si se detectaron errores los añade al array de erroers
 function Comprobar_email(){
-	$validacion= new Validar();
-	$valido=$validacion->Validar_email($this->email,$this->erroresdatos);
-	$this->erroresdatos= $valido;
-	return $valido;
+	$validar= new Validar();
+	if($validar->Formato_email($this->email)===false){
+		$this->code='000161';
+		$this->ok=false;
+		$this->resource='email';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	
 }
 
 

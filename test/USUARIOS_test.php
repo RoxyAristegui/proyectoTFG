@@ -256,7 +256,7 @@ function USUARIOS_ADD_test()
 
 	$usuarios->DELETE();	
 
-
+/*
 // Comprobar error en la inserción
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'ADD';
@@ -285,7 +285,7 @@ function USUARIOS_ADD_test()
 	array_push($ERRORS_array_test, $USUARIOS_array_test1);	
 
 	$usuarios->DELETE();
-
+*/
 // Comprobar Inserción realizada con éxito
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'ADD';
@@ -360,7 +360,7 @@ function USUARIOS_EDIT_test(){
 
 	$usuarios->DELETE();
 	$usuarios2->DELETE();
-
+/*
 	//Los datos nuevos son incorrectos
 		$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'EDIT';
@@ -394,7 +394,7 @@ function USUARIOS_EDIT_test(){
 
 	$usuarios->DELETE();
 
-
+*/
 
 }
 function USUARIOS_SEARCH_test(){
@@ -610,11 +610,11 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	USUARIOS_login_test();
 	USUARIOS_Registrar_test();
 	USUARIOS_ADD_test();
-	USUARIOS_EDIT_test();
+/*	USUARIOS_EDIT_test();
 	USUARIOS_SEARCH_test();
 	USUARIOS_BuscarUsuarioPorClave_test();
 	USUARIOS_BuscarUsuarioPorEmail_test();
-
+*/
 ?>
 
 

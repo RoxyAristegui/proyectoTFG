@@ -1,6 +1,6 @@
 
 arrayES={
-	//header y general
+	//header 
 	NomProyect:'INCID',
 	Idioma : 'Idioma',
 	seleccionaIdioma :'Selecciona un idioma',
@@ -28,6 +28,10 @@ arrayES={
 	Borrar : 'Borrar',
 	Añadir : 'Añadir',
 	Buscar : 'Buscar',
+
+	//generales
+	AllUSers : 'Todos los usuarios',
+
 
 //codigos de errores
 	'00001' : 'Inserción realizada con éxito',
