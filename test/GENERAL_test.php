@@ -7,7 +7,7 @@ echo 'TESTS GENERALES ----- <BR>';
 include '../test/Global_test.php';
 echo 'TEST UNITARIOS ------ <BR>';
 include '../test/USUARIOS_test.php';
-//include '../test/Validar_test.php';
+include '../test/Validar_test.php';
 
 
 

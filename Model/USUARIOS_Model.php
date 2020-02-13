@@ -295,7 +295,10 @@ function BuscarPorClave()
 	
 	if ($this->feedback['code'] == '00007')
 	{
-			return "000072"; //error de ejecucion de la sql, noe xiste usuario con ese login
+			$this->code= "000072"; //error de ejecucion de la sql, noe xiste usuario con ese login
+			$this->ok="false";
+			$this->construct_response();
+			return $this->feedback;
 	}
 
 	return $this->rows;
@@ -316,7 +319,10 @@ function BuscarPorEmail()
 	
 	if ($this->feedback['code'] == '00007')
 	{
-			return $this->feedback; //error de ejecucion de la sql de recuperación de datos
+		$this->code="000075";
+		$this->ok=false; // no existe usuario con ese email
+		$this->construct_response();
+			return $this->feedback; 
 	}
 
 	return $this->rows;

@@ -489,7 +489,7 @@ function USUARIOS_BuscarUsuarioPorClave_test()
 	$usuarios = new USUARIOS_Model($login,'','','','');
 
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorClave();
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorClave()['code'];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -549,18 +549,18 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioEmail';
 	$USUARIOS_array_test1['error'] = 'El usuario a rellenar no existe';
-	$USUARIOS_array_test1['error_esperado'] = '000072';
+	$USUARIOS_array_test1['error_esperado'] = '000075';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 	
 	// Relleno los datos de usuario	
-	$login = 'noexistes';
+	$email = 'noexistes';
 	
 // creo el modelo
-	$usuarios = new USUARIOS_Model($login,'','','','');
+	$usuarios = new USUARIOS_Model('','','','',$email);
 
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorEmail();
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorEmail()['code'];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -610,11 +610,11 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	USUARIOS_login_test();
 	USUARIOS_Registrar_test();
 	USUARIOS_ADD_test();
-/*	USUARIOS_EDIT_test();
+	USUARIOS_EDIT_test();
 	USUARIOS_SEARCH_test();
 	USUARIOS_BuscarUsuarioPorClave_test();
 	USUARIOS_BuscarUsuarioPorEmail_test();
-*/
+
 ?>
 
 

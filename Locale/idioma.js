@@ -70,3 +70,8 @@ function getCookie(name) {
     }
     return null;
 }
+
+function cambiarLang(lang){
+    setCookie('lang',lang,5);
+   window.location.reload(false);
+}

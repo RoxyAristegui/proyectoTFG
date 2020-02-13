@@ -1,14 +1,21 @@
 <?php
 	include_once '../Functions/Authentication.php';
-	if (!isset($_SESSION['idioma'])) {
+/*	if (!isset($_SESSION['idioma'])) {
 		$_SESSION['idioma'] = 'SPANISH';
 	}
 	else{
-	}
-	include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
+	}*/
+	//include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
 //error_reporting(E_ALL);
 //ini_set('display_errors', '1');
+if(isset($_COOKIE["lang"])){
+  $lang=$_COOKIE["lang"];
+}else{
+  $lang='ES';
+}
+include '../Locale/Strings_'.$lang.'.php';
 ?>
+
 <html>
 <head>
 	 <meta charset="utf-8">
@@ -113,8 +120,8 @@
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
-            	<a class="nav-link dropdown-toggle text-gray-600 idioma"  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            			idioma 
+            	<a class="nav-link dropdown-toggle text-gray-600"  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            			<?php echo $strings['idioma']; ?>
             	</a>
         	    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="idiomaDropdown">
 	                <h6 class="dropdown-header seleccionaIdioma">
@@ -123,9 +130,9 @@
 	                 <div class="dropdown-item d-flex align-items-center" href="#">
 
 
-                    <a class="m-auto" onclick="setLang('GA')"><img src="../Locale/img/gallego.png" height="40" width="60"></a>
-                    <a class="m-auto" onclick="setLang('ES')"><img src="../Locale/img/espanol.png" height="40" width="60"></a>
-                    <a class="m-auto" onclick="setLang('EN')"><img src="../Locale/img/ingles.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="cambiarLang('GA')"><img src="../Locale/img/gallego.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="cambiarLang('ES')"><img src="../Locale/img/espanol.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="cambiarLang('EN')"><img src="../Locale/img/ingles.png" height="40" width="60"></a>
 
 					         </div>
 				      </div>

@@ -43,7 +43,7 @@
                   <hr>
                 
                   <div class="text-center">
-                    <a class="small NuevoCrearCuenta" href="../Controller/Register_Controller.php">Create an Account!</a>
+                    <a class="small" href="../Controller/Register_Controller.php"><?php echo $strings['Crear una cuenta']?> !</a>
                   </div>
                 </div>
               </div>

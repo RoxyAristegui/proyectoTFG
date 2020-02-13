@@ -60,7 +60,11 @@ function Es_string_espacios($string){
 
 
 function Formato_email($string){
-	 return filter_var($string, FILTER_VALIDATE_EMAIL);
+	 if(filter_var($string, FILTER_VALIDATE_EMAIL)){
+	 	return true;
+	 }else{
+	 	return false;
+	 }
 }
 
 

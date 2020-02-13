@@ -17,6 +17,7 @@ array(
 '000072'=>'No existe usuario con ese nombre',
 '000073'=>'La contraseña no coincide',
 '000074'=>'Error al intentar realizar el cambio en la BD',
+'000075'=>'No existe usuario con ese email',
 //errores de validacion de usuario
 	'000121'=>'La longitud del nombre debe ser mayor a 3',
 	'000122'=>'La longitud del nombre debe ser menor de 30 caracteres',
