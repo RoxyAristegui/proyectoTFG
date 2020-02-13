@@ -1,8 +1,8 @@
 <?php
 
-define("BD","IU2018");
-define("user", "iu2018");
-define("pass", "pass2018");
+define("BD","INCID_TFG");
+define("user", "roxytfg");
+define("pass", "isJY5h");
 define("host", "localhost");
 define('directorioLog', "Log");
 define('log_name' , "myapplog.txt");

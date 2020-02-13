@@ -14,19 +14,14 @@ else{
 	$usuario = new USUARIOS_Model($_REQUEST['login'],$_REQUEST['password'],$_REQUEST['nombre'],$_REQUEST['apellidos'],$_REQUEST['email']);
 	$respuesta = $usuario->Register();
 
-/*	if ($respuesta == 'true'){
-		$respuesta = $usuario->registrar();
+	if ($respuesta['ok'] === true){
 		Include '../View/MESSAGE_View.php';
 		new MESSAGE($respuesta, './Login_Controller.php');
 	}
 	else{
 		include '../View/MESSAGE_View.php';
-		new MESSAGE($respuesta, './Login_Controller.php');
-	}*/
-
-	Include '../View/MESSAGE_View.php';
-	new MESSAGE($respuesta, './Login_Controller.php');
-
+		new MESSAGE($respuesta, './Register_Controller.php');
+	}
 
 }
 

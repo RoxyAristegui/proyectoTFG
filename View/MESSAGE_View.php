@@ -38,7 +38,7 @@ class MESSAGE{
 				<div class=' <?php echo $this->string; ?> '>
 					<?php
 				
-						echo $strings[$this->string];
+						echo $strings[$this->string['code']];
 					
 					?> 
 

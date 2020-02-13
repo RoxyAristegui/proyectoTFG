@@ -15,7 +15,7 @@ function ExisteBD()
 	$global_array_test['entidad'] = 'GENERAL';	
 	$global_array_test['metodo'] = 'BD';
 	$global_array_test['error'] = 'Usuario contraseña erronea';
-	$global_array_test['error_esperado'] = "Access denied for user 'iu2018'@'localhost' (using password: YES)";
+	$global_array_test['error_esperado'] = "Access denied for user 'roxytfg'@'localhost' (using password: YES)";
 	$global_array_test['error_obtenido'] = '';
 	$global_array_test['resultado'] = '';
 
@@ -47,19 +47,19 @@ function ExisteBD()
 	$global_array_test['entidad'] = 'GENERAL';	
 	$global_array_test['metodo'] = 'BD';
 	$global_array_test['error'] = 'No existe la bd';
-	$global_array_test['error_esperado'] = "Access denied for user 'iu2018'@'localhost' to database 'BD'";
+	$global_array_test['error_esperado'] = "Access denied for user 'roxytfg'@'localhost' to database 'BD'";
 	$global_array_test['error_obtenido'] = '';
 	$global_array_test['resultado'] = '';
 
 	try{
-		$mysqli = new mysqli(host, user, pass , BD);
+		$mysqli = new mysqli(host, user, pass , 'BD');
 	}
 	catch (mysqli_sql_exception $e){
 		$global_array_test['error_obtenido'] = $e->getMessage();
 	}
 
 
-   	if ((strpos($global_array_test['error_esperado'],$global_array_test['error_obtenido'])) !== false)
+   	if ((strpos($global_array_test['error_esperado'],$global_array_test['error_obtenido'])) === false)
 	{
 		$global_array_test['resultado'] = 'FALSE';
 	}
@@ -70,17 +70,37 @@ function ExisteBD()
 
 	array_push($ERRORS_array_test, $global_array_test);
 
+//comprobar que si existe la base de datos y los datos son correctos
     
+	$global_array_test['entidad'] = 'GENERAL';	
+	$global_array_test['metodo'] = 'BD';
+	$global_array_test['error'] = 'Base de datos correcta';
+	$global_array_test['error_esperado'] = "object";
+	$global_array_test['error_obtenido'] = '';
+	$global_array_test['resultado'] = '';
 
-	/*if ((strpos($mysqli->connect_error,"Name or service not known")) !== false)
-    {
-    	//la direccion no existe
-    }
+	try{
+		$mysqli = new mysqli(host, user, pass , BD);
 
-    if ((strpos($mysqli->connect_error,"Connection refused")) !== false)
-    {
-    	//el gestor no esta levantado
-    }*/
+		$global_array_test['error_obtenido'] = gettype($mysqli);	
+	}
+	catch (mysqli_sql_exception $e){
+		$global_array_test['error_obtenido'] = $e->getMessage();
+	}
+
+
+
+   	if ((strpos($global_array_test['error_esperado'],$global_array_test['error_obtenido'])) === false)
+	{
+		$global_array_test['resultado'] = 'FALSE';
+	}
+	else
+	{
+		$global_array_test['resultado'] = 'OK';
+	}
+
+	array_push($ERRORS_array_test, $global_array_test);
+
 
 
 }

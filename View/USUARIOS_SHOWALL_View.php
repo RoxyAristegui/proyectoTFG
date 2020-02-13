@@ -31,7 +31,6 @@
 					<?php 	} ?>
 						<th>Editar</th>
 						<th>Borrar</th>
-						<th>Ver</th>
 					</tr>
 				  </thead>
 				     <tfoot>
@@ -41,7 +40,6 @@
 					<?php 	} ?>
 						<th>Editar</th>
 						<th>Borrar</th>
-						<th>Ver</th>
 					</tr>
 				  </tfoot>
 				  <tbody>
@@ -53,17 +51,12 @@
 						<td>
 						<a href='
 							../Controller/USUARIOS_Controller.php?action=EDIT&login=
-								<?php echo $fila['login']; ?>'> EDITAR </a>
+								<?php echo $fila['login']; ?>'> <i class="fas fa-edit"></i> </a>
 						</td>
 						<td>
 							<a href='
 								../Controller/USUARIOS_Controller.php?action=DELETE&login=
-									<?php echo $fila['login']; ?>'> BORRAR </a>
-						</td>
-						<td>
-							<a href='
-								../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=
-									<?php echo $fila['login']; ?>'> DETALLE </a>
+									<?php echo $fila['login']; ?>'> <i class="fas fa-trash-alt"></i> </a>
 						</td>
 					</tr>
 

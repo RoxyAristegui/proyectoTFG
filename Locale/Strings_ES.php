@@ -10,14 +10,13 @@ array(
 '00007'=>'La consulta vuelva vacía',
 '00005'=>'Error de conexión con la base de datos',
 '000051'=>'Error de gestor de base de datos',
-'000052'=>'Sql realizada con exito',
-'000053'=>'Modificación realizada con éxito',
 
-'000071'=>'Ya existe un usuario con ese Login o email',
+'000071'=>'Ya existe un usuario con ese Login',
 '000072'=>'No existe usuario con ese nombre',
 '000073'=>'La contraseña no coincide',
 '000074'=>'Error al intentar realizar el cambio en la BD',
 '000075'=>'No existe usuario con ese email',
+'000076'=>'Ya existe un usuario con ese email',
 //errores de validacion de usuario
 	'000121'=>'La longitud del nombre debe ser mayor a 3',
 	'000122'=>'La longitud del nombre debe ser menor de 30 caracteres',
@@ -37,6 +36,10 @@ array(
 
 //correcto
 	'000053'=>'Registro realizado con éxito',
+	'000052'=>'Sql realizada con exito',
+	'000054'=>'Modificación realizada con éxito',
+	'000055'=>'Borrado realizado con éxito',
+
 
 	'Registro'=>'Registro',
 	'password'=>'contraseña',

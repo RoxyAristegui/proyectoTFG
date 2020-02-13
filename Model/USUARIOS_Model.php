@@ -36,6 +36,15 @@ function __construct($login,$password,$nombre,$apellidos,$email){
 
 }
 
+
+//funcion de destrucción del objeto: se ejecuta automaticamente
+//al finalizar el script
+function __destruct()
+{
+
+}
+
+
 // function Comprobar_atributos
 // se lanzan las funciones de comprobacion de atributos de usuario,
 //sino hay errores devuelve true, sino el array de errores.
@@ -52,6 +61,8 @@ function Comprobar_atributos(){
 	return $this->erroresdatos;
 	}
 }
+
+
 
 // Comprueba el formato del login 
 //	alfanumericol, entre 3 y 30 carácteres
@@ -182,6 +193,43 @@ function Comprobar_email(){
 	
 }
 
+//inserta un error en el array de errores si el login ya existe
+function login_unico(){
+	$this->query = "SELECT *
+					FROM USUARIOS
+					WHERE (
+						(login = '".$this->login."') 
+					)";
+	
+	$this->get_results_from_query();
+	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
+		$this->ok=false;
+		$this->code  = '000071'; // el login ya existe
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+		return false;
+		}else {return true;}
+}
+
+
+//inserta un error en el array de errores si el email ya existe
+function email_unico(){
+		$this->query = "SELECT *
+					FROM USUARIOS
+					WHERE (
+						(email = '".$this->email."') 
+					)";
+	
+	$this->get_results_from_query();
+	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
+		$this->ok=false;
+		$this->code  = '000076'; // el login ya existe
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+		return false;
+		}else {return true;}
+}
+
 
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
@@ -189,16 +237,8 @@ function Comprobar_email(){
 //existe ya en la tabla
 function ADD()
 {
-	$comprobar= $this->Comprobar_atributos();
+	if($this->Comprobar_atributos() && $this->email_unico() & $this->login_unico()){
 
-	if($comprobar===true){
-		$this->query = "select * from USUARIOS where login = '".$this->login."' or email = '".$this->email."'";
-		$this->get_results_from_query();
-
-		if ($this->feedback['code'] == '00008'){  // existe el usuario
-				//return 'Inserción fallida: el usuario ya existe';
-				return '000071';
-		}else{
 			$this->query = "INSERT INTO USUARIOS (
 				login,
 				password,
@@ -215,23 +255,13 @@ function ADD()
 
 			$this->execute_single_query();
 			
-				return $this->feedback['code']; //operacion de insertado correcta
-			
-			
-		}
-		return $this->feedback['code'];	
+				return $this->feedback; //operacion de insertado correcta
+	
 	}else{
 		return $this->erroresdatos;
-}
+	}
 }
     
-
-//funcion de destrucción del objeto: se ejecuta automaticamente
-//al finalizar el script
-function __destruct()
-{
-
-}
 
 
 //funcion SEARCH: hace una búsqueda en la tabla con
@@ -272,13 +302,16 @@ function DELETE()
 
    	if ($this->feedback['ok'])
 	{
-		$resultado = 'Borrado realizado con éxito';
+		$this->ok=true;
+		$this->code = '000075'; //BOrrado realizado con exito
 	}
 	else
 	{	//Error de gestor de base de datos
-		$resultado = '000051';
+		$this->ok=false;
+		$this->code = '000051';
 	}
-	return $resultado;
+	$this->construct_response();
+	return $this->feedback;
 }
 
 // funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su clave [login]
@@ -331,8 +364,7 @@ function BuscarPorEmail()
 // funcion Edit: realizar el update de una tupla
 function EDIT()
 {
-	$comprobar=$this->Comprobar_atributos();
-	if($comprobar===true){
+	if($this->Comprobar_atributos()===true){
 		$this->query = "UPDATE USUARIOS
 				SET 
 					password = '$this->password',
@@ -367,6 +399,7 @@ function EDIT()
 		return $this->erroresdatos;
 	}
 }
+
 
 // funcion login: realiza la comprobación de si existe el usuario en la bd y despues si la pass
 // es correcta para ese usuario. Si es asi devuelve true, en cualquier otro caso devuelve el 
@@ -404,44 +437,33 @@ function login(){
 //
 function Register(){
 
-$comprobar=$this->Comprobar_atributos();
-if($comprobar===true){
-	$this->query = "select * from USUARIOS where login = '".$this->login."'";
-	$this->get_results_from_query();
+	if($this->Comprobar_atributos()===true & $this->email_unico() & $this->login_unico()){
 
-	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
-		$this->ok=false;
-		$this->resource="Registro";
-		$this->code  = '000071'; // el login ya existe
-		$this->construct_response();
+		$this->query = 
+			"INSERT INTO USUARIOS (
+				login,
+				password,
+				nombre,
+				apellidos,
+				email) 
+			VALUES (
+					'".$this->login."',
+					'".$this->password."',
+					'".$this->nombre."',
+					'".$this->apellidos."',
+					'".$this->email."'
+					)";
+							
+		$this->execute_single_query();
+
+		if ($this->feedback['code'] = '000052'){ //sql ejecutado con exito
+			$this->ok = true;
+			$this->code  = '000053'; //registro realizado con exito
+			$this->construct_response();
 		}
-	else{
-			$this->query = 
-				"INSERT INTO USUARIOS (
-					login,
-					password,
-					nombre,
-					apellidos,
-					email) 
-				VALUES (
-						'".$this->login."',
-						'".$this->password."',
-						'".$this->nombre."',
-						'".$this->apellidos."',
-						'".$this->email."'
-						)";
-								
-			$this->execute_single_query();
+									
 
-			if ($this->feedback['code'] = '000052'){ //sql ejecutado con exito
-				$this->ok = true;
-				$this->code  = '000053'; //registro realizado con exito
-				$this->construct_response();
-			}
-										
-		}
-
-	return $this->feedback;
+		return $this->feedback;
 	}else{
 		return $this->erroresdatos;
 	}

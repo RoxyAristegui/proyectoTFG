@@ -20,7 +20,7 @@ else{
 	}
 	else{
 		include '../View/MESSAGE_View.php';
-		new MESSAGE($strings[$respuesta['code']], './Login_Controller.php');
+		new MESSAGE($respuesta, './Login_Controller.php');
 	}
 
 }
