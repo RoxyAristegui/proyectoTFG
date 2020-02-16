@@ -17,7 +17,7 @@
 	
 			   <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary"> 
+              <h6 class="m-0 font-weight-bold text-info"> 
 				<i class="fas fa-user-plus"></i> <a href='../Controller/USUARIOS_Controller.php?action=ADD'><?php echo $strings['ADD']; ?></a>
 			  </h6>
             </div>
@@ -56,7 +56,7 @@
 						<td>
 							<a href='
 								../Controller/USUARIOS_Controller.php?action=DELETE&login=
-									<?php echo $fila['login']; ?>'> <i class="fas fa-trash-alt"></i> </a>
+									<?php echo $fila['login']; ?>' class="icon delete"> </a>
 						</td>
 					</tr>
 

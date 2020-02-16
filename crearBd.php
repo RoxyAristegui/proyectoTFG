@@ -11,7 +11,7 @@ $mysql_password = 'MySQLpa55';
 // Database name
 $mysql_database = 'INCID_TFG';
 
-$conn =new mysqli($mysql_host, $mysql_username, $mysql_password, 'mysql');
+$conn =new mysqli($mysql_host, 'root', '', 'mysql');
 
 $query = '';
 $sqlScript = file($filename);

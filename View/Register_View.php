@@ -28,7 +28,7 @@
 					  <input type = 'text' name = 'login' id = 'login' class="form-control form-control-user"  placeholder = "<?php echo $strings['Login'] ?>" size = '9' value = '' onblur="esNoVacio('login')  && comprobarDni('login')" >
 					 </div>
 					 <div class="form-group">
-						<input type = 'text' name = 'password' id = 'password' class="form-control form-control-user"  placeholder =" <?php echo $strings['contrasena'] ?>" size = '15' value = '' onblur="esNoVacio('password')  && comprobarLetrasNumeros('password',15)" >
+						<input type = 'text' name = 'password' id = 'password' class="form-control form-control-user"  placeholder =" <?php echo $strings['password'] ?>" size = '15' value = '' onblur="esNoVacio('password')  && comprobarLetrasNumeros('password',15)" >
 					</div>
 
 					 <div class="form-group">
@@ -41,13 +41,13 @@
 							<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control form-control-user"  placeholder = "<?php echo $strings['apellidos'] ?> " size = '50' value = '' onblur="esNoVacio('apellidos')  && comprobarSoloLetras('apellidos',50)" >
 						</div>
 					</div>
-						<input type='submit' name='action' value="<?php echo $strings['Registrar'] ?>" class="btn btn-primary btn-user btn-block">
+						<input type='submit' name='action' value="<?php echo $strings['Registrar'] ?>" class="btn btn-outline-info btn-user btn-block">
 
 				</form>
 				
 		
 				<div class="text-center">
-	                <a class="small" href='../Controller/Index_Controller.php'><?php echo $strings["Ya tienes una cuenta"]."? ".$strings["inicia sesión"];?>! </a>
+	                <a class="small" href='../Controller/Index_Controller.php'><?php echo $strings["Ya tienes una cuenta"]."? ".$strings["inicia sesion"];?>! </a>
 	            </div>
 			
 		    </div>

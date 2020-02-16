@@ -1,7 +1,7 @@
 
 
 	  <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -18,7 +18,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="../Controller/Index_Controller.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span class="Inicio"></span></a>
+          <span class="Inicio"><?php echo $strings['inicio']?></span></a>
       </li>
 
       <!-- Divider -->
@@ -33,7 +33,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" h href='../Controller/USUARIOS_Controller.php'>
           <i class="fas fa-fw fa-cog"></i>
-          <span class="GestionUsuarios"></span>
+          <span><?php echo $strings['Gestion usuarios']?></span>
         </a>
     
       </li>

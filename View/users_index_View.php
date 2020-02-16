@@ -8,7 +8,6 @@ class Index {
 
 	function render(){
 	
-		include '../Locale/Strings_SPANISH.php';
 		include '../View/Header.php';
 ?>
 		<H1> BIENVENIDO A LA ARQUITECTURA BASE DE IU' </H1>

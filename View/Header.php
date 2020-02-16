@@ -155,13 +155,13 @@ include '../Locale/Strings_'.$lang.'.php';
 				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 	                <a class="dropdown-item " href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>
 	                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 "></i>
-	                  <span class="verPerfil"> <?php echo $strings["ver perfil"]?></span>
+	                  <span> <?php echo $strings["Ver perfil"]?></span>
 	                </a>
 	               
 	                <div class="dropdown-divider"></div>
 	                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
 	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-	                  <span class="Desconectar"><?php echo $strings["Desconectar"]?>  </span>
+	                  <span><?php echo $strings["Desconectar"]?>  </span>
 	                </a>
 	              </div>
 

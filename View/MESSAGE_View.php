@@ -13,7 +13,6 @@ class MESSAGE{
 
 	function render(){
 
-		include '../Locale/Strings_'.$_SESSION['idioma'].'.php';
 		include '../View/Header.php';
 
 	//	<div class="container-fluid">

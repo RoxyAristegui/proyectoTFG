@@ -72,21 +72,21 @@ function Comprobar_login()
 {
 
 	$validar= new Validar();
-	if($validar->Longitud_minima($this->nombre,5)===false){
+	if($validar->Longitud_minima($this->login,5)===false){
 		$this->code='000131';
 		$this->ok=false;
 		$this->resource='Login';
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Longitud_maxima($this->nombre,30)===false){
+	if($validar->Longitud_maxima($this->login,30)===false){
 		$this->code='000132';
 		$this->ok=false;
 		$this->resource='Login';
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Es_alfanumerico($string)===false){
+	if($validar->Es_alfanumerico($this->login)===false){
 		$this->code='000133';
 		$this->ok=false;
 		$this->resource='Login';
@@ -116,7 +116,7 @@ function Comprobar_nombre()
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Es_string($string)===false){
+	if($validar->Es_string($this->nombre)===false){
 		$this->code='000123';
 		$this->ok=false;
 		$this->resource='Nombre';
@@ -129,21 +129,21 @@ function Comprobar_nombre()
 //Comrpeuba el formato de los apellidos, alfanumérico con espacios
 function Comprobar_apellidos(){
 	$validar= new Validar();
-	if($validar->Longitud_minima($this->nombre,3)===false){
+	if($validar->Longitud_minima($this->apellidos,3)===false){
 		$this->code='000151';
 		$this->ok=false;
 		$this->resource='Apellidos';
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Longitud_maxima($this->nombre,50)===false){
+	if($validar->Longitud_maxima($this->apellidos,50)===false){
 		$this->code='000152';
 		$this->ok=false;
 		$this->resource='Apellidos';
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Es_string_espacios($string)===false){
+	if($validar->Es_string_espacios($this->apellidos)===false){
 		$this->code='000153';
 		$this->ok=false;
 		$this->resource='Apellidos';
@@ -156,21 +156,21 @@ function Comprobar_apellidos(){
 // si se detectaron errores los añade al array de erroers
 function Comprobar_password(){
 	$validar= new Validar();
-	if($validar->Longitud_minima($this->nombre,5)===false){
+	if($validar->Longitud_minima($this->password,5)===false){
 		$this->code='000141';
 		$this->ok=false;
 		$this->resource='Password';
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Longitud_maxima($this->nombre,30)===false){
+	if($validar->Longitud_maxima($this->password,30)===false){
 		$this->code='000142';
 		$this->ok=false;
 		$this->resource='Password';
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Es_alfanumerico($string)===false){
+	if($validar->Es_alfanumerico($this->password)===false){
 		$this->code='000143';
 		$this->ok=false;
 		$this->resource='Password';
@@ -303,7 +303,7 @@ function DELETE()
    	if ($this->feedback['ok'])
 	{
 		$this->ok=true;
-		$this->code = '000075'; //BOrrado realizado con exito
+		$this->code = '000055'; //BOrrado realizado con exito
 	}
 	else
 	{	//Error de gestor de base de datos
