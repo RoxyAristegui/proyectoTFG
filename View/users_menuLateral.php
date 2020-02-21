@@ -18,7 +18,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="../Controller/Index_Controller.php">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span class="Inicio"><?php echo $strings['inicio']?></span></a>
+          <span class="Inicio">Inicio</span></a>
       </li>
 
       <!-- Divider -->
@@ -33,7 +33,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" h href='../Controller/USUARIOS_Controller.php'>
           <i class="fas fa-fw fa-cog"></i>
-          <span><?php echo $strings['Gestion usuarios']?></span>
+          <span class="GestionUsuarios">Gestión de usuarios</span>
         </a>
     
       </li>

@@ -25,19 +25,19 @@
 		</div>
 
    <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="desconectarModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"><?php echo $strings["estas seguro?"]?></h5>
+          <h5 class="modal-title TeVas" id="desconectarModal">Te vas?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body"><?php echo $strings['selecciona desconectar..']?></div>
+        <div class="modal-body SeleccionaDesconectarSi">Selecciona desconectar si quieres cerrar la sesión actual.</div>
         <div class="modal-footer">
-          <button class="btn btn-outline-secondary" type="button" data-dismiss="modal"><?php echo $strings["Cancelar"]?></button>
-          <a class="btn btn-outline-info" href="../Functions/Desconectar.php"><?php echo $strings["Desconectar"]?></a>
+          <button class="btn btn-outline-secondary Cancelar" type="button" data-dismiss="modal">Cancelar</button>
+          <a class="btn btn-outline-info Desconectar" href="../Functions/Desconectar.php">Desconectar</a>
         </div>
       </div>
     </div>

@@ -1,5 +1,32 @@
 <?php
 session_start();
+
+
+include_once '../Model/Access_DB.php';
+
+$mysql = ConnectDB();
+$filename='../tfgRoxy_test.sql';
+$query = '';
+$sqlScript = file($filename);
+/*
+foreach ($sqlScript as $line)	{
+	
+	$startWith = substr(trim($line), 0 ,2);
+	$endWith = substr(trim($line), -1 ,1);
+	
+	if (empty($line) || $startWith == '--' || $startWith == '/*' || $startWith == '//') {
+		continue;
+	}
+		
+	$query = $query . $line;
+	if ($endWith == ';') {
+		mysqli_query($mysql,$query) or die( $msg='<div class="error-response sql-import-response">Problem in executing the SQL query <b>' . $query. '</b></div>');
+		$query= '';		
+	}
+}
+
+echo '<div class="success-response sql-import-response">SQL TEST file imported successfully</div>';
+*/
 // crear el array principal de test
 $ERRORS_array_test = array();
 // incluimos aqui tantos ficheros de test como entidades

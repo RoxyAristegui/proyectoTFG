@@ -26,10 +26,11 @@
 		$nombre = $_POST['nombre'];
 		$apellidos = $_POST['apellidos'];
 		$email = $_POST['email'];
+		$dni=$_POST['dni'];
 		$action = $_POST['action'];
 
 		
-		$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+		$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 		return $usuarios;
 	}
 
@@ -55,7 +56,7 @@
 				break;
 			case 'DELETE':
 				if (!$_POST){ //nos llega el id a eliminar por get
-					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','');
+					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 					$valores = $USUARIOS->BuscarPorClave();
 					new USUARIOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 				}
@@ -67,7 +68,7 @@
 				break;
 			case 'EDIT':
 				if (!$_POST){ //nos llega el usuario a editar por get
-					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','',''); // Creo el objeto
+					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','',''); // Creo el objeto
 					$valores = $USUARIOS->BuscarPorClave(); // obtengo todos los datos de la tupla
 					if (is_array($valores))
 					{
@@ -95,25 +96,25 @@
 					$USUARIOS = get_data_form();
 					$datos = $USUARIOS->SEARCH();
 
-					$lista = array('login','password','email', 'nombre', 'apellidos');
+					$lista = array('login','DNI','nombre', 'apellidos','password','email');
 
 					new USUARIOS_SHOWALL($lista, $datos, '../index.php');
 				}
 				break;
 			case 'SHOWCURRENT':
-				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','');
+				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 				$valores = $USUARIOS->BuscarPorClave();
 				new USUARIOS_SHOWCURRENT($valores);
 				break;
 			default:
 				if (!$_POST){
-					$USUARIOS = new USUARIOS_Model('','','','','');
+					$USUARIOS = new USUARIOS_Model('','','','','','');
 				}
 				else{
 					$USUARIOS = get_data_form();
 				}
 				$datos = $USUARIOS->SEARCH();
-				$lista = array('login','password','nombre','apellidos','email');
+				$lista = array('login','DNI','nombre', 'apellidos','password','email');
 				new USUARIOS_SHOWALL($lista, $datos);
 		}
 

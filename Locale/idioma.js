@@ -73,5 +73,5 @@ function getCookie(name) {
 
 function cambiarLang(lang){
     setCookie('lang',lang,5);
-   window.location.reload(false);
+   window.location.reload(true);
 }

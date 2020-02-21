@@ -23,10 +23,7 @@ class MESSAGE{
 				foreach($this->string as $error){ //Si a la vista MESSAGE llega un array
 					?>
 					<div class=" <?php echo $error['code']; ?> ">
-					<?php
-					echo $strings[$error['code']];
-					
-					?> 
+				
 
 					</div>
 					<?php	
@@ -34,12 +31,8 @@ class MESSAGE{
 
 			}else{ //Si a la vista MESSAGE llega un array simple
 						?>
-				<div class=' <?php echo $this->string; ?> '>
-					<?php
+				<div class=' <?php echo $this->string['code']; ?> '>
 				
-						echo $strings[$this->string['code']];
-					
-					?> 
 
 					</div>
 					<?php	

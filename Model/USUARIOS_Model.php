@@ -15,18 +15,20 @@ class USUARIOS_Model extends Abstract_Model {
 	var $nombre;
 	var $apellidos;
 	var $email;
+	var $dni;
 	var $mysqli;
 	var $erroresdatos;
 
 //Constructor de la clase
 //
 
-function __construct($login,$password,$nombre,$apellidos,$email){
+function __construct($login,$password,$nombre,$apellidos,$email,$dni){
 	$this->login = $login;
 	$this->password = $password;
 	$this->nombre = $nombre;
 	$this->apellidos = $apellidos;
 	$this->email = $email;
+	$this->dni=$dni;
 	$this->erroresdatos = array();
 
 	//$this->Comprobar_atributos();
@@ -55,6 +57,7 @@ function Comprobar_atributos(){
 	$this->Comprobar_password();
 	$this->Comprobar_login();
 	$this->Comprobar_email();
+	$this->Comprobar_dni();
 	if($this->erroresdatos==[]){
 		return true;
 	}else{
@@ -192,6 +195,31 @@ function Comprobar_email(){
 	}
 	
 }
+function Comprobar_dni(){
+	$validar= new Validar();
+	if($validar->Longitud_minima($this->dni,8)===false){
+		
+		$this->code='000162';
+		$this->ok=false;
+		$this->resource='dni';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}else if($validar->Longitud_maxima($this->dni,10)===false){
+		$this->code='000162';
+		$this->ok=false;
+		$this->resource='dni';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}else{
+		if($validar->Formato_dni($this->dni)===false){
+		$this->code='000162';
+		$this->ok=false;
+		$this->resource='dni';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+}
+}
 
 //inserta un error en el array de errores si el login ya existe
 function login_unico(){
@@ -223,34 +251,54 @@ function email_unico(){
 	$this->get_results_from_query();
 	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
 		$this->ok=false;
-		$this->code  = '000076'; // el login ya existe
+		$this->code  = '000076'; // el email ya existe
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 		return false;
 		}else {return true;}
 }
 
+function dni_unico(){
+		$this->query = "SELECT *
+					FROM USUARIOS
+					WHERE (
+						(DNI = '".$this->dni."') 
+					)";
+	
+	$this->get_results_from_query();
+	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
+		$this->ok=false;
+		$this->code  = '000077'; // el dni_unico ya existe
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+		return false;
+		}else {return true;}
+}
 
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
 //existe ya en la tabla
+
+/* TODO poner dni unico*/
 function ADD()
 {
-	if($this->Comprobar_atributos() && $this->email_unico() & $this->login_unico()){
+	if($this->Comprobar_atributos() && $this->email_unico() && $this->login_unico()){
 
 			$this->query = "INSERT INTO USUARIOS (
 				login,
 				password,
 				nombre,
 				apellidos,
-				email) 
+				email,
+				DNI) 
 					VALUES (
 						'".$this->login."',
 						'".$this->password."',
 						'".$this->nombre."',
 						'".$this->apellidos."',
-						'".$this->email."'
+						'".$this->email."',
+						'".$this->dni."'
 						)";
 
 			$this->execute_single_query();
@@ -275,7 +323,8 @@ function SEARCH()
 				password LIKE '%".$this->password."%' AND
 				nombre LIKE '%".$this->nombre."%' AND
 				apellidos LIKE '%".$this->apellidos."%' AND
-				email LIKE '%".$this->email."%'
+				email LIKE '%".$this->email."%' AND
+				DNI LIKE '%".$this->dni."%'
 			)
 	";
 	$this->get_results_from_query();
@@ -382,7 +431,7 @@ function EDIT()
 		{
 			$this->ok=true;
 			$this->resource='EDIT';
-			$this->code  = '000053';
+			$this->code  = '000054';
 			$this->construct_response(); //modificacion en bd correcta
 		}
 		else
@@ -437,7 +486,7 @@ function login(){
 //
 function Register(){
 
-	if($this->Comprobar_atributos()===true & $this->email_unico() & $this->login_unico()){
+	if($this->Comprobar_atributos()===true && $this->email_unico() && $this->login_unico()){
 
 		$this->query = 
 			"INSERT INTO USUARIOS (
@@ -445,13 +494,15 @@ function Register(){
 				password,
 				nombre,
 				apellidos,
-				email) 
+				email,
+				DNI) 
 			VALUES (
 					'".$this->login."',
 					'".$this->password."',
 					'".$this->nombre."',
 					'".$this->apellidos."',
-					'".$this->email."'
+					'".$this->email."',
+					'".$this->dni."'
 					)";
 							
 		$this->execute_single_query();
@@ -471,4 +522,3 @@ function Register(){
 
 }//fin de clase
 
-?> 

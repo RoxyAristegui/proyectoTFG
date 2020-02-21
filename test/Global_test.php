@@ -1,6 +1,7 @@
 <?php
 //testing funcionalidades globales
 include '../Model/config.php';
+include_once '../Model/Access_DB.php';
 
 function ExisteBD()
 {
@@ -47,7 +48,7 @@ function ExisteBD()
 	$global_array_test['entidad'] = 'GENERAL';	
 	$global_array_test['metodo'] = 'BD';
 	$global_array_test['error'] = 'No existe la bd';
-	$global_array_test['error_esperado'] = "Access denied for user 'roxytfg'@'localhost' to database 'BD'";
+	$global_array_test['error_esperado'] = "Access denied for user 'roxytfg'@'localhost' to database 'bd'";
 	$global_array_test['error_obtenido'] = '';
 	$global_array_test['resultado'] = '';
 
@@ -80,7 +81,7 @@ function ExisteBD()
 	$global_array_test['resultado'] = '';
 
 	try{
-		$mysqli = new mysqli(host, user, pass , BD);
+		$mysqli = connectDB();
 
 		$global_array_test['error_obtenido'] = gettype($mysqli);	
 	}

@@ -9,7 +9,7 @@ if(!isset($_POST['login'])){
 else{
 		
 	include '../Model/USUARIOS_Model.php';
-	$usuario = new USUARIOS_Model($_REQUEST['login'],$_REQUEST['password'],$_REQUEST['nombre'],$_REQUEST['apellidos'],$_REQUEST['email']);
+	$usuario = new USUARIOS_Model($_REQUEST['login'],$_REQUEST['password'],$_REQUEST['nombre'],$_REQUEST['apellidos'],$_REQUEST['email'],$_REQUEST['dni']);
 	$respuesta = $usuario->Register();
 
 	if (isset($respuesta['ok']) && $respuesta['ok'] === true){

@@ -13,12 +13,11 @@
 
 			include '../View/Header.php'; //header necesita los strings
 ?>
-			<h1><?php echo $strings['SHOWALL']; ?></h1>	
-	
+			<h1 class="MostrarTodos">Todos los usuarios</h1>
 			   <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-info"> 
-				<i class="fas fa-user-plus"></i> <a href='../Controller/USUARIOS_Controller.php?action=ADD'><?php echo $strings['ADD']; ?></a>
+				<i class="fas fa-user-plus"></i> <a href='../Controller/USUARIOS_Controller.php?action=ADD' class='Añadir'>Añadir</a>
 			  </h6>
             </div>
             <div class="card-body">
@@ -33,7 +32,7 @@
 						<th>Borrar</th>
 					</tr>
 				  </thead>
-				     <tfoot>
+			      <tfoot>
 					<tr>
 					<?php   foreach ($this->lista as $titulo) { ?> 
 						<th><?php echo $titulo; ?></th>

@@ -3,17 +3,23 @@ arrayES={
 	//header 
 	NomProyect:'INCID',
 	Idioma : 'Idioma',
-	seleccionaIdioma :'Selecciona un idioma',
+	SeleccionaIdioma :'Selecciona un idioma',
 	Usuario: 'Usuario',
 	VerPerfil : 'Ver Perfil',
 	Desconectar : 'Desconectar',
-	notAuthUser : 'Usuario no autenticado',
+	NotAuthUser : 'Usuario no autenticado',
 	Registrar : 'Registrar',
-	volver : 'volver',
+	Volver : 'volver',
+	Cancelar : 'Cancelar',
+	TeVas : 'Estas seguro?',
+	SeleccionaDesconectarSi : 'Selecciona desconectar si quieres cerrar la sesión actual',
 
 	//menu LAteral
 	Inicio : 'Inicio',
 	GestionUsuarios : 'Gestión de usuarios',
+
+	//RegistrarLogin
+
 
 	//usuarios
 	Login :'Login',
@@ -24,10 +30,14 @@ arrayES={
 	email : 'email',
 	NuevoCrearCuenta :'Eres nuevo? Crea una cuenta',
 	IniciarSesion : 'Iniciar sesión',
+	YaTienesCuentaInicia : 'Ya tienes una cuenta? inicia sesión!',
+	NuevoUsuario : 'Nuevo usuario',
 	Editar : 'Editar',
 	Borrar : 'Borrar',
 	Añadir : 'Añadir',
 	Buscar : 'Buscar',
+	MostrarTodos : 'Todos los usuarios',
+	AñadirUsuario : 'Añadir usuario',
 
 	//generales
 	AllUSers : 'Todos los usuarios',
@@ -41,12 +51,19 @@ arrayES={
 	'00005' : 'Error de conexión con la base de datos',
 	'000051' : 'Error de gestor de base de datos',
 	'000052' : 'Sql realizada con exito',
-	'000053' : 'Modificación realizada con éxito',
+	'000074' : 'Error al intentar realizar el cambio en la BD',
+	'00004' : 'No se encuentra el archivo',
 
-	'000071' : 'Ya existe un usuario con ese Login o email',
+	'000053' : 'Registro realizado con éxito',
+	'000054' : 'Modificación realizada con éxito',
+	'000055' : 'Borrado realizado con éxito',
+
+	'000071' :'Ya existe un usuario con ese Login',
 	'000072' : 'No existe usuario con ese nombre',
 	'000073' : 'La contraseña no coincide',
-	'000074' : 'Error al intentar realizar el cambio en la BD',
+	'000075' : 'No existe usuario con ese email',
+	'000076' : 'Ya existe un usuario con ese email',
+	'000077' : 'Ya existe un usuario con ese dni',
 
 //errores de validacion de usuario
 	'000121':'La longitud del nombre debe ser mayor a 3',
@@ -63,7 +80,7 @@ arrayES={
 	'000153':'El nombre sólo admite letras',
 
 	'000161':'Introduce un email valido',
-
+	'000162':'Introduce un dni válido'
 
 
 }

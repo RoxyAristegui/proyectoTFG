@@ -25,7 +25,7 @@ include '../Locale/Strings_'.$lang.'.php';
   <meta name="author" content="Rosanna aristegui">
 
 	<title>
-		<?php echo $strings['Gestor de Peticiones de incidencias']; ?>
+	Gestor de peticiones de incidencias
 	</title>
 
   <link href="../Locale/template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -37,15 +37,15 @@ include '../Locale/Strings_'.$lang.'.php';
     <!-- Custom styles for this page -->
   <link href="../Locale/template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-  <!--script type="text/javascript" src="../Locale/Lang_ES.js"></script>
+  <script type="text/javascript" src="../Locale/Lang_ES.js"></script>
   <script type="text/javascript" src="../Locale/Lang_EN.js"></script>
-  <script type="text/javascript" src="../Locale/Lang_GA.js"></script-->
+  <script type="text/javascript" src="../Locale/Lang_GA.js"></script>
   <script type="text/javascript" src="../Locale/idioma.js"></script>
 
 	
 
 </head>
-<body id="page-top"'>
+<body id="page-top" onload='setLang()'>
   <!-- Page Wrapper -->
   <div id="wrapper">
 
@@ -120,19 +120,19 @@ include '../Locale/Strings_'.$lang.'.php';
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
-            	<a class="nav-link dropdown-toggle text-gray-600"  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            			<?php echo $strings['idioma']; ?>
+            	<a class="nav-link dropdown-toggle text-gray-600 Idioma"  id="idiomaDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            		Idioma
             	</a>
         	    <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="idiomaDropdown">
-	                <h6 class="dropdown-header">
-	                  <?php echo $strings['Selecciona un idioma']; ?>
+	                <h6 class="dropdown-header SeleccionaIdioma">
+	                 Selecciona un idioma
 	                </h6>
 	                 <div class="dropdown-item d-flex align-items-center" href="#">
 
 
-                    <a class="m-auto" onclick="cambiarLang('GA')"><img src="../Locale/img/gallego.png" height="40" width="60"></a>
-                    <a class="m-auto" onclick="cambiarLang('ES')"><img src="../Locale/img/espanol.png" height="40" width="60"></a>
-                    <a class="m-auto" onclick="cambiarLang('EN')"><img src="../Locale/img/ingles.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="setLang('GA')"><img src="../Locale/img/gallego.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="setLang('ES')"><img src="../Locale/img/espanol.png" height="40" width="60"></a>
+                    <a class="m-auto" onclick="setLang('EN')"><img src="../Locale/img/ingles.png" height="40" width="60"></a>
 
 					         </div>
 				      </div>
@@ -155,13 +155,13 @@ include '../Locale/Strings_'.$lang.'.php';
 				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
 	                <a class="dropdown-item " href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>
 	                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 "></i>
-	                  <span> <?php echo $strings["Ver perfil"]?></span>
+	                  <span class="VerPerfil"> Ver perfil</span>
 	                </a>
 	               
 	                <div class="dropdown-divider"></div>
 	                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-	                  <span><?php echo $strings["Desconectar"]?>  </span>
+	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 Desconectar"></i>
+	                  <span>Desconectar  </span>
 	                </a>
 	              </div>
 
@@ -170,7 +170,7 @@ include '../Locale/Strings_'.$lang.'.php';
 			else{
 				?>
 				    <a class="nav-link text-gray-600 " href="../Controller/Register_Controller.php" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-				 <span class="Registrar"><?php echo $strings["Registrar"] ?> </span>
+				 <span class="Registrar">Registrar</span>
 			
 			</a>
 			<?php

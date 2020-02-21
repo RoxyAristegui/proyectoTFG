@@ -12,26 +12,57 @@
 
 			include '../View/Header.php'; //header necesita los strings
 		?>
-			<h1><?php echo $strings['EDIT']; ?></h1>	
-			<form name = 'Form' action='../Controller/USUARIOS_Controller.php' method='post' onsubmit="return comprobar_registro();"">
 			
-				 	Login : <input type = 'text' name = 'login' id = 'login' placeholder = 'Utiliza tu dni' size = '9' value = '<?php echo $this->tupla['login']; ?>' onblur="esNoVacio('login')  && comprobarDni('login')" readonly><br>
 
-					Password : <input type = 'text' name = 'password' id = 'password' placeholder = 'letras y numeros' size = '15' value = '<?php echo $this->tupla['password']; ?>' onblur="esNoVacio('password')  && comprobarLetrasNumeros('password',15)" ><br>
+	<div class="container">
+		<h1 class="EditarUsuario">Editar usuario</h1>	
 
-					Nombre : <input type = 'text' name = 'nombre' id = 'nombre' placeholder = 'Solo letras' size = '30' value = '<?php echo $this->tupla['nombre']; ?>' onblur="esNoVacio('nombre')  && comprobarSoloLetras('nombre',30)" ><br>
+		<form name = 'Form' action='../Controller/USUARIOS_Controller.php' method='post' onsubmit="return comprobar_registro();">
+			<div class="form-group row">
+				<label for='login' class="col-sm-2 col-form-label">Login</label>
+			 	<div class="col-sm-8">
+			 		 <input type = 'text' name = 'login' id = 'login' class="form-control" placeholder = 'UtilizaDni' size = '9' value = '<?php echo $this->tupla['login']; ?>'>
+			 	</div>
+			</div>
+			<div class="form-group row">
+				<label for='password' class="col-sm-2 col-form-label">Contraseña></label>
+			 	<div class="col-sm-8">
+				 	<input type = 'text' name = 'password' id = 'password' class="form-control" placeholder = 'LetrasyNumeros' size = '15' value = '<?php echo $this->tupla['password']; ?>'  >
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for='nombre' class="col-sm-2 col-form-label">Nombre</label>
+			 	<div class="col-sm-8">
+					<input type = 'text' name = 'nombre' class="form-control" id = 'nombre' placeholder = 'soloLetras' size = '30' value = '<?php echo $this->tupla['nombre']; ?>' >
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for='apellidos' class="col-sm-2 col-form-label">Apellidos</label>
+			 	<div class="col-sm-8">
+					<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control" placeholder = 'soloLetras' size = '50' value = '<?php echo $this->tupla['apellidos']; ?>'  >
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for='email' class="col-sm-2 col-form-label">Email</label>
+			 	<div class="col-sm-8">
+					<input type = 'text' name = 'email' id = 'email' class="form-control" size = '40' value = '<?php echo $this->tupla['email']; ?>' >
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for='dni' class="col-sm-2 col-form-label">DNI</label>
+			 	<div class="col-sm-8">
+					<input type = 'text' name = 'dni' id = 'dni' class="form-control" size = '40' value = '<?php echo $this->tupla['DNI']; ?>' >
+				</div>
+			</div>
 
-					Apellidos : <input type = 'text' name = 'apellidos' id = 'apellidos' placeholder = 'Solo letras' size = '50' value = '<?php echo $this->tupla['apellidos']; ?>' onblur="esNoVacio('apellidos')  && comprobarSoloLetras('apellidos',50)" ><br>
+				<button type='submit' name='action' class="btn btn-outline-info edit icon" value="EDIT"></button>
+				<a href='../Controller/Index_Controller.php' class="icon volver ml-3"> </a>
 
-					Email : <input type = 'text' name = 'email' id = 'email' size = '40' value = '<?php echo $this->tupla['email']; ?>' onblur="esNoVacio('email')  && comprobarEmail('email')" ><br>
+		</form>
+	
+		</div>
 
-					<input type='submit' name='action' value='EDIT'>
 
-			</form>
-				
-		
-			<a href='../Controller/Index_Controller.php'>Volver </a>
-		
 		<?php
 			include '../View/Footer.php';
 		} //fin metodo render
