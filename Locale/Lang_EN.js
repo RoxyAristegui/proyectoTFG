@@ -9,6 +9,10 @@ arrayEN={
 	notAuthUser : 'User not authenticated',
 	Registrar : 'Register',
 	volver : 'Return',
+	Cancelar : 'Cancel',
+	TeVas : 'Ready to Leave?',
+	SeleccionaDesconectarSi : 'Select "Logout" below if you are ready to end your current session',
+
 
 	//menu LAteral
 	Inicio : 'Home',
@@ -16,10 +20,15 @@ arrayEN={
 
 	//usuarios
 	Login :'Login',
+	login : 'login',
 	Nombre : 'Name',
+	nombre : 'name',
 	Apellidos : 'Last Name',
+	apellidos : 'last name',
 	Pass: 'Password',
+	password : 'password',
 	DNI : 'ID',
+	dni : 'id',
 	email : 'email',
 	NuevoCrearCuenta :"it's your first time? sign up!",
 	IniciarSesion : 'Log in',
@@ -27,6 +36,20 @@ arrayEN={
 	Borrar : 'Delete',
 	Añadir : 'Add',
 	Buscar : 'Search',
+	MostrarTodos : 'Show all',
+	AñadirUsuario : 'Add user',
+	EditarUsuario : 'Edit user',
+	BorrarUsuario : 'Delete user',
+
+	//placeholders
+	LetrasyNumeros : 'only letters and numbers',
+	SoloLetras : 'only letters',
+	SoloLetrasEspacios : 'only letters and spaces',
+	IntroduceLogin : 'Introduce your login name',
+	IntroduceEmail : 'Introduce your email',
+	IntroduceDni : 'Introduce your id',
+	DebeSerEmailValido : 'Introduce a valid email',
+
 
 	//generales
 	AllUSers : 'All Users',

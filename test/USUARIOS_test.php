@@ -32,7 +32,7 @@ function USUARIOS_login_test()
 	$USUARIOS_array_test1['resultado'] = '';
 	
 	$login = 'loginerror';
-	$usuarios = new USUARIOS_Model($login,'','','','');
+	$usuarios = new USUARIOS_Model($login,'','','','','');
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->login()['code'];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
@@ -62,8 +62,9 @@ function USUARIOS_login_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
 // creo el modelo
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
 	$usuarios->ADD();
 
@@ -103,8 +104,9 @@ function USUARIOS_login_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido2';
 	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
 // creo el modelo
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
 	$usuarios->ADD();
 // pruebo el login
@@ -146,7 +148,7 @@ function USUARIOS_Registrar_test()
 // Comprobar el login existe
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'register';
-	$USUARIOS_array_test1['error'] = 'El usuario ya existe';
+	$USUARIOS_array_test1['error'] = 'El login ya existe';
 	$USUARIOS_array_test1['error_esperado'] = '000071';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
@@ -157,12 +159,15 @@ function USUARIOS_Registrar_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
 // creo el modelo
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
 	$usuarios->ADD();
+	$usuarios->email="otroemail@mail.com";
+	$usuarios->dni="53604521P";
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register()["code"];
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register()[0]["code"];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -176,7 +181,41 @@ function USUARIOS_Registrar_test()
 
 	$usuarios->DELETE();	
 
+// Comprobar el dni existe
+	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'register';
+	$USUARIOS_array_test1['error'] = 'El dni ya existe';
+	$USUARIOS_array_test1['error_esperado'] = '000077';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+	
+	// Relleno los datos de usuario	
+	$login = 'miusuario';
+	$password = 'mipassword';
+	$nombre = 'minombre'; 
+	$apellidos = 'miapellido';
+	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
+// creo el modelo
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
+// inserto la tupla
+	$usuarios->ADD();
 
+	$usuarios2 = new USUARIOS_Model("otrologin",$password,$nombre,$apellidos,"otroemail@mail.com",$dni);
+
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register()[0]["code"];
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+	$usuarios->DELETE();	
 
 // Comprobar Inserción realizada con éxito
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
@@ -191,8 +230,9 @@ function USUARIOS_Registrar_test()
 	$nombre = 'superprueba'; 
 	$apellidos = 'probando';
 	$email = 'proba@uvigo.es';
+	$dni='36165166N';
 
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register()["code"];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
@@ -226,7 +266,7 @@ function USUARIOS_ADD_test()
 // Comprobar el login existe
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'ADD';
-	$USUARIOS_array_test1['error'] = 'El usuario ya existe';
+	$USUARIOS_array_test1['error'] = 'El lagin ya existe';
 	$USUARIOS_array_test1['error_esperado'] = '000071';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
@@ -237,12 +277,16 @@ function USUARIOS_ADD_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
 // creo el modelo
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
 	$usuarios->ADD();
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
+	$usuarios->email="otroemail@mail.com";
+	$usuarios->dni="53604521P";
+
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD()[0]['code'];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -255,6 +299,41 @@ function USUARIOS_ADD_test()
 	array_push($ERRORS_array_test, $USUARIOS_array_test1);
 
 	$usuarios->DELETE();	
+
+// Comprobar el dni existe
+	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
+	$USUARIOS_array_test1['metodo'] = 'ADD';
+	$USUARIOS_array_test1['error'] = 'El dni ya existe';
+	$USUARIOS_array_test1['error_esperado'] = '000077';
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+	
+	// Relleno los datos de usuario	
+	$login = 'miusuario';
+	$password = 'mipassword';
+	$nombre = 'minombre'; 
+	$apellidos = 'miapellido';
+	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
+// creo el modelo
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
+// inserto la tupla
+	$usuarios->ADD();
+	$usuarios2= new USUARIOS_Model("otrologin",$password,$nombre,$apellidos,"otroemail@mail.com",$dni);
+
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios2->Register()[0]["code"];
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+
+	$usuarios->DELETE();
 
 /*
 // Comprobar error en la inserción
@@ -299,15 +378,14 @@ function USUARIOS_ADD_test()
 	$nombre = 'proooo'; 
 	$apellidos = 'bando bando';
 	$email = 'preuba@uvigo.es';
+	$dni='36165166N';
 
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD()['code'];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
+	}else{
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
@@ -331,7 +409,7 @@ function USUARIOS_EDIT_test(){
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'EDIT';
 	$USUARIOS_array_test1['error'] = 'Modificar correcta';
-	$USUARIOS_array_test1['error_esperado'] = '000053';
+	$USUARIOS_array_test1['error_esperado'] = '000054';
 	$USUARIOS_array_test1['error_obtenido'] = '';
 	$USUARIOS_array_test1['resultado'] = '';
 
@@ -340,11 +418,12 @@ function USUARIOS_EDIT_test(){
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido2';
 	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
 
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$usuarios->ADD();
 	$nombre = 'otronombre'; 
-	$usuarios2=new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios2=new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios2->EDIT()['code'];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
@@ -358,45 +437,12 @@ function USUARIOS_EDIT_test(){
 
 	array_push($ERRORS_array_test, $USUARIOS_array_test1);
 
-	$usuarios->DELETE();
+	//$usuarios->DELETE();
 	$usuarios2->DELETE();
-/*
-	//Los datos nuevos son incorrectos
-		$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
-	$USUARIOS_array_test1['metodo'] = 'EDIT';
-	$USUARIOS_array_test1['error'] = 'datosincorrectos';
-	$USUARIOS_array_test1['error_esperado'] = '000121';
-	$USUARIOS_array_test1['error_obtenido'] = '';
-	$USUARIOS_array_test1['resultado'] = '';
-
-		$login = 'miusuario';
-	$password = 'mipassword';
-	$nombre = 'minombre'; 
-	$apellidos = 'miapellido2';
-	$email = 'miemail@uvigo.es';
-
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
-	$usuarios->ADD();
-	$nombre = 'mi'; 
-	$usuarios2= new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
-
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios2->EDIT()[0];
-	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
-	{
-		$USUARIOS_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
-		$USUARIOS_array_test1['resultado'] = 'FALSE';
-	}
-
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
-
-	$usuarios->DELETE();
-
-*/
 
 }
+
+
 function USUARIOS_SEARCH_test(){
 
 	global $ERRORS_array_test;
@@ -416,15 +462,14 @@ function USUARIOS_SEARCH_test(){
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido2';
 	$email = 'miemail@uvigo.es';
+	$dni='36165166N';
 
-	$usuarios = new USUARIOS_Model($login,$password,'','','');
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,'','');
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->SEARCH()["code"];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
-	}
-	else
-	{
+	}	else	{
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
@@ -447,9 +492,9 @@ function USUARIOS_SEARCH_test(){
 	$apellidos = 'miapellido2';
 	$email = 'miemail@uvigo.es';
 
-	$usuarios= new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios= new  USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$usuarios->ADD();
-	$buscar= new  USUARIOS_Model($login,'','','','');
+	$buscar= new  USUARIOS_Model($login,'','','','','');
 	$USUARIOS_array_test1['error_obtenido'] = gettype($buscar->SEARCH());
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
@@ -486,7 +531,7 @@ function USUARIOS_BuscarUsuarioPorClave_test()
 	$login = 'noexistes';
 	
 // creo el modelo
-	$usuarios = new USUARIOS_Model($login,'','','','');
+	$usuarios = new USUARIOS_Model($login,'','','','','');
 
 
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorClave()['code'];
@@ -515,8 +560,9 @@ function USUARIOS_BuscarUsuarioPorClave_test()
 	$nombre = 'proooo'; 
 	$apellidos = 'bando bando';
 	$email = 'preuba@uvigo.es';
+	$dni='36165166N';
 
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
 
 
@@ -544,7 +590,7 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 // creo array de almacen de test individual
 	$USUARIOS_array_test1 = array();
 
-// Comprobar el login no existe
+// Comprobar el email no existe
 //--------------------------------------------------
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'BuscarUsuarioEmail';
@@ -557,7 +603,7 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	$email = 'noexistes';
 	
 // creo el modelo
-	$usuarios = new USUARIOS_Model('','','','',$email);
+	$usuarios = new USUARIOS_Model('','','','',$email,'');
 
 
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorEmail()['code'];
@@ -586,8 +632,9 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	$nombre = 'proooo'; 
 	$apellidos = 'bando bando';
 	$email = 'preuba@uvigo.es';
+	$dni='36165166N';
 
-	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email);
+	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
 
 

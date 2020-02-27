@@ -31,7 +31,7 @@ function __construct($login,$password,$nombre,$apellidos,$email,$dni){
 	$this->dni=$dni;
 	$this->erroresdatos = array();
 
-	//$this->Comprobar_atributos();
+	//$this->Validar_atributos();
 
 	include_once '../Model/Access_DB.php';
 	$this->mysqli = ConnectDB();
@@ -47,11 +47,11 @@ function __destruct()
 }
 
 
-// function Comprobar_atributos
+// function Validar_atributos
 // se lanzan las funciones de comprobacion de atributos de usuario,
 //sino hay errores devuelve true, sino el array de errores.
 
-function Comprobar_atributos(){
+function Validar_atributos(){
 	$this->Comprobar_nombre();
 	$this->Comprobar_apellidos();
 	$this->Comprobar_password();
@@ -68,7 +68,7 @@ function Comprobar_atributos(){
 
 
 // Comprueba el formato del login 
-//	alfanumericol, entre 3 y 30 carácteres
+//	alfanumericol, entre 3 y 15 carácteres
 //	no vacio
 // si se detectaron errores los añade al array de erroers
 function Comprobar_login()
@@ -82,7 +82,7 @@ function Comprobar_login()
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Longitud_maxima($this->login,30)===false){
+	if($validar->Longitud_maxima($this->login,15)===false){
 		$this->code='000132';
 		$this->ok=false;
 		$this->resource='Login';
@@ -96,9 +96,10 @@ function Comprobar_login()
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
+	return $this->erroresdatos;
 }
 
-// Comprueba el formato del login 
+// Comprueba el formato del nombre 
 //	alfanumericol, entre 3 y 30 carácteres
 //	no vacio
 // si se detectaron errores los añade al array de erroers
@@ -126,7 +127,7 @@ function Comprobar_nombre()
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	
+	return $this->erroresdatos;
 }
 
 //Comrpeuba el formato de los apellidos, alfanumérico con espacios
@@ -153,6 +154,7 @@ function Comprobar_apellidos(){
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
+	return $this->erroresdatos;
 }
 
 // comprueba la pass, letras y números, entre 3 y 30 carácteres
@@ -180,6 +182,7 @@ function Comprobar_password(){
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
+	return $this->erroresdatos;
 }
 
 //comprueba que el email tenga un formato válido
@@ -193,7 +196,7 @@ function Comprobar_email(){
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	
+	return $this->erroresdatos;
 }
 function Comprobar_dni(){
 	$validar= new Validar();
@@ -219,6 +222,7 @@ function Comprobar_dni(){
 		array_push($this->erroresdatos, $this->feedback);
 	}
 }
+return $this->erroresdatos;
 }
 
 //inserta un error en el array de errores si el login ya existe
@@ -275,6 +279,16 @@ function dni_unico(){
 		}else {return true;}
 }
 
+function usuario_unico(){
+	$this->dni_unico();
+	$this->email_unico();
+	$this->login_unico();
+	if($this->erroresdatos==[]){
+		return true;
+	}else{
+	return $this->erroresdatos;
+	}
+}
 //Metodo ADD
 //Inserta en la tabla  de la bd  los valores
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
@@ -283,7 +297,7 @@ function dni_unico(){
 /* TODO poner dni unico*/
 function ADD()
 {
-	if($this->Comprobar_atributos() && $this->email_unico() && $this->login_unico()){
+	if($this->Validar_atributos()===true && $this->usuario_unico()===true){
 
 			$this->query = "INSERT INTO USUARIOS (
 				login,
@@ -413,7 +427,7 @@ function BuscarPorEmail()
 // funcion Edit: realizar el update de una tupla
 function EDIT()
 {
-	if($this->Comprobar_atributos()===true){
+	if($this->Validar_atributos()===true){
 		$this->query = "UPDATE USUARIOS
 				SET 
 					password = '$this->password',
@@ -486,7 +500,7 @@ function login(){
 //
 function Register(){
 
-	if($this->Comprobar_atributos()===true && $this->email_unico() && $this->login_unico()){
+	if($this->Validar_atributos()===true && $this->usuario_unico()===true){
 
 		$this->query = 
 			"INSERT INTO USUARIOS (

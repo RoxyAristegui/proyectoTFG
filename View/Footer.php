@@ -14,16 +14,6 @@
   </div>
   <!-- End of Page Wrapper -->
 
-	<div id="modal" style="display:none">
-	  		<div id="contenido-interno">
-	  			<div id="aviso"><img src="../View/Icons/sign-error.png" name="aviso"/></div>
-	  			<div id="mensajeError"></div>
-				<a id="cerrar" href="#" onclick="cerrarModal();">
-		       		<img style="cursor: pointer" alt="" src="../View/Icons/salir.png" width="25"/>
-				</a>
-			</div>
-		</div>
-
    <!-- Logout Modal-->
   <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="desconectarModal" aria-hidden="true">
     <div class="modal-dialog" role="document">

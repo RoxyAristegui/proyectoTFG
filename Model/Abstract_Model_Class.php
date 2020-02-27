@@ -29,7 +29,7 @@ abstract class Abstract_Model{
 	abstract protected function BuscarPorClave();
 	abstract protected function login();
 	abstract protected function Register();
-	abstract protected function Comprobar_atributos();
+	abstract protected function Validar_atributos();
 
 # los siguientes métodos pueden definirse con exactitud y
 # no son abstractos

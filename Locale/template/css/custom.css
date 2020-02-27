@@ -53,3 +53,6 @@ a{
 h1{
   text-transform: uppercase;
 }
+label{
+  text-transform: capitalize;
+}

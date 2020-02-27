@@ -1,6 +1,6 @@
 <?php
 //testing funcionalidades globales
-include '../Model/config.php';
+//include '../Model/config.php';
 include_once '../Model/Access_DB.php';
 
 function ExisteBD()

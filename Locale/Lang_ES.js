@@ -23,10 +23,15 @@ arrayES={
 
 	//usuarios
 	Login :'Login',
+	login :'login',
 	Nombre : 'Nombre',
+	nombre : 'nombre',
 	Apellidos : 'Apellidos',
+	apellidos : 'apellidos',
 	Pass: 'Contraseña',
+	password : 'contraseña',
 	DNI : 'DNI',
+	dni: 'dni',
 	email : 'email',
 	NuevoCrearCuenta :'Eres nuevo? Crea una cuenta',
 	IniciarSesion : 'Iniciar sesión',
@@ -38,6 +43,17 @@ arrayES={
 	Buscar : 'Buscar',
 	MostrarTodos : 'Todos los usuarios',
 	AñadirUsuario : 'Añadir usuario',
+	EditarUsuario : 'Editar usuario',
+	BorrarUsuario : 'Borrar usuario',
+
+	//placeholders
+	LetrasyNumeros : 'Utiliza letras y números',
+	SoloLetras : 'Solo letras',
+	SoloLetrasEspacios : 'Solo letras y espacios',
+	IntroduceLogin : 'Introduce tu nombre de usuario',
+	IntroduceEmail : 'Introduce tu email',
+	IntroduceDni : 'Introduce tu dni',
+	DebeSerEmailValido : 'Introduce un email válido',
 
 	//generales
 	AllUSers : 'Todos los usuarios',

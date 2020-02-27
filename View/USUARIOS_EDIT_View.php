@@ -25,7 +25,7 @@
 			 	</div>
 			</div>
 			<div class="form-group row">
-				<label for='password' class="col-sm-2 col-form-label">Contraseña></label>
+				<label for='password' class="col-sm-2 col-form-label">Contraseña</label>
 			 	<div class="col-sm-8">
 				 	<input type = 'text' name = 'password' id = 'password' class="form-control" placeholder = 'LetrasyNumeros' size = '15' value = '<?php echo $this->tupla['password']; ?>'  >
 				</div>
@@ -33,19 +33,19 @@
 			<div class="form-group row">
 				<label for='nombre' class="col-sm-2 col-form-label">Nombre</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'nombre' class="form-control" id = 'nombre' placeholder = 'soloLetras' size = '30' value = '<?php echo $this->tupla['nombre']; ?>' >
+					<input type = 'text' name = 'nombre' class="form-control" id = 'nombre' placeholder = 'SoloLetras' size = '30' value = '<?php echo $this->tupla['nombre']; ?>' >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='apellidos' class="col-sm-2 col-form-label">Apellidos</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control" placeholder = 'soloLetras' size = '50' value = '<?php echo $this->tupla['apellidos']; ?>'  >
+					<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control" placeholder = 'SoloLetrasEspacios' size = '50' value = '<?php echo $this->tupla['apellidos']; ?>'  >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='email' class="col-sm-2 col-form-label">Email</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'email' id = 'email' class="form-control" size = '40' value = '<?php echo $this->tupla['email']; ?>' >
+					<input type = 'text' name = 'email' id = 'email' class="form-control" size = '40' placeholder="EmailDebeSerValido" value = '<?php echo $this->tupla['email']; ?>' >
 				</div>
 			</div>
 			<div class="form-group row">

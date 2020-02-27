@@ -35,16 +35,36 @@ switch(lang){
 	break;
 }
 
+
    // se recorre el array de traducciones buscando coincidencias una por una
    for(var clave in traduccion) {
 		//si un elemento del array de traducciones está en el DOM se guarda en el array elementos
   		//es un array ya que al ser clase puede haber varias coincidencias
  		var elementos = document.getElementsByClassName(clave);
+    //recogemos todas las etiquetas y las guardamos en un array
+    var etiquetas =document.getElementsByTagName('LABEL');
+    //y guardamos tambien todos los inputs para cambiarles los placeholders
+    var inputs = document.getElementsByTagName('input');
 
-        for (var elem in elementos) {
-        //Se recorre el nuevo array y se colocan en el DOM los textos
-          elementos[elem].innerHTML = traduccion[clave];
+      for (var elem in elementos) {
+      //Se recorre el nuevo array y se colocan en el DOM los textos
+        elementos[elem].innerHTML = traduccion[clave];
+      }
+
+      for(var i=0;i<etiquetas.length;i++){
+        //recorremos todas las etiquetas, si el atributo For de la etiqueta coincide con la clave,
+        // se sustitulle el texto de la etiqueta por el texto traducido
+        if(etiquetas[i].htmlFor==clave){
+         etiquetas[i].innerHTML=traduccion[clave];
         }
+      }
+      for(var i=0;i<inputs.length;i++){
+        //Recorremos todos los inputs, si el atributo placeholder coincide con la clave,
+        // se sustituye el texto del placeholder por el del texto traducido.
+        if(inputs[i].placeholder==clave){
+         inputs[i].placeholder=traduccion[clave];
+        }
+      }
 	}
 }
 

@@ -18,11 +18,11 @@
 			<div class="form-group row">
 				<label for='login' class="col-sm-2 col-form-label">Login</label>
 			 	<div class="col-sm-8">
-			 		 <input type = 'text' name = 'login' id = 'login' class="form-control" placeholder = 'UtilizaDni' >
+			 		 <input type = 'text' name = 'login' id = 'login' class="form-control" placeholder = 'IntroduceLogin' >
 			 	</div>
 			</div>
 			<div class="form-group row">
-				<label for='password' class="col-sm-2 col-form-label">Contraseña></label>
+				<label for='password' class="col-sm-2 col-form-label">Contraseña</label>
 			 	<div class="col-sm-8">
 				 	<input type = 'text' name = 'password' id = 'password' class="form-control" placeholder = 'LetrasyNumeros' size = '15'>
 				</div>
@@ -30,25 +30,25 @@
 			<div class="form-group row">
 				<label for='nombre' class="col-sm-2 col-form-label">Nombre</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'nombre' class="form-control" id = 'nombre' placeholder = 'soloLetras' size = '15' value ='' >
+					<input type = 'text' name = 'nombre' class="form-control" id = 'nombre' placeholder = 'SoloLetras' size = '15' value ='' >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='apellidos' class="col-sm-2 col-form-label">Apellidos</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control" placeholder = 'soloLetras' size = '50'  >
+					<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control" placeholder = 'SoloLetrasEspacios' size = '50'  >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='email' class="col-sm-2 col-form-label">Email</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'email' id = 'email' class="form-control" size = '40'  >
+					<input type = 'text' name = 'email' id = 'email' class="form-control" size = '40' placeholder="DebeSerEmailValido"  >
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='dni' class="col-sm-2 col-form-label">DNI</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'dni' id = 'dni' class="form-control" size = '9'  >
+					<input type = 'text' name = 'dni' id = 'dni' class="form-control" size = '9' placeholder="IntroduceDni" >
 				</div>
 			</div>
 
