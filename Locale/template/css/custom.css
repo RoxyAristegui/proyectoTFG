@@ -56,3 +56,8 @@ h1{
 label{
   text-transform: capitalize;
 }
+
+.testCollapse{
+margin:0.5em;
+padding:0.5em;
+}

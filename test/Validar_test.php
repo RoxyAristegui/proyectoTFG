@@ -10,7 +10,7 @@
 
 function validar_longitud_maxima_test(){
 
-	global $ERRORS_array_test;
+	global $Validacion_errors_array_test;
 // creo array de almacen de test individual
 	$USUARIOS_array_test1 = array();
 
@@ -36,7 +36,7 @@ function validar_longitud_maxima_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 // Comprobar si es correcta la longitud
 //--------------------------------------
@@ -60,7 +60,7 @@ function validar_longitud_maxima_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 	
 }
@@ -70,7 +70,7 @@ function validar_longitud_maxima_test(){
 
 function validar_longitud_minima_test(){
 
-	global $ERRORS_array_test;
+	global $Validacion_errors_array_test;
 // creo array de almacen de test individual
 	$USUARIOS_array_test1 = array();
 
@@ -96,7 +96,7 @@ function validar_longitud_minima_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 //-------------------------------------------------------------------------------
 	//'tiene la longitud minima permitida';
@@ -120,12 +120,12 @@ function validar_longitud_minima_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 }
 
 function validar_es_string_test(){
 
-	global $ERRORS_array_test;
+	global $Validacion_errors_array_test;
 // creo array de almacen de test individual
 	$USUARIOS_array_test1 = array();
 
@@ -151,7 +151,7 @@ function validar_es_string_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 // Comprobar si los carácteres son correctos
 //--------------------------------------
@@ -175,13 +175,13 @@ function validar_es_string_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 	
 }
 
 function validar_es_alfanumerico_test(){
-		global $ERRORS_array_test;
+		global $Validacion_errors_array_test;
 // creo array de almacen de test individual
 	$USUARIOS_array_test1 = array();
 
@@ -207,7 +207,7 @@ function validar_es_alfanumerico_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 // Comprobar si los carácteres son correctos
 //--------------------------------------
@@ -231,12 +231,12 @@ function validar_es_alfanumerico_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 }
 
 function validar_es_string_espacios_test(){
-		global $ERRORS_array_test;
+		global $Validacion_errors_array_test;
 // creo array de almacen de test individual
 	$USUARIOS_array_test1 = array();
 
@@ -262,7 +262,7 @@ function validar_es_string_espacios_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 // Comprobar si los carácteres son correctos
 //--------------------------------------
@@ -286,12 +286,12 @@ function validar_es_string_espacios_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 }
 
 function validar_formato_email_test(){
-	global $ERRORS_array_test;
+	global $Validacion_errors_array_test;
 // creo array de almacen de test individual
 	$USUARIOS_array_test1 = array();
 
@@ -317,7 +317,7 @@ function validar_formato_email_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 // Comprobar si los carácteres son correctos
 //--------------------------------------
@@ -341,7 +341,7 @@ function validar_formato_email_test(){
 		$USUARIOS_array_test1['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $USUARIOS_array_test1);
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
 
 }
 

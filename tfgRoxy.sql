@@ -35,22 +35,24 @@ CREATE TABLE USUARIOS (
   `nombre` varchar(30) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `rol` varchar(60) NULL
+  `id_rol` int(3) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE PERMISOS (
+`id_perm` int(11) NOT NULL ,
 `permiso` varchar(15) NOT NULL,
 `descripcion` varchar(30) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE ROLES (
+`id_rol` int(11) NOT NULL,
 `rol` varchar(15) NOT NULL,
 `descripcion` varchar(25) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE PERMISOS_ROLES (
-`rol` varchar(15) NOT NULL,
-`permiso` varchar(15) NULL
+`id_rol` varchar(15) NOT NULL,
+`id_perm` varchar(15) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -66,14 +68,24 @@ ALTER TABLE USUARIOS
   ADD UNIQUE KEY `email` (`email`);
 
 ALTER TABLE `PERMISOS`
-  ADD PRIMARY KEY (`permiso`);
+  ADD PRIMARY KEY (`id_perm`),
+  ADD UNIQUE KEY `permiso` (`permiso`);
+ 
 
 ALTER TABLE `ROLES`
-  ADD PRIMARY KEY (`rol`);
+  ADD PRIMARY KEY (`id_rol`),
+  ADD UNIQUE KEY `rol` (`rol`);
 
 ALTER TABLE `PERMISOS_ROLES`
-  ADD PRIMARY KEY (`permiso`,`rol`);
+  ADD PRIMARY KEY (`id_perm`,`id_rol`);
 
+ALTER TABLE `PERMISOS`
+MODIFY `id_perm` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+ALTER TABLE `ROLES`
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+  COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

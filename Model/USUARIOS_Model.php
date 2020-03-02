@@ -16,7 +16,6 @@ class USUARIOS_Model extends Abstract_Model {
 	var $apellidos;
 	var $email;
 	var $dni;
-	var $mysqli;
 	var $erroresdatos;
 
 //Constructor de la clase
@@ -30,11 +29,6 @@ function __construct($login,$password,$nombre,$apellidos,$email,$dni){
 	$this->email = $email;
 	$this->dni=$dni;
 	$this->erroresdatos = array();
-
-	//$this->Validar_atributos();
-
-	include_once '../Model/Access_DB.php';
-	$this->mysqli = ConnectDB();
 
 }
 
@@ -502,6 +496,7 @@ function Register(){
 
 	if($this->Validar_atributos()===true && $this->usuario_unico()===true){
 
+//creacion de nuevo usuario, se insertan sus dato, rol user por defecto
 		$this->query = 
 			"INSERT INTO USUARIOS (
 				login,
@@ -518,7 +513,8 @@ function Register(){
 					'".$this->email."',
 					'".$this->dni."'
 					)";
-							
+						
+					
 		$this->execute_single_query();
 
 		if ($this->feedback['code'] = '000052'){ //sql ejecutado con exito

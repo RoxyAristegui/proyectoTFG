@@ -22,8 +22,7 @@ function USUARIOS_login_test()
 
 // Comprobar el login no existe
 //-------------------------------------------------------------------------------
-	echo 'comprobar login no existe <BR>';
-
+	
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'login';
 	$USUARIOS_array_test1['error'] = 'El login no existe';
@@ -47,7 +46,6 @@ function USUARIOS_login_test()
 
 // Comprobar La password para este usuario no es correcta
 //-------------------------------------------------------------------------------
-	echo 'comprobar password no correcta <BR>';
 
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'login';
@@ -69,7 +67,6 @@ function USUARIOS_login_test()
 	$usuarios->ADD();
 
 
-
 // cambio la password en el objeto modelo usuario
 	$usuarios->password = 'passwordfalsa';
 
@@ -89,7 +86,7 @@ function USUARIOS_login_test()
 
 // Comprobar login exitoso
 //-------------------------------------------------------------------------------
-	echo 'comprobar login existoso';
+
 
 	$USUARIOS_array_test1['entidad'] = 'USUARIOS';	
 	$USUARIOS_array_test1['metodo'] = 'login';

@@ -27,9 +27,9 @@ abstract class Abstract_Model{
 	abstract protected function ADD();
 	abstract protected function SEARCH();
 	abstract protected function BuscarPorClave();
-	abstract protected function login();
-	abstract protected function Register();
-	abstract protected function Validar_atributos();
+	//abstract protected function login();
+	//abstract protected function Register();
+	//abstract protected function Validar_atributos();
 
 # los siguientes métodos pueden definirse con exactitud y
 # no son abstractos
@@ -60,7 +60,7 @@ abstract class Abstract_Model{
 
 	protected function execute_single_query() {
 		//if($_POST) {
-			echo 'single query : '.$this->query.'<br>';
+			//echo 'single query : '.$this->query.'<br>';
 			$this->open_connection();
 			if ($this->conn->query($this->query)){
 				$this->close_connection();

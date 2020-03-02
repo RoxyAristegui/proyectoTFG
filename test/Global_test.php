@@ -6,7 +6,7 @@ include_once '../Model/Access_DB.php';
 function ExisteBD()
 {
 
-	global $ERRORS_array_test;
+	global $BD_errors_array_test;
 
 // creo array de almacen de test individual
 	$global_array_test = array();
@@ -39,7 +39,7 @@ function ExisteBD()
 		$global_array_test['resultado'] = 'FALSE';
 	}
 
-	array_push($ERRORS_array_test, $global_array_test);
+	array_push($BD_errors_array_test, $global_array_test);
 
 
 	//NO existe la BD
@@ -69,7 +69,7 @@ function ExisteBD()
 		$global_array_test['resultado'] = 'OK';
 	}
 
-	array_push($ERRORS_array_test, $global_array_test);
+	array_push($BD_errors_array_test, $global_array_test);
 
 //comprobar que si existe la base de datos y los datos son correctos
     
@@ -100,7 +100,7 @@ function ExisteBD()
 		$global_array_test['resultado'] = 'OK';
 	}
 
-	array_push($ERRORS_array_test, $global_array_test);
+	array_push($BD_errors_array_test, $global_array_test);
 
 
 

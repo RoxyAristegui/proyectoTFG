@@ -4,6 +4,7 @@
 	session_start(); //solicito trabajar con la session
 
 	include '../Functions/Authentication.php';
+	include '../Model/ACL_Model.php';
 
 	if (!IsAuthenticated()){
 		header('Location:../index.php');
@@ -40,11 +41,14 @@
 	if (!isset($_REQUEST['action'])){
 		$_REQUEST['action'] = '';
 	}
-
+	$acl=new ACL();
 // En funcion del action realizamos las acciones necesarias
 
 		Switch ($_REQUEST['action']){
 			case 'ADD':
+				if($acl->acceso('add_user')===false){
+					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				}
 				if (!$_POST){ // se incoca la vista de add de usuarios
 					new USUARIOS_ADD();
 				}
@@ -55,6 +59,9 @@
 				}
 				break;
 			case 'DELETE':
+				if($acl->acceso('delete_user')===false){
+					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				}
 				if (!$_POST){ //nos llega el id a eliminar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 					$valores = $USUARIOS->BuscarPorClave();
@@ -67,6 +74,9 @@
 				}
 				break;
 			case 'EDIT':
+				if($acl->acceso('edit_user')===false){
+					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				}
 				if (!$_POST){ //nos llega el usuario a editar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','',''); // Creo el objeto
 					$valores = $USUARIOS->BuscarPorClave(); // obtengo todos los datos de la tupla
@@ -78,8 +88,7 @@
 					{
 						new MESSAGE($valores, '../Controller/USUARIOS_Controller.php');
 					}
-				}
-				else{
+				}else{
 
 					$USUARIOS = get_data_form(); //recojo los valores del formulario
 
@@ -89,6 +98,9 @@
 
 				break;
 			case 'SEARCH':
+			if($acl->acceso('search_user')===false){
+					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				}
 				if (!$_POST){
 					new USUARIOS_SEARCH();
 				}
@@ -102,6 +114,9 @@
 				}
 				break;
 			case 'SHOWCURRENT':
+			if($acl->acceso('showcurrent_user')===false){
+					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				}
 				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 				$valores = $USUARIOS->BuscarPorClave();
 				new USUARIOS_SHOWCURRENT($valores);

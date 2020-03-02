@@ -81,6 +81,10 @@ arrayES={
 	'000076' : 'Ya existe un usuario con ese email',
 	'000077' : 'Ya existe un usuario con ese dni',
 
+	//permisos
+	'000310' : 'No se ha podido crear el Rol',
+	'000312' : 'No se ha podido eliminar el Rol',
+	'000313' : 'No se puede eliminar, el rol está asignado a algun usuario',
 //errores de validacion de usuario
 	'000121':'La longitud del nombre debe ser mayor a 3',
 	'000122':'La longitud del nombre debe ser menor de 30 caracteres',
