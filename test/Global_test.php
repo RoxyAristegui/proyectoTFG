@@ -53,7 +53,7 @@ function ExisteBD()
 	$global_array_test['resultado'] = '';
 
 	try{
-		$mysqli = new mysqli(host, user, pass , 'BD');
+		$mysqli = new mysqli(host, user, pass , 'bd');
 	}
 	catch (mysqli_sql_exception $e){
 		$global_array_test['error_obtenido'] = $e->getMessage();

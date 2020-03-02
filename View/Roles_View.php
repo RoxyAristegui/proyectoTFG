@@ -41,7 +41,7 @@ class RolesView{
 							<li>
 								<?php 
 								foreach($this->listaRoles as $rol){
-									echo "<ul>".$rol['rol']."</ul>";
+									echo "<ul>".$rol['rol']."<i class='fa fas-exit'></i></ul>";
 								}
 								?>
 								
