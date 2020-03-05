@@ -371,9 +371,9 @@ function DELETE()
 	return $this->feedback;
 }
 
-// funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su clave [login]
+// funcion de busqueda: recupera todos los atributos de un usuario a partir de su clave [login]
 //devuelve un array [clave]=valor;
-function BuscarPorClave()
+function getById()
 {
     $this->query = "SELECT *
 			FROM USUARIOS
@@ -514,7 +514,7 @@ function Register(){
 					'".$this->dni."'
 					)";
 						
-					
+
 		$this->execute_single_query();
 
 		if ($this->feedback['code'] = '000052'){ //sql ejecutado con exito

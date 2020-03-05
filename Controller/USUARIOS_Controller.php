@@ -64,7 +64,7 @@
 				}
 				if (!$_POST){ //nos llega el id a eliminar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
-					$valores = $USUARIOS->BuscarPorClave();
+					$valores = $USUARIOS->getById();
 					new USUARIOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 				}
 				else{ // llegan los datos confirmados por post y se eliminan
@@ -79,7 +79,7 @@
 				}
 				if (!$_POST){ //nos llega el usuario a editar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','',''); // Creo el objeto
-					$valores = $USUARIOS->BuscarPorClave(); // obtengo todos los datos de la tupla
+					$valores = $USUARIOS->getById(); // obtengo todos los datos de la tupla
 					if (is_array($valores))
 					{
 						new USUARIOS_EDIT($valores); //invoco la vista de edit con los datos 
@@ -118,7 +118,7 @@
 					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
 				}
 				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
-				$valores = $USUARIOS->BuscarPorClave();
+				$valores = $USUARIOS->getById();
 				new USUARIOS_SHOWCURRENT($valores);
 				break;
 			default:

@@ -38,28 +38,29 @@ CREATE TABLE USUARIOS (
 CREATE TABLE ROLES (
 `id_rol` int(11) NOT NULL,
 `rol` varchar(15) NOT NULL,
-`descripcion` varchar(25) NULL
+`descripcion` varchar(50) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE PERMISOS (
-`id_perm` int(11) NOT NULL,
-`permiso` varchar(15) NOT NULL,
-`descripcion` varchar(30) NULL
+CREATE TABLE ENTIDADES (
+`id_entidad` int(11) NOT NULL,
+`entidad` varchar(15) NOT NULL,
+`descripcion` varchar(50) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE ACCIONES(
 `id_accion` int(11) NOT NULL,
-`accion` varchar(20) NOT NULL
+`accion` varchar(20) NOT NULL,
+`descripcion` varchar(50) NULL
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE PERMISOS_ACCIONES(
-`id_perm` int(11) NOT NULL,
+CREATE TABLE PERMISOS(
+`id_entidad` int(11) NOT NULL,
 `id_accion` int(11) NOT NULL
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE PERMISOS_ROLES(
 `id_rol` int(11) NOT NULL,
-`id_perm` int(11) NOT NULL,
+`id_entidad` int(11) NOT NULL,
 `id_accion` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -79,25 +80,25 @@ ALTER TABLE `ROLES`
   ADD PRIMARY KEY (`id_rol`),
   ADD UNIQUE KEY `rol` (`rol`);
 
-ALTER TABLE `PERMISOS`
-  ADD PRIMARY KEY (`id_perm`),
-  ADD UNIQUE KEY `permiso` (`permiso`);
+ALTER TABLE `ENTIDADES`
+  ADD PRIMARY KEY (`id_entidad`),
+  ADD UNIQUE KEY `entidad` (`entidad`);
  
 ALTER TABLE `ACCIONES`
   ADD PRIMARY KEY(`id_accion`),
-  ADD UNIQUE KEY `id_accion` (`id_accion`);
+  ADD UNIQUE KEY `accion` (`accion`);
 
-ALTER TABLE `PERMISOS_ACCIONES`
-  ADD PRIMARY KEY (`id_perm`,`id_accion`);
+ALTER TABLE `PERMISOS`
+  ADD PRIMARY KEY (`id_entidad`,`id_accion`);
 
 ALTER TABLE `PERMISOS_ROLES`
-  ADD PRIMARY KEY (`id_perm`,`id_rol`,`id_accion`);
+  ADD PRIMARY KEY (`id_entidad`,`id_rol`,`id_accion`);
 
 ALTER TABLE `ROLES`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
   COMMIT;
-ALTER TABLE `PERMISOS`
-  MODIFY `id_perm` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ENTIDADES`
+  MODIFY `id_entidad` int(11) NOT NULL AUTO_INCREMENT;
   COMMIT;
 ALTER TABLE `ACCIONES`
   MODIFY `id_accion` int(11) NOT NULL AUTO_INCREMENT;

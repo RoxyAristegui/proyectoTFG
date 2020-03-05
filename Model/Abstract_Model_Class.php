@@ -26,7 +26,7 @@ abstract class Abstract_Model{
 	abstract protected function DELETE();
 	abstract protected function ADD();
 	abstract protected function SEARCH();
-	abstract protected function BuscarPorClave();
+	abstract protected function getById();
 	//abstract protected function login();
 	//abstract protected function Register();
 	//abstract protected function Validar_atributos();

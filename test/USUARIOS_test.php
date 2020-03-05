@@ -531,7 +531,7 @@ function USUARIOS_BuscarUsuarioPorClave_test()
 	$usuarios = new USUARIOS_Model($login,'','','','','');
 
 
-	$USUARIOS_array_test1['error_obtenido'] = $usuarios->BuscarPorClave()['code'];
+	$USUARIOS_array_test1['error_obtenido'] = $usuarios->getById()['code'];
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';
@@ -563,7 +563,7 @@ function USUARIOS_BuscarUsuarioPorClave_test()
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
 
 
-	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->BuscarPorClave());
+	$USUARIOS_array_test1['error_obtenido'] = gettype($usuarios->getById());
 	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
 	{
 		$USUARIOS_array_test1['resultado'] = 'OK';

@@ -67,7 +67,7 @@ arrayES={
 	'00005' : 'Error de conexión con la base de datos',
 	'000051' : 'Error de gestor de base de datos',
 	'000052' : 'Sql realizada con exito',
-	'000074' : 'Error al intentar realizar el cambio en la BD',
+	'000074' : 'Error al intentar realizar el cambio ',
 	'00004' : 'No se encuentra el archivo',
 
 	'000053' : 'Registro realizado con éxito',
@@ -83,8 +83,16 @@ arrayES={
 
 	//permisos
 	'000310' : 'No se ha podido crear el Rol',
+	'000311' : 'El rol se ha cambiado correctmente',
 	'000312' : 'No se ha podido eliminar el Rol',
 	'000313' : 'No se puede eliminar, el rol está asignado a algun usuario',
+	'000314' : 'No se ha encontrado el rol',
+	'000315' : 'No se ha podido modificar el rol del usuario',
+
+	'000322' : 'No se ha podido borrar la accion',
+	'000323' : 'Error en el borrado de las relaciones de las acciones';
+	'000324' : 'No se ha encontrado la accion',
+	'000330' : 'no se han encontrado permisos para ese rol',
 //errores de validacion de usuario
 	'000121':'La longitud del nombre debe ser mayor a 3',
 	'000122':'La longitud del nombre debe ser menor de 30 caracteres',
