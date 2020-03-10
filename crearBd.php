@@ -49,7 +49,6 @@ class CrearBD{
 					
 				$query = $query . $line;
 				if ($endWith == ';') {
-					echo $query;
 					mysqli_query($conn,$query) or die('Error de mysql');
 					$query= '';		
 				}

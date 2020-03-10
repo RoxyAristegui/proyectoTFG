@@ -57,7 +57,7 @@ arrayES={
 
 	//generales
 	AllUSers : 'Todos los usuarios',
-
+	AccesoRestringido : 'ACCESO RESTRINGIDO',
 
 //codigos de errores
 	'00001' : 'Inserción realizada con éxito',
@@ -88,11 +88,17 @@ arrayES={
 	'000313' : 'No se puede eliminar, el rol está asignado a algun usuario',
 	'000314' : 'No se ha encontrado el rol',
 	'000315' : 'No se ha podido modificar el rol del usuario',
+	'000316' : 'Ya existe un rol con ese nombre';
 
 	'000322' : 'No se ha podido borrar la accion',
 	'000323' : 'Error en el borrado de las relaciones de las acciones';
 	'000324' : 'No se ha encontrado la accion',
+	'000326' : 'Ya existe una accion con ese nombre',
 	'000330' : 'no se han encontrado permisos para ese rol',
+
+	'000346' : 'Ya existe una entidad con esos datos',
+	'000344' : 'No se ha encontrado la entidad',
+
 //errores de validacion de usuario
 	'000121':'La longitud del nombre debe ser mayor a 3',
 	'000122':'La longitud del nombre debe ser menor de 30 caracteres',

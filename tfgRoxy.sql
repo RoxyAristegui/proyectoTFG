@@ -31,7 +31,7 @@ CREATE TABLE USUARIOS (
   `nombre` varchar(30) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `id_rol` int(3) NOT NULL DEFAULT 0
+  `id_rol` int(3) NOT NULL DEFAULT 2
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -92,7 +92,7 @@ ALTER TABLE `PERMISOS`
   ADD PRIMARY KEY (`id_entidad`,`id_accion`);
 
 ALTER TABLE `PERMISOS_ROLES`
-  ADD PRIMARY KEY (`id_entidad`,`id_rol`,`id_accion`);
+  ADD PRIMARY KEY (`id_rol`,`id_entidad`,`id_accion`);
 
 ALTER TABLE `ROLES`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
@@ -108,3 +108,58 @@ ALTER TABLE `ACCIONES`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/* INSERCIÓN DE ROLES */
+
+INSERT INTO `ROLES` (`id_rol`, `rol`, `descripcion`) VALUES (1, 'admin', 'administrador total del sistema');
+INSERT INTO `ROLES` (`id_rol`, `rol`, `descripcion`) VALUES (2, 'usuario', 'Cualquier usuario');
+INSERT INTO `ROLES` (`id_rol`, `rol`, `descripcion`) VALUES (3, 'responsable', 'Responsable de aceptar las obras');
+
+/* INSERCION DE ENTIDATES */
+
+
+INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (1, 'USUARIOS', 'gestion de usuarios');
+INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (2, 'PERMISOS', 'gestion de permisos');
+
+
+/* INSERCION DE ACCIONES */ 
+
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (1, 'ADD', 'funcion de añadir');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (2, 'EDIT', 'funcion de editar');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (3, 'DELETE', 'funcion de borrar');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (4, 'SEARCH', 'funcion de buscar');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (5, 'SHOWALL', 'Mostrar todos lso elementos e la entidad');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (6, 'SHOWCURRENT', 'Mostrar elemento actual');
+
+/* INSERCIÓN DE PERMISOS */
+
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,1);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,2);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,3);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,4);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,5);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,6);
+
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,1);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,2);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,3);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,4);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,5);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,6);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,1);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,2);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,3);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,4);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,5);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,6);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,1);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,2);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,3);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,4);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,5);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,6);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,5);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,6);
+
+
+INSERT INTO `usuarios` (`login`, `password`, `DNI`, `nombre`, `apellidos`, `email`, `id_rol`) VALUES ('admin', 'password', '36165166N', 'admin', 'root', 'admin@uvigo.es', '1');

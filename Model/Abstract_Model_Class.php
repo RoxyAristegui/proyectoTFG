@@ -27,6 +27,7 @@ abstract class Abstract_Model{
 	abstract protected function ADD();
 	abstract protected function SEARCH();
 	abstract protected function getById();
+	abstract protected function getByName();
 	//abstract protected function login();
 	//abstract protected function Register();
 	//abstract protected function Validar_atributos();

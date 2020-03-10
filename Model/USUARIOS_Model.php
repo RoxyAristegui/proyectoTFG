@@ -5,7 +5,7 @@
 //Creado por: jrodeiro
 // modificado en 6/11/2019 para incluir clase abstracta de modelo
 //-------------------------------------------------------
-include 'Abstract_Model_Class.php';
+include_once 'Abstract_Model_Class.php';
 include 'Validar_Model.php';
 
 class USUARIOS_Model extends Abstract_Model {
@@ -394,6 +394,25 @@ function getById()
 	return $this->rows;
 }
 
+function getByName(){
+	 $this->query = "SELECT *
+			FROM USUARIOS
+			WHERE 
+				name = '$this->name'
+			";
+
+	$this->get_results_from_query();
+	
+	if ($this->feedback['code'] == '00007')
+	{
+			$this->code= "000072"; //error de ejecucion de la sql, noe xiste usuario con ese login
+			$this->ok="false";
+			$this->construct_response();
+			return $this->feedback;
+	}
+
+	return $this->rows;
+}
 
 // funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su email
 //devuelve un array [clVE]=valor;

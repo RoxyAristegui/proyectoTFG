@@ -1,6 +1,6 @@
 <?php 
 
-include 'Abstract_Model_Class.php';
+include_once 'Abstract_Model_Class.php';
 
 class Accion extends Abstract_Model{
 	var $id_accion;
@@ -17,32 +17,48 @@ class Accion extends Abstract_Model{
 	}
 
 	function ADD(){
-		//Para acciones nuevas
-		if($this->id_accion==''){
-				$this->query="insert into ACCIONES (accion, descripcion )values ('".$this->accion."','".$this->descripcion."')";
-				echo $this->query;
+		
+		//primero comprobamos que la accion o está ya definida
+		$this->getByName();
+		
+		if($this->feedback['ok']===true){
+			//ya existe una entidad on esas caracterísiticas
+			$this->ok=false;
+			$this->resource='accion_ADD';
+			$this->code  = '000326';
+			$this->construct_response(); //error
+			return $this->feedback;
+		}
+		
+		$this->query="insert into ACCIONES (accion, descripcion )values ('".$this->accion."','".$this->descripcion."')";
 		$this->execute_single_query();
 		if($this->feedback['ok']===true){
-			$this->id_accion=$this->getIdByName();
+			$this->getByName();
 
 		}
 		return $this->feedback;
-		}else{
-			//PAra acciones que ya tienen un id_accion asignado 
-			$this->query="insert into ACCIONES (id_accion,accion, descripcion )values (".$this->id_accion."'".$this->accion."','".$this->descripcion."'')";
-			echo $this->query;
-		$this->execute_single_query();
-		return $this->feedback;
-		}
+		
 	
 
 	}
 
 	function EDIT(){
-		if($this->id_accion!=''){
+
+		if($this->id_accion==''){
+			$this->ok=false;
+				$this->resource='accion_Edit';
+				$this->code  = '000324';
+				$this->construct_response(); //no se ha encontrado la accion
+				return $this->feedback;
+		}
+
+		$id_accion=$this->id_accion;
+		$existe=$this->getByName();
+		//comprueba si ya existe otra accion con el mismo nombre que vamos a actualizar
+		if( $existe==$id_accion){
+		
 			$this->query='update acciones set accion="'.$this->accion.'" , descripcion ="'.$this->descripcion.'" where id_accion="'.$this->id_accion.'"';
 			$this->execute_single_query();
-			echo $this->query."<br>";
 			if ($this->feedback['code']==='00001')
 			{
 				$this->ok=true;
@@ -56,26 +72,31 @@ class Accion extends Abstract_Model{
 				$this->resource='accion_Edit';
 				$this->code  = '000074'; //error al modificar el rol en la bd
 				$this->construct_response();
-			}
-			
+			}			
 
 		}else{
 				$this->ok=false;
 				$this->resource='accion_Edit';
-				$this->code  = '000324'; //error al modificar el rol en la bd
+				$this->code  = '000326'; //error al modificar el rol en la bd
 				$this->construct_response();
 	}
 	return $this->feedback;
 	}
 
 	function DELETE(){
-
+		if($this->id_accion==''){
+			$this->ok=false;
+			$this->resource='accion_ADD';
+			$this->code  = '000324';
+			$this->construct_response(); //error no se ha encontrado la accion
+			return $this->feedback;
+		}
 		$this->query="DELETE from ACCIONES where id_accion= '".$this->id_accion."'";
-		echo $this->query."<br>";
+		
 		$this->execute_single_query();
 		if($this->feedback['ok']==true){
 			
-			$this->query="delete from permisos_acciones where id_accion='".$this->id_accion."'";
+			$this->query="delete from permisos where id_accion='".$this->id_accion."'";
 			$this->execute_single_query();
 			$this->query="delete from permisos_roles where id_accion=".$this->id_accion;
 			$this->execute_single_query();
@@ -92,7 +113,7 @@ class Accion extends Abstract_Model{
 	} 
 
 	function SEARCH(){
-	$this->query="select * from ACCIONES where id_accion like '".$this->id_accion."' and accion like '%".$this->accion."%'";
+	$this->query="select * from ACCIONES where id_accion like '".$this->id_accion."' or accion like '".$this->accion."'";
 	$this->get_result_from_query();
 	if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
 		$this->ok=true;
@@ -113,20 +134,23 @@ class Accion extends Abstract_Model{
 		$this->construct_response();
 		return $this->feedback;
 	}
+	$this->accion=$this->rows['accion'];
+	$this->descripcion=$this->rows['descripcion'];
 	return $this->rows;
 	}
 
-	function getIdByName(){
-		$this->query="select id_accion from acciones where accion='".$this->accion."'";
+	function getByName(){
+		$this->query="select * from acciones where accion='".$this->accion."'";
 	
 		$this->get_one_result_from_query();
 		if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
-		$this->ok=true;
-		$this->code="000324";
-		$this->construct_response();
-		return $this->feedback;
-	}
-	$this->id_accion=$this->rows['id_accion'];
-	return $this->rows['id_accion'];
-	}
+			$this->ok=true;
+			$this->code="000324";
+			$this->construct_response();
+			return $this->feedback;
+		}
+		$this->id_accion=$this->rows['id_accion'];
+		$this->descripcion=$this->rows['descripcion'];
+		return $this->rows['id_accion'];
+		}
 }

@@ -17,7 +17,7 @@
 	}else{
 		$bd=get_data_form();
 		$connect=$bd->leerSQL();
-		if($conect['ok']===false){
+		if($connect['ok']===false){
 		new MESSAGE( $connect,"");
 	}else{
 		header('Location:../test/GENERAL_test.php');

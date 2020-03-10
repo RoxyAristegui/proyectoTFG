@@ -10,6 +10,7 @@
 		header('Location:../index.php');
 	}
 
+
 	include '../Model/USUARIOS_Model.php';
 	include '../View/USUARIOS_SHOWALL_View.php';
 	include '../View/USUARIOS_SEARCH_View.php';
@@ -46,8 +47,8 @@
 
 		Switch ($_REQUEST['action']){
 			case 'ADD':
-				if($acl->acceso('add_user')===false){
-					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				if($acl->acceso('USUARIOS','ADD')===false){
+					new MESSAGE("AccesoRestringido",'../Controller/USUARIOS_Controller.php');
 				}
 				if (!$_POST){ // se incoca la vista de add de usuarios
 					new USUARIOS_ADD();
@@ -59,8 +60,8 @@
 				}
 				break;
 			case 'DELETE':
-				if($acl->acceso('delete_user')===false){
-					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				if($acl->acceso('USUARIOS','DELETE')===false){
+					new MESSAGE("AccesoRestringido",'../Controller/USUARIOS_Controller.php');
 				}
 				if (!$_POST){ //nos llega el id a eliminar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
@@ -74,8 +75,8 @@
 				}
 				break;
 			case 'EDIT':
-				if($acl->acceso('edit_user')===false){
-					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+				if($acl->acceso('USUARIOS','EDIT')===false){
+					new MESSAGE("AccesoRestringido",'../Controller/USUARIOS_Controller.php');
 				}
 				if (!$_POST){ //nos llega el usuario a editar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','',''); // Creo el objeto
@@ -98,8 +99,8 @@
 
 				break;
 			case 'SEARCH':
-			if($acl->acceso('search_user')===false){
-					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+			if($acl->acceso('USUARIOS','SEARCH')===false){
+					new MESSAGE("AccesoRestringido",'../Controller/USUARIOS_Controller.php');
 				}
 				if (!$_POST){
 					new USUARIOS_SEARCH();
@@ -114,14 +115,17 @@
 				}
 				break;
 			case 'SHOWCURRENT':
-			if($acl->acceso('showcurrent_user')===false){
-					new MESSAGE("ACCESO RESTRINGIDO",'../Controller/USUARIOS_Controller.php');
+			if($acl->acceso('USUARIOS','SHOWCURRENT')===false){
+					new MESSAGE("AccesoRestringido",'../Controller/USUARIOS_Controller.php');
 				}
 				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 				$valores = $USUARIOS->getById();
 				new USUARIOS_SHOWCURRENT($valores);
 				break;
 			default:
+				if($acl->acceso('USUARIOS','SHOWALL')===false){
+					new MESSAGE("AccesoRestringido",'../Controller/index_Controller.php');
+				}
 				if (!$_POST){
 					$USUARIOS = new USUARIOS_Model('','','','','','');
 				}

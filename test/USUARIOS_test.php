@@ -60,7 +60,7 @@ function USUARIOS_login_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 // creo el modelo
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
@@ -101,7 +101,7 @@ function USUARIOS_login_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido2';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 // creo el modelo
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
@@ -156,7 +156,7 @@ function USUARIOS_Registrar_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 // creo el modelo
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
@@ -192,7 +192,7 @@ function USUARIOS_Registrar_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 // creo el modelo
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
@@ -227,7 +227,7 @@ function USUARIOS_Registrar_test()
 	$nombre = 'superprueba'; 
 	$apellidos = 'probando';
 	$email = 'proba@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->Register()["code"];
@@ -274,7 +274,7 @@ function USUARIOS_ADD_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 // creo el modelo
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
@@ -311,7 +311,7 @@ function USUARIOS_ADD_test()
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 // creo el modelo
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 // inserto la tupla
@@ -375,7 +375,7 @@ function USUARIOS_ADD_test()
 	$nombre = 'proooo'; 
 	$apellidos = 'bando bando';
 	$email = 'preuba@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD()['code'];
@@ -415,7 +415,7 @@ function USUARIOS_EDIT_test(){
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido2';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$usuarios->ADD();
@@ -459,7 +459,7 @@ function USUARIOS_SEARCH_test(){
 	$nombre = 'minombre'; 
 	$apellidos = 'miapellido2';
 	$email = 'miemail@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,'','');
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->SEARCH()["code"];
@@ -557,7 +557,7 @@ function USUARIOS_BuscarUsuarioPorClave_test()
 	$nombre = 'proooo'; 
 	$apellidos = 'bando bando';
 	$email = 'preuba@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
@@ -629,7 +629,7 @@ function USUARIOS_BuscarUsuarioPorEmail_test()
 	$nombre = 'proooo'; 
 	$apellidos = 'bando bando';
 	$email = 'preuba@uvigo.es';
-	$dni='36165166N';
+	$dni='84133440S';
 
 	$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 	$USUARIOS_array_test1['error_obtenido'] = $usuarios->ADD();
