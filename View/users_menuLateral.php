@@ -26,7 +26,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Interface
+        Gestión interna
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -37,7 +37,20 @@
         </a>
     
       </li>
-
+ <li class="nav-item">
+        <a class="nav-link collapsed" h href='../Controller/Permisos_Controller.php'>
+          <i class="fas fa-fw fa-user"></i>
+          <span class="GestionPermisos">Gestión de permisos</span>
+        </a>
+    
+      </li>
+ <li class="nav-item">
+        <a class="nav-link collapsed" h href='../Controller/Roles_Controller.php'>
+          <i class="fas fa-fw fa-user"></i>
+          <span class="GestionRoles">Gestión de roles</span>
+        </a>
+    
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 

@@ -15,32 +15,64 @@ Class Entidad extends Abstract_Model{
 
 	function ADD(){
 
-		$this->getByName();
+	
+	$existe=$this->getByName();
+	if(gettype($existe)!="array"){
 		
-		if($this->feedback['ok']===true){
 			//ya existe una entidad on esas caracterísiticas
 			$this->ok=false;
 			$this->resource='entidad_ADD';
 			$this->code  = '000346';
 			$this->construct_response(); //error
 			return $this->feedback;
-		}
-		
-		$this->query="insert into Entidades (entidad, descripcion )values ('".$this->entidad."','".$this->descripcion."')";
-		
-		$this->execute_single_query();
-		return $this->feedback;
+	}else{
+
+			$this->query="insert into Entidades (entidad, descripcion )values ('".$this->entidad."','".$this->descripcion."')";
+			$this->execute_single_query();
+			if($this->feedback['code']=='00001')
+			{	//asignamos la id creada al objeto mediante la funcion getByNAme;
+				
+				$this->id_entidad=$this->getByName();
+				$this->ok=true;
+				$this->resource='ADD_rol';
+				$this->code  = '000341';
+				$this->construct_response(); //modificacion en bd correcta
+				
+			}
+			else
+			{	$this->ok=false;
+				$this->resource='ADD_rol';
+				$this->code  = '000340'; //error al modificar la entidad en la bd
+				$this->construct_response();
+			}
+			
+			return $this->feedback;
+	}
+
 
 	}
 
 	function EDIT(){
 
-		$id_entidad=$this->id_entidad;
+		
+		if($this->id_entidad==''){
+			$this->ok=false;
+			$this->code='000344'; //No se ha podido ha encontrado la entidad
+			$this->resource='Edit_Entidad';
+			$this->construct_response();
+			return $this->feedback;
+		}
+
+		//comprobamos si el nombre que le vamos a poner ya está creado. 
+		
 		$existe=$this->getByName();
-		if($this->id_entidad!='' || $existe==$id_entidad){
+
+		//si no lo está, gettype devolverá un array
+		if(gettype($existe)=="array"){
+
 			$this->query='update entidades set entidad="'.$this->entidad.'" , descripcion ="'.$this->descripcion.'" where id_entidad="'.$this->id_entidad.'"';
 			$this->execute_single_query();
-		if ($this->feedback['code']==='00001')
+			if ($this->feedback['code']==='00001')
 			{
 				$this->ok=true;
 				$this->resource='entidad_Edit';
@@ -72,31 +104,31 @@ if($this->id_entidad==''){
 			$this->construct_response(); //no se ha encontrado la entidad
 			return $this->feedback;
 }
-		$this->query="DELETE from entidades where id_entidad= '".$this->entidad."'";
+		$this->query="DELETE from entidades where id_entidad= '".$this->id_entidad."'";
 		$this->execute_single_query();
-
+		
 		if($this->feedback['ok']==true){
 			//borrado de las relaciones;
-			$this->query="delete from permisos where id_entidad='".$this->id_entidad."'";
+			$this->query="DELETE from permisos where id_entidad='".$this->id_entidad."'";
 			$this->execute_single_query();
-			$this->query="delete from permisos_roles where id_entidad=".$this->id_entidad;
+			$this->query="DELETE from permisos_roles where id_entidad=".$this->id_entidad;
 			$this->execute_single_query();
 			
 		}
 		 $this->ok=false;;
-		 $this->code='000322';
+		 $this->code='000342';
 		 $this->construct_response();
 		 return $this->feedback;
 		
 	} 
 
 	function SEARCH(){
-	$this->query="select * from ENTIDADES where id_entidad like '".$this->id_entidad."' or entidad like '".$this->entidad."'";
+	$this->query="select * from ENTIDADES where id_entidad like '".$this->id_entidad."' or entidad like '%".$this->entidad."%'";
 
 	$this->get_results_from_query();
 	if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
 		$this->ok=false;
-		$this->code="000324";
+		$this->code="000344";
 		$this->construct_response();
 		return $this->feedback;
 	}
@@ -109,7 +141,7 @@ if($this->id_entidad==''){
 	$this->get_one_result_from_query();
 	if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
 		$this->ok=false;
-		$this->code="000324";
+		$this->code="000344";
 		$this->construct_response();
 		return $this->feedback;
 	}
@@ -124,12 +156,11 @@ if($this->id_entidad==''){
 		$this->get_one_result_from_query();
 		if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
 		$this->ok=false;
-		$this->code="000314";
+		$this->code="000344";
 		$this->construct_response();
 		return $this->feedback;
 	}
-	$this->id_entidad=$this->rows['id_entidad'];
-	$this->descripcion=$this->rows['descripcion'];
+	
 	return $this->rows['id_entidad'];
 	}
 }

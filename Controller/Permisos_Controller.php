@@ -1,6 +1,7 @@
 <?php
 include "../Model/ACL_Model.php";
 include "../View/Roles_View.php";
+include "../View/header.php";
 
 	$acl=new ACL();
 	if (!isset($_REQUEST['action'])){
@@ -9,31 +10,30 @@ include "../View/Roles_View.php";
 	$acl=new ACL();
 // En funcion del action realizamos las acciones necesarias
 
-		Switch ($_REQUEST['action']){
-			case 'SHOW_ROLES':
-				//mostrar los roles
-				
-				$roles=$acl->getAllRoles();
-				new RolesView($roles);
-				break;
-		case'SHOW_ADD_ROL':
-			//mostrar y añadir roles
-			if($_REQUEST['rol']!=''){
-				$add=$acl->AddRol($_REQUEST['rol']);
-					if($add!==true){
-						include "../View/MESSAGE_View.php";
-						new MESSAGE($add,"../Controller/Permisos_Controller.php");
-						break;
-					}
-						$_REQUEST['rol']='';
+		$permiso= new Permisos('','');
+		$permisos= $permiso->SEARCH();
+		$accion = new Accion('');
+		$acciones=$accion->SEARCH();
+		$entidad= new Entidad('');
+		$entidades=$entidad->SEARCH();
+
+echo "<table class='table'>";
+		for($i=0;$i<sizeof($entidades);$i++){
+			echo "<tr>";
+			for($j=0;$j<sizeof($acciones);$j++){
+
+				foreach ($permisos as $permiso) {
 					
-				
+					$permiso['id_accion'];
+				}
+				echo "permisos".$permisos[$j]['id_accion'];
+				echo "<td>";
+				echo "acciones".$acciones[$j]["id_accion"];
+				echo "<td>";
 			}
-				$roles=$acl->getAllRoles();
-				new RolesView($roles);
-				break;
-			default:
-				$roles=$acl->getAllRoles();
-				new RolesView($roles);
-				break;
-}
+		"<tr>";
+	}
+		echo "<pre>";
+		//var_dump($permisos);
+		echo "</pre>";
+

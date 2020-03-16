@@ -20,12 +20,11 @@ function Edit_rol_Test(){
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
-	$rol_name = 'nuevo';
-	$rol = new rol('prueba1');
+	$rol = new rol('rol1');
 	$rol->ADD();
-	$rol->rol=$rol_name;
+	$rol->rol='rol2';
 
-	$array_test1['error_obtenido'] = $rol->Edit()['code'];
+	$array_test1['error_obtenido'] = $rol->EDIT()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
 		$array_test1['resultado'] = 'OK';
@@ -43,17 +42,17 @@ function Edit_rol_Test(){
 	$array_test1['entidad'] = 'roles';	
 	$array_test1['metodo'] = 'edit';
 	$array_test1['error'] = 'Error por duplicado';
-	$array_test1['error_esperado'] = '000315';
+	$array_test1['error_esperado'] = '000316';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
 	
-	$rol=  new rol('error');
+	$rol=  new rol('rol4');
 	$rol->ADD();
-	$rol2 = new rol('nuevo');
+	$rol2 = new rol('rol5');
 	$rol2->ADD();
-	$rol->rol='nuevo';
-	$array_test1['error_obtenido'] = $rol->Edit()['code'];
+	$rol->rol='rol4';
+	$array_test1['error_obtenido'] = $rol->EDIT()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
 		$array_test1['resultado'] = 'OK';
@@ -76,7 +75,7 @@ function Edit_rol_Test(){
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
-	$rol = new rol('noexistes');
+	$rol = new rol('rol6');
 	$array_test1['error_obtenido'] = $rol->Edit()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
@@ -112,7 +111,7 @@ function Add_Rol_Test(){
 	$array_test1['resultado'] = '';
 	
 
-	$rol = new Rol('prueba1');
+	$rol = new Rol('rol7');
 
 	$array_test1['error_obtenido'] = $rol->ADD()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
@@ -125,6 +124,7 @@ function Add_Rol_Test(){
 	}
 
 	array_push($Roles_array_test, $array_test1);
+
 	$rol->DELETE();
 // comprobar fallo
 //-------------------------------------------------------------------------------
@@ -132,12 +132,12 @@ function Add_Rol_Test(){
 	$array_test1['entidad'] = 'rol';	
 	$array_test1['metodo'] = 'add';
 	$array_test1['error'] = 'Error por duplicado';
-	$array_test1['error_esperado'] = '000315';
+	$array_test1['error_esperado'] = '000316';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
 	
-	$rol=  new rol('error');
+	$rol=  new rol('rol8');
 	$rol->ADD();
 	$array_test1['error_obtenido'] = $rol->ADD()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
@@ -176,7 +176,7 @@ function getRolUsuario_Rol_Test(){
 	
 
 	$rol = new Rol('');
-	$login='usuarioPrueba';
+	$login='usuarioprueba';
 	$user=new USUARIOS_Model($login,'password','nombre','apellidos','e@mail.com','26711548S');
 	$user->ADD();
 
@@ -204,7 +204,7 @@ function getRolUsuario_Rol_Test(){
 	$array_test1['resultado'] = '';
 	
 	
-	$rol=  new rol('error');
+	$rol=  new rol('rol9');
 
 	$array_test1['error_obtenido'] = $rol->getRolUsuario('')['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
@@ -231,18 +231,19 @@ function getByName_Roles_test(){
 
 // comprobar success
 //-------------------------------------------------------------------------------
-	
+	$rol= new rol('rol10');
+	$rol->ADD();
+
+
 	$array_test1['entidad'] = 'Rol';	
-	$array_test1['metodo'] = 'getIdByName';
+	$array_test1['metodo'] = 'getByName';
 	$array_test1['error'] = 'Exito';
-	$array_test1['error_esperado'] = '999';
+	$array_test1['error_esperado'] = $rol->id_rol;
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
+	$rol2=new Rol('rol10');
 
-	$rol = new rol('prueba1',999);
-	$rol->ADD();
-	$rol2= new rol('prueba1');
 	$array_test1['error_obtenido'] = $rol2->getByName();
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
@@ -259,7 +260,7 @@ function getByName_Roles_test(){
 //-------------------------------------------------------------------------------
 	
 	$array_test1['entidad'] = 'rol';	
-	$array_test1['metodo'] = 'getIdByName';
+	$array_test1['metodo'] = 'getByName';
 	$array_test1['error'] = 'No existe ese rol';
 	$array_test1['error_esperado'] = '000314';
 	$array_test1['error_obtenido'] = '';
@@ -301,10 +302,10 @@ function getById_Roles_Test(){
 	$array_test1['resultado'] = '';
 	
 
-	$rol = new rol('prueba2',77);
+	$rol = new rol('prueba2');
 	$rol->ADD();
-	$rol2= new rol('',77);
-	$array_test1['error_obtenido'] = $rol2->getById();
+	$rol2= new rol('',$rol->id_rol);
+	$array_test1['error_obtenido'] = $rol2->getById()['rol'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
 		$array_test1['resultado'] = 'OK';
@@ -345,10 +346,11 @@ function getById_Roles_Test(){
 }
 
 
-getById_Roles_Test();
-getByName_Roles_test();
+
 
 Add_rol_Test();
 Edit_rol_Test();
+getById_Roles_Test();
+getByName_Roles_test();
 getRolUsuario_Rol_Test();
 

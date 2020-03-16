@@ -1,3 +1,4 @@
+
 arrayEN={
 //header 
 	NomProyect:'INCID',
@@ -17,6 +18,7 @@ arrayEN={
 	//menu LAteral
 	Inicio : 'Home',
 	GestionUsuarios : 'Users management',
+	GestionPermisos : 'Access managment',
 
 	//usuarios
 	Login :'Login',
@@ -32,6 +34,8 @@ arrayEN={
 	email : 'email',
 	NuevoCrearCuenta :"it's your first time? sign up!",
 	IniciarSesion : 'Log in',
+	YaTienesCuentaInicia : 'Already have an account? Log in now',
+	NuevoUsuario : 'New User',
 	Editar : 'Editar',
 	Borrar : 'Delete',
 	Añadir : 'Add',
@@ -40,6 +44,7 @@ arrayEN={
 	AñadirUsuario : 'Add user',
 	EditarUsuario : 'Edit user',
 	BorrarUsuario : 'Delete user',
+	Detalle : 'Detail',
 
 	//placeholders
 	LetrasyNumeros : 'only letters and numbers',
@@ -53,6 +58,7 @@ arrayEN={
 
 	//generales
 	AllUSers : 'All Users',
+	AccesoRestringido : 'ACCESS DENIED',
 
 
 //codigos de errores

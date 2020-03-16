@@ -13,8 +13,8 @@
 
 			include '../View/Header.php'; //header necesita los strings
 ?>
-			<h1 class="MostrarTodos">Todos los usuarios</h1>
-			   <div class="card shadow mb-4">
+	<h1 class="MostrarTodos">Todos los usuarios</h1>
+	   <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-info"> 
 				<i class="fas fa-user-plus"></i> <a href='../Controller/USUARIOS_Controller.php?action=ADD' class='Añadir'>Añadir</a>

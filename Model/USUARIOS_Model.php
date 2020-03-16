@@ -398,7 +398,7 @@ function getByName(){
 	 $this->query = "SELECT *
 			FROM USUARIOS
 			WHERE 
-				name = '$this->name'
+				nombre = '".$this->nombre."'
 			";
 
 	$this->get_results_from_query();

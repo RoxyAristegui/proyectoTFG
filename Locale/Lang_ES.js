@@ -9,7 +9,7 @@ arrayES={
 	Desconectar : 'Desconectar',
 	NotAuthUser : 'Usuario no autenticado',
 	Registrar : 'Registrar',
-	Volver : 'volver',
+	volver : 'Volver',
 	Cancelar : 'Cancelar',
 	TeVas : 'Estas seguro?',
 	SeleccionaDesconectarSi : 'Selecciona desconectar si quieres cerrar la sesión actual',
@@ -17,8 +17,8 @@ arrayES={
 	//menu LAteral
 	Inicio : 'Inicio',
 	GestionUsuarios : 'Gestión de usuarios',
-
-	//RegistrarLogin
+	GestionPermisos : 'Gestión de permisos',
+	GestionRoles : 'Gestión de roles',
 
 
 	//usuarios
@@ -45,6 +45,7 @@ arrayES={
 	AñadirUsuario : 'Añadir usuario',
 	EditarUsuario : 'Editar usuario',
 	BorrarUsuario : 'Borrar usuario',
+	Detalle : 'Detalle',
 
 	//placeholders
 	LetrasyNumeros : 'Utiliza letras y números',
@@ -58,7 +59,6 @@ arrayES={
 	//generales
 	AllUSers : 'Todos los usuarios',
 	AccesoRestringido : 'ACCESO RESTRINGIDO',
-
 //codigos de errores
 	'00001' : 'Inserción realizada con éxito',
 	'000010' : 'Usuario y contraseña correctos',
@@ -88,14 +88,20 @@ arrayES={
 	'000313' : 'No se puede eliminar, el rol está asignado a algun usuario',
 	'000314' : 'No se ha encontrado el rol',
 	'000315' : 'No se ha podido modificar el rol del usuario',
-	'000316' : 'Ya existe un rol con ese nombre';
+	'000316' : 'Ya existe un rol con ese nombre',
 
-	'000322' : 'No se ha podido borrar la accion',
-	'000323' : 'Error en el borrado de las relaciones de las acciones';
-	'000324' : 'No se ha encontrado la accion',
-	'000326' : 'Ya existe una accion con ese nombre',
 	'000330' : 'no se han encontrado permisos para ese rol',
 
+	'000320' : 'No se ha podido crear la acción',
+	'000321' : 'La acción se ha creado correctamente',
+	'000322' : 'No se ha podido borrar la accion',
+	'000323' : 'Error en el borrado de las relaciones de las acciones',
+	'000324' : 'No se ha encontrado la accion',
+	'000326' : 'Ya existe una accion con ese nombre',
+
+	'000441' : 'La entidad se ha creado correctamente',
+	'000340' : 'No se ha podido crear la entidad',
+	'000342' : 'No se ha podido borrar la entidad',
 	'000346' : 'Ya existe una entidad con esos datos',
 	'000344' : 'No se ha encontrado la entidad',
 
@@ -103,7 +109,7 @@ arrayES={
 	'000121':'La longitud del nombre debe ser mayor a 3',
 	'000122':'La longitud del nombre debe ser menor de 30 caracteres',
 	'000123':'El nombre sólo admite letras',
-	'000131' : 'La longitud del login debe ser mayor a 5',
+	'000131': 'La longitud del login debe ser mayor a 5',
 	'000132':'La longitud del login debe ser menor de 30 caracteres',
 	'000133':'El login solo admite letras y números',
 	'000141':'La longitud de la contraseña debe ser mayor a 5',

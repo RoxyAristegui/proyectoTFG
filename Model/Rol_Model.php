@@ -19,20 +19,21 @@ Class Rol extends Abstract_model{
  }
 
  function ADD(){
-$existe=$this->getByName();
 
-if(gettype($existe)=='array'){
-	
-	$this->query="insert into ROLES (rol, descripcion ) values ('".$this->rol."','".$this->descripcion."')";
-	
-	$this->execute_single_query();
-	if ($this->feedback['code']==='00001')
-		{
-			$this->getByName();
+	$existe=$this->getByName();
+	if(gettype($existe)=="array"){
+		
+		$this->query="insert into ROLES (rol, descripcion ) values ('".$this->rol."','".$this->descripcion."')";	
+		$this->execute_single_query();
+		if ($this->feedback['code']==='00001')
+		{	//asignamos la id creada al objeto mediante la funcion getByNAme;
+			
+			$this->id_rol=$this->getByName();
 			$this->ok=true;
 			$this->resource='ADD_rol';
 			$this->code  = '000311';
 			$this->construct_response(); //modificacion en bd correcta
+			
 		}
 		else
 		{	$this->ok=false;
@@ -40,20 +41,32 @@ if(gettype($existe)=='array'){
 			$this->code  = '000315'; //error al modificar el rol en la bd
 			$this->construct_response();
 		}
-		return $this->feedback;
+		
 	}else{
 		$this->ok=false;
 			$this->resource='ADD_rol';
 			$this->code  = '000316'; //error al modificar el rol en la bd
 			$this->construct_response();
-		}
+	}
+	return $this->feedback;
  }
 
  function EDIT(){
 
-$id_rol=$this->id_rol;
+
+if($this->id_rol==''){
+	$this->ok=false;
+		$this->code='000314'; //No se ha podido modificar el rol
+		$this->resource='Edit_rol_no';
+		$this->construct_response();
+		return $this->feedback;
+}
+
+//comprobamos si el nombre que le vamos a poner ya está creado. 
 $existe=$this->getByName();
-if($this->id_rol!='' || $existe==$id_rol){
+
+//si existiera un rol con ese nombre devolvería un número, sino devuelve el array de error.
+if(is_array($existe)){
 	$this->query="UPDATE ROLES SET rol='".$this->rol."' , descripcion='".$this->descripcion."' where id_rol = '".$this->id_rol."'";
 	$this->execute_single_query();
 	if ($this->feedback['code']==='00001')
@@ -73,8 +86,10 @@ if($this->id_rol!='' || $existe==$id_rol){
 
 	}else{
 		$this->ok=false;
-		$this->code='000314';
-		$this->construct_response();
+			$this->resource='Edit_rol';
+			$this->code  = '000316'; //ya existe un rol con ese nombre
+			$this->construct_response();
+		
 	}
 	return $this->feedback;
  }
@@ -82,7 +97,7 @@ if($this->id_rol!='' || $existe==$id_rol){
 
  //devuelve un rol buscaado o todos si no se envian parámetros;
  function SEARCH(){
- 	$this->query="select * from ROLES where id_rol like '".$this->id_rol."' or rol like '".$this->rol."' ";
+ 	$this->query="select * from ROLES where id_rol like '".$this->id_rol."' or rol like '%".$this->rol."%' ";
 	$this->get_results_from_query();
 	if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
 		$this->ok=false;
@@ -154,8 +169,7 @@ function getByName(){
 		$this->construct_response();
 		return $this->feedback;
 	}
-	$this->id_rol=$this->rows['id_rol'];
-	$this->descripcion=$this->rows['descripcion'];
+	
 	return $this->rows['id_rol'];
 	}
 
@@ -177,8 +191,8 @@ function getByName(){
  }
 
 
-function setRolUsuario(){
-	$this->query="UPDATE USUARIOS SET id_rol = ".$this->id_rol;
+function setRolUsuario($login){
+	$this->query="UPDATE USUARIOS SET id_rol = ".$this->id_rol." where login='".$login."'";
 	$this->execute_single_query();
 	if ($this->feedback['code']==='00001')
 		{

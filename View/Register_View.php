@@ -44,13 +44,13 @@
 							<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control form-control-user"  placeholder = "apellidos" size = '50' value = '' onblur="esNoVacio('apellidos')  && comprobarSoloLetras('apellidos',50)" >
 						</div>
 					</div>
-						<input type='submit' name='action' value="Registrar" class="btn btn-outline-info btn-user btn-block">
+						<input type='submit' name='action' value="Registrar" class="btn btn-outline-info btn-user btn-block Registrar">
 
 				</form>
 				
 		
 				<div class="text-center">
-	                <a class="small" href='../Controller/Index_Controller.php YaTienesCuentaInicia'>Ya tienes una cuenta? inicia sesión</a>
+	                <a class="small YaTienesCuentaInicia" href='../Controller/Index_Controller.php'>Ya tienes una cuenta? inicia sesión</a>
 	            </div>
 			
 		    </div>

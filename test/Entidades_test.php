@@ -14,12 +14,12 @@ function ADD_Entidades_test(){
 	$array_test1['entidad'] = 'entidad';	
 	$array_test1['metodo'] = 'add';
 	$array_test1['error'] = 'Exito';
-	$array_test1['error_esperado'] = '00001';
+	$array_test1['error_esperado'] = '000341';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
 
-	$entidad = new entidad('prueba1');
+	$entidad = new entidad('entidad1');
 
 	$array_test1['error_obtenido'] = $entidad->ADD()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
@@ -39,7 +39,7 @@ function ADD_Entidades_test(){
 	$array_test1['entidad'] = 'entidad';	
 	$array_test1['metodo'] = 'add';
 	$array_test1['error'] = 'Error por duplicado';
-	$array_test1['error_esperado'] = '00005';
+	$array_test1['error_esperado'] = '000346';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
@@ -74,13 +74,14 @@ function Edit_Entidades_test(){
 	$array_test1['entidad'] = 'entidad';	
 	$array_test1['metodo'] = 'edit';
 	$array_test1['error'] = 'Exito';
-	$array_test1['error_esperado'] = '00001';
+	$array_test1['error_esperado'] = '000054';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
 
-	$entidad = new entidad('prueba1');
-	$entidad->accion='prueba2';
+	$entidad = new entidad('entidad2');
+	$entidad->ADD();
+	$entidad->entidad='entidad3';
 	$array_test1['error_obtenido'] = $entidad->Edit()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
@@ -97,17 +98,19 @@ function Edit_Entidades_test(){
 //-------------------------------------------------------------------------------
 	
 	$array_test1['entidad'] = 'entidad';	
-	$array_test1['metodo'] = 'add';
+	$array_test1['metodo'] = 'edit';
 	$array_test1['error'] = 'Error por duplicado';
-	$array_test1['error_esperado'] = '00005';
+	$array_test1['error_esperado'] = '000346';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
 	
-	$entidad=  new entidad('prueba');
+	$entidad=  new entidad('entidad4');
 	$entidad->ADD();
-	$entidad->entidad='USUARIOS';
-	$array_test1['error_obtenido'] = $entidad->Edit()['code'];
+	$entidad2= new entidad('entidad5');
+	$entidad2->ADD();
+	$entidad2->entidad='entidad4';
+	$array_test1['error_obtenido'] = $entidad2->EDIT()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
 		$array_test1['resultado'] = 'OK';
@@ -119,6 +122,7 @@ function Edit_Entidades_test(){
 
 	array_push($entidades_array_test, $array_test1);
 	$entidad->DELETE();
+	$entidad2->DELETE();
 
 
 }
@@ -131,17 +135,17 @@ function getByName_Entidades_test(){
 
 // comprobar success
 //-------------------------------------------------------------------------------
-	
+	$entidad = new entidad('prueba1');
+	$entidad->ADD();
+	$id=$entidad->getByName();
+
 	$array_test1['entidad'] = 'entidad';	
 	$array_test1['metodo'] = 'getIdByName';
 	$array_test1['error'] = 'Exito';
-	$array_test1['error_esperado'] = '999';
+	$array_test1['error_esperado'] = $id;
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
-
-	$entidad = new entidad('prueba1',999);
-	$entidad->ADD();
 	$entidad2 = new entidad('prueba1');
 	$array_test1['error_obtenido'] = $entidad2->getByName();
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
@@ -161,7 +165,7 @@ function getByName_Entidades_test(){
 	$array_test1['entidad'] = 'entidad';	
 	$array_test1['metodo'] = 'getIdByName';
 	$array_test1['error'] = 'No existe esa entidad';
-	$array_test1['error_esperado'] = '000314';
+	$array_test1['error_esperado'] = '000344';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	
@@ -200,10 +204,10 @@ function getById_Entidades_test(){
 	$array_test1['resultado'] = '';
 	
 
-	$entidad = new entidad('prueba1',77);
+	$entidad = new entidad('prueba1');
 	$entidad->ADD();
-	$entidad2= new entidad('',77);
-	$array_test1['error_obtenido'] = $entidad->getById()['entidad'];
+	$entidad2= new entidad('',$entidad->id_entidad);
+	$array_test1['error_obtenido'] = $entidad2->getById()['entidad'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
 		$array_test1['resultado'] = 'OK';
@@ -221,7 +225,7 @@ function getById_Entidades_test(){
 	$array_test1['entidad'] = 'entidad';	
 	$array_test1['metodo'] = 'getById';
 	$array_test1['error'] = 'No existe esa entidad';
-	$array_test1['error_esperado'] = '000314';
+	$array_test1['error_esperado'] = '000344';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
 	

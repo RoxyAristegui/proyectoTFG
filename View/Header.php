@@ -13,7 +13,7 @@ if(isset($_COOKIE["lang"])){
 }else{
   $lang='ES';
 }
-include '../Locale/Strings_'.$lang.'.php';
+//include '../Locale/Strings_'.$lang.'.php';
 ?>
 
 <html>
@@ -160,8 +160,8 @@ include '../Locale/Strings_'.$lang.'.php';
 	               
 	                <div class="dropdown-divider"></div>
 	                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400 Desconectar"></i>
-	                  <span>Desconectar  </span>
+	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+	                  <span class="desconectar">Desconectar  </span>
 	                </a>
 	              </div>
 

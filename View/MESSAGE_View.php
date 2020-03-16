@@ -1,4 +1,8 @@
 <?php
+/*
+---Vista de mensajes de error
+el string de errores puede traer un array de arrays, un array, o un string.--
+*/
 
 class MESSAGE{
 
@@ -15,36 +19,29 @@ class MESSAGE{
 
 		include '../View/Header.php';
 
-	//	<div class="container-fluid">
-	var_dump($this->string);
-			if(isset($this->string[0]['code'])){ 
+		//	<div class="container-fluid">
+		var_dump($this->string);
+		//comprobar primero si es un array de arrays
+		if(isset($this->string[0]['code'])){ 
 
-		
-				foreach($this->string as $error){ //Si a la vista MESSAGE llega un array
-					?>
-					<div class=" <?php echo $error['code']; ?> ">
-				
-
-					</div>
-					<?php	
-				}		
-
-			}else{ //Si a la vista MESSAGE llega un array simple
-						?>
-				<div class=' <?php echo $this->string['code']; ?> '>
-				
-
-					</div>
-					<?php	
-			}
-				
+			foreach($this->string as $error){ 
+				?>
+				 <?php echo "<div class='".$error['code']."'>";?> 
 			
-		?>
 
+				</div>
+				<?php	
+			}		
+		 //Si a la vista MESSAGE llega un array simple
+		}elseif(isset($this->string['code'])){
 
-<?php
-
-		echo '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
+			 echo "<div class='".$this->string['code']."'> </div>"; 
+		}else{
+			//si llega solo un string
+				 echo "<div class='".$this->string."'> </div>"; 
+		}
+	
+		echo '<a href=\'' . $this->volver . "' class='volver'> Volver </a>";
 		include '../View/Footer.php';
 	} //fin metodo render
 

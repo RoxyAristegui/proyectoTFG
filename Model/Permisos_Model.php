@@ -32,7 +32,9 @@ class Permisos extends Abstract_Model{
 		return $this->feedback;
 	}
 	function SEARCH(){
-		$this->query="select * from permisos where id_entidad like ".$this->id_entidad." and id_accion like ".$this->id_accion;
+		
+	//$this->query="select * from permisos where id_entidad like ".$this->id_entidad." and id_accion like ".$this->id_accion;
+	$this->query="select * from permisos";
 		$this->get_results_from_query();
 		if($this->feedback['ok']===true){
 			return $this->rows;
