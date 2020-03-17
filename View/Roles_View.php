@@ -81,7 +81,6 @@ class Roles_View{
 						<table class="table">
 
 						<?php 
-						var_dump($this->usuarios);
 						foreach($this->usuarios as $user){
 							?>
 							<div class="row">

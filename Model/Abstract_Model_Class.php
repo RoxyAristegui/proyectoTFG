@@ -99,7 +99,10 @@ abstract class Abstract_Model{
 					$this->code  = '00007'; // el recordset viene vacio
 					$this->construct_response();
 				}else{
-					while ($this->rows[] = $result->fetch_assoc());
+				//	while ($this->rows[] = $result->fetch_assoc());
+				for($i=0;$i<$result->num_rows;$i++){
+					$this->rows[]=$result->fetch_assoc();
+					}
 					$result->close();
 					$this->ok = true;
 					$this->code  = '00008'; // el recordset vuelve con datos
