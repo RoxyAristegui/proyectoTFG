@@ -21,6 +21,7 @@ function ConnectDB()
 }
 
 function ExisteDB(){
+	
 	$mysqli = new mysqli(host, user, pass , BD);
     	if ($mysqli->connect_errno==1049) {
     		return false;

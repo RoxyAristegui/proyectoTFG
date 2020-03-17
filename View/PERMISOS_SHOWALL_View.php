@@ -22,9 +22,18 @@ class PERMISOS_SHOWALL {
 
 			include '../View/Header.php'; //header necesita los strings
 ?>
-	<h1 class="MostrarTodos">Todos los usuarios</h1>
-	   <div class="card shadow mb-4">
-            <div class="card-header py-3">
+	<h1 class="MostrarTodos">Permisos </h1>
+	 
+	<div class="col-md-6 col-sm-12">
+			   <div class="card shadow mb-4">
+			   		<div class="card-header py-3">
+			   		   <h6 class="m-0 font-weight-bold text-info"> 
+							Entidades
+					  </h6>
+					</div>
+					<div class="card-body "
+
+
 
 
 
@@ -33,7 +42,4 @@ class PERMISOS_SHOWALL {
 }
 
 
-//UNA PANTALLA DE ROLES
-+LISTAR USUARIOS CON SU ROL
-+EL ROL Q SEA UN DESPLEGABLE Y LO PUEDA CAMBIAR, POR DEFECTO SU ROL
-`+OPCION DE AÑADIR ROL
+çç

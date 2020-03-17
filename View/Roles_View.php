@@ -88,10 +88,10 @@ class Roles_View{
 							<div class="col-md-5">
 								 <select class="form-control" id="asignarRolUsuario" onchange="cambiarRolUsuario('<?php echo $user['login'] ?>')">
 								  <?php
-								  var_dump($user);
+								
 								   foreach($this->listaRoles as $rol){
 								  	if($user['id_rol']==$rol['id_rol']){
-								  		echo "<opction value=".$rol['id_rol']." selected>".$rol['rol']."</option>";
+								  		echo "<option value=".$rol['id_rol']." selected>".$rol['rol']."</option>";
 								  	}else{
 								 	echo  "<option value='".$rol['id_rol']."' >".$rol['rol']."</option>";
 								     } 
