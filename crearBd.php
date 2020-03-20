@@ -18,7 +18,7 @@ class CrearBD{
 	var $mysql_host;
 	var $mysql_username;
 	var $mysql_pass;
-	var $mysql_db="mysql";
+	
 	// Name of the file
 	var	$filename = '../tfgRoxy.sql';
 	
@@ -30,7 +30,7 @@ class CrearBD{
 	}
 
 	function leerSQL(){
-		$conn =new mysqli($this->mysql_host, $this->mysql_username, $this->mysql_pass, $this->mysql_db);
+		$conn =new mysqli($this->mysql_host, $this->mysql_username, $this->mysql_pass);
 
 		$query = '';
 		$sqlScript = file($this->filename);

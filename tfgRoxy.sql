@@ -96,32 +96,29 @@ ALTER TABLE `PERMISOS_ROLES`
 
 ALTER TABLE `ROLES`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
-  COMMIT;
+
 ALTER TABLE `ENTIDADES`
   MODIFY `id_entidad` int(11) NOT NULL AUTO_INCREMENT;
-  COMMIT;
+
 ALTER TABLE `ACCIONES`
   MODIFY `id_accion` int(11) NOT NULL AUTO_INCREMENT;
-  COMMIT;
 
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/* INSERCIÓN DE ROLES */
 
-INSERT INTO `ROLES` (`id_rol`, `rol`, `descripcion`) VALUES (1, 'admin', 'administrador total del sistema');
-INSERT INTO `ROLES` (`id_rol`, `rol`, `descripcion`) VALUES (2, 'usuario', 'Cualquier usuario');
-INSERT INTO `ROLES` (`id_rol`, `rol`, `descripcion`) VALUES (3, 'responsable', 'Responsable de aceptar las obras');
+---- INSERCIÓN DE ROLES ---
 
-/* INSERCION DE ENTIDATES */
+INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (1, 'admin', 'administrador total del sistema');
+INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (2, 'usuario', 'Cualquier usuario');
+INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (3, 'responsable', 'Responsable de aceptar las obras');
+
+--- INSERCION DE ENTIDATES ---
 
 
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (1, 'USUARIOS', 'gestion de usuarios');
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (2, 'PERMISOS', 'gestion de permisos');
 
 
-/* INSERCION DE ACCIONES */ 
+--- INSERCION DE ACCIONES ---
 
 INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (1, 'ADD', 'funcion de añadir');
 INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (2, 'EDIT', 'funcion de editar');
@@ -130,7 +127,7 @@ INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (4, 'SEARCH',
 INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (5, 'SHOWALL', 'Mostrar todos lso elementos e la entidad');
 INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (6, 'SHOWCURRENT', 'Mostrar elemento actual');
 
-/* INSERCIÓN DE PERMISOS */
+--- INSERCIÓN DE PERMISOS ---
 
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,1);
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,2);
@@ -162,4 +159,4 @@ INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,6);
 
 
-INSERT INTO `usuarios` (`login`, `password`, `DNI`, `nombre`, `apellidos`, `email`, `id_rol`) VALUES ('admin', 'password', '36165166N', 'admin', 'root', 'admin@uvigo.es', '1');
+INSERT INTO USUARIOS (`login`, `password`, `DNI`, `nombre`, `apellidos`, `email`, `id_rol`) VALUES ('admin', 'password', '36165166N', 'admin', 'root', 'admin@uvigo.es', 1);

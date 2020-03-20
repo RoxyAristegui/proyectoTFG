@@ -21,13 +21,17 @@ function ConnectDB()
 }
 
 function ExisteDB(){
-	
+
+	try{
 	$mysqli = new mysqli(host, user, pass , BD);
     	if ($mysqli->connect_errno==1049) {
     		return false;
     	}else{
     			return true;
     		}
+	}catch (mysqli_sql_exception $e){
+    		return false;
+    	}
 }
 
 ?>

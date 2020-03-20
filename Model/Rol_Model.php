@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Abstract_model_Class.php';
+include_once 'Abstract_Model_Class.php';
 
 Class Rol extends Abstract_model{
 	var $id_rol;
@@ -120,7 +120,7 @@ if(is_array($existe)){
 		return $this->feedback;
 	}
 
-	$this->query='delete from roles where id_rol='.$this->id_rol;
+	$this->query='delete from ROLES where id_rol='.$this->id_rol;
 	$this->execute_single_query();
 	
 	if($this->feedback['ok']===true){

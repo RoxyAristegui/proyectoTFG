@@ -33,7 +33,7 @@ if (!isset($_REQUEST['action'])){
 	if($ACL->Acceso('PERMISOS',$accion)===false){
 		new MESSAGE('AccesoRestringido','Index_Controller.php');
 
-	}
+	}else{
 // En funcion del action realizamos las acciones necesarias
 
 		Switch ($_REQUEST['action']){
@@ -43,7 +43,7 @@ if (!isset($_REQUEST['action'])){
 				$rol=new rol($rol,$desc);
 				$rtn=$rol->ADD();
 				if($rtn['ok']===false){
-					new MESSAGE_View($rtn,"Roles_Controller.php");
+					new MESSAGE($rtn,"Roles_Controller.php");
 				}
 				break;
 
@@ -52,7 +52,7 @@ if (!isset($_REQUEST['action'])){
 				$rol= new rol('',$id);
 				$rtn=$rol->DELETE();
 				if($rtn['ok']===false){
-					new MESSAGE_View($rtn,"Roles_Controller.php");
+					new MESSAGE($rtn,"Roles_Controller.php");
 				}
 				break;	
 			case 'changeRol':
@@ -61,7 +61,7 @@ if (!isset($_REQUEST['action'])){
 				$rol=new rol('',$id);
 				$rtn=$rol->setRolUsuario($login);
 				if($rtn['ok']===false){
-					new MESSAGE_View($rtn,"Roles_Controller.php");
+					new MESSAGE($rtn,"Roles_Controller.php");
 				}
 				break;	
 			 default:
@@ -78,5 +78,5 @@ if (!isset($_REQUEST['action'])){
 		$listaroles=$roles->SEARCH();
 		new Roles_View($listaroles,$usuarios);
 
-	
+	}
 

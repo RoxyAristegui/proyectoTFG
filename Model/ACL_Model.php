@@ -79,6 +79,10 @@ function getPermisosRol(){
 
 
 function Acceso($entidadAc,$accionAc){
+	if($accionAc==''){
+		$accionAC="SHOWALL";
+	}
+	
 	$acceso=false;
 	if($this->permisos!=NULL){
 		foreach($this->permisos as $permiso){

@@ -50,7 +50,8 @@ if (!isset($_REQUEST['action'])){
 	if($ACL->Acceso('USUARIOS',$accion)===false){
 		new MESSAGE('AccesoRestringido','Index_Controller.php');
 
-	}
+
+	}else{
 // En funcion del action realizamos las acciones necesarias
 
 		Switch ($_REQUEST['action']){
@@ -66,9 +67,6 @@ if (!isset($_REQUEST['action'])){
 				}
 				break;
 			case 'DELETE':
-				if($acl->acceso('USUARIOS','DELETE')===false){
-					new MESSAGE("AccesoRestringido",'../Controller/USUARIOS_Controller.php');
-				}
 				if (!$_POST){ //nos llega el id a eliminar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 					$valores = $USUARIOS->getById();
@@ -135,5 +133,7 @@ if (!isset($_REQUEST['action'])){
 					new USUARIOS_SHOWALL($lista, $datos);
 				
 		}
+
+	}
 
 ?>
