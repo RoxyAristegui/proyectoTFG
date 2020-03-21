@@ -19,6 +19,7 @@ function __construct($login=''){
 		}else{
 			//si el usuario no ha iniciado sesión, mandarlo a ello
 			header('Location: ../Controller/Login_Controller.php');
+	
 		}
 	}
 
@@ -31,11 +32,11 @@ function __destruct(){
 
 }
 function ADD(){
-	$this->query="insert into permisos_roles (id_rol,id_permiso,id_accion) values('".$this->id_rol."','".$this->id_permiso."','".$this->id_accion."')";
+	$this->query="insert into PERMISOS_ROLES (id_rol,id_permiso,id_accion) values('".$this->id_rol."','".$this->id_permiso."','".$this->id_accion."')";
 }
 
 function DELETE(){
-	$this->query="delete from permisos_roles where id_rol='".$this->id_rol."' and id_permiso = '".$this->id_permiso."' and id_accion='".$this->id_accion."'";
+	$this->query="delete from PERMISOS_ROLES where id_rol='".$this->id_rol."' and id_permiso = '".$this->id_permiso."' and id_accion='".$this->id_accion."'";
 }
 
 function EDIT(){
@@ -56,7 +57,7 @@ function getByName(){
 
 function getPermisosRol(){
 
-		$this->query="select * from permisos_roles where( id_rol='".$this->rol."')";
+		$this->query="select * from PERMISOS_ROLES where( id_rol='".$this->rol."')";
 		$this->get_results_from_query();
 
 		if($this->feedback['ok']===true){
@@ -78,11 +79,12 @@ function getPermisosRol(){
 }
 
 
-function Acceso($entidadAc,$accionAc){
+function Acceso($entidadAc,$accionAc="SHOWALL"){
 	if($accionAc==''){
 		$accionAC="SHOWALL";
 	}
-	
+	print_r($this->login);
+	print_r($this->permisos);
 	$acceso=false;
 	if($this->permisos!=NULL){
 		foreach($this->permisos as $permiso){

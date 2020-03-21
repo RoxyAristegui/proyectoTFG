@@ -175,12 +175,12 @@ function getRolUsuario_Rol_Test(){
 	$array_test1['resultado'] = '';
 	
 
-	$rol = new Rol('');
+	$rolUser = new Rol('');
 	$login='usuarioprueba';
 	$user=new USUARIOS_Model($login,'password','nombre','apellidos','e@mail.com','26711548S');
 	$user->ADD();
 
-	$array_test1['error_obtenido'] = $rol->getRolUsuario($login);
+	$array_test1['error_obtenido'] = $rolUser->getRolUsuario($login);
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{
 		$array_test1['resultado'] = 'OK';
@@ -191,7 +191,7 @@ function getRolUsuario_Rol_Test(){
 	}
 
 	array_push($Roles_array_test, $array_test1);
-	$rol->DELETE();
+
 	$user->DELETE();
 // comprobar fallo
 //-------------------------------------------------------------------------------
@@ -328,7 +328,7 @@ function getById_Roles_Test(){
 	$array_test1['resultado'] = '';
 	
 	
-	$rol=  new rol('',132);
+	$rol=  new rol('',13);
 	$array_test1['error_obtenido'] = $rol->getById()['code'];
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{

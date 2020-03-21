@@ -160,7 +160,7 @@ if(is_array($existe)){
  }
 
 function getByName(){
-		$this->query="select * from roles where rol='".$this->rol."'";
+		$this->query="select * from ROLES where rol='".$this->rol."'";
 	
 		$this->get_one_result_from_query();
 		if($this->feedback['ok']===false || $this->feedback['code']=='00007'){

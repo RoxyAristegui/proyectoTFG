@@ -27,7 +27,7 @@ Class Entidad extends Abstract_Model{
 			return $this->feedback;
 	}else{
 
-			$this->query="insert into Entidades (entidad, descripcion )values ('".$this->entidad."','".$this->descripcion."')";
+			$this->query="insert into ENTIDADES (entidad, descripcion )values ('".$this->entidad."','".$this->descripcion."')";
 			$this->execute_single_query();
 			if($this->feedback['code']=='00001')
 			{	//asignamos la id creada al objeto mediante la funcion getByNAme;
@@ -70,7 +70,7 @@ Class Entidad extends Abstract_Model{
 		//si no lo está, gettype devolverá un array
 		if(gettype($existe)=="array"){
 
-			$this->query='update entidades set entidad="'.$this->entidad.'" , descripcion ="'.$this->descripcion.'" where id_entidad="'.$this->id_entidad.'"';
+			$this->query='update ENTIDADES set entidad="'.$this->entidad.'" , descripcion ="'.$this->descripcion.'" where id_entidad="'.$this->id_entidad.'"';
 			$this->execute_single_query();
 			if ($this->feedback['code']==='00001')
 			{
@@ -104,14 +104,14 @@ if($this->id_entidad==''){
 			$this->construct_response(); //no se ha encontrado la entidad
 			return $this->feedback;
 }
-		$this->query="DELETE from entidades where id_entidad= '".$this->id_entidad."'";
+		$this->query="DELETE from ENTIDADES where id_entidad= '".$this->id_entidad."'";
 		$this->execute_single_query();
 		
 		if($this->feedback['ok']==true){
 			//borrado de las relaciones;
-			$this->query="DELETE from permisos where id_entidad='".$this->id_entidad."'";
+			$this->query="DELETE from PERMISOS where id_entidad='".$this->id_entidad."'";
 			$this->execute_single_query();
-			$this->query="DELETE from permisos_roles where id_entidad=".$this->id_entidad;
+			$this->query="DELETE from PERMISOS_ROLES where id_entidad=".$this->id_entidad;
 			$this->execute_single_query();
 			
 		}
@@ -151,7 +151,7 @@ if($this->id_entidad==''){
 	}
 
 	function getByName(){
-		$this->query="select * from entidades where entidad='".$this->entidad."'";
+		$this->query="select * from ENTIDADES where entidad='".$this->entidad."'";
 	
 		$this->get_one_result_from_query();
 		if($this->feedback['ok']===false || $this->feedback['code']=='00007'){

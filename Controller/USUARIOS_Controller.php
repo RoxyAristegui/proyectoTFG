@@ -2,14 +2,9 @@
 <?php
 
 	
-	//include '../Functions/Authentication.php';
-	include '../Model/ACL_Model.php';
+	include '../Functions/ControlarAcceso.php';
 
-	/*if (!IsAuthenticated()){
-		header('Location:../index.php');
-	}
-*/
-
+	
 	include '../Model/USUARIOS_Model.php';
 	include '../View/USUARIOS_SHOWALL_View.php';
 	include '../View/USUARIOS_SEARCH_View.php';
@@ -35,23 +30,7 @@
 		return $usuarios;
 	}
 
-	
-// sino existe la variable action la crea vacia para no tener error de undefined index
 
-if (!isset($_REQUEST['action'])){
-		$_REQUEST['action'] = '';
-		$accion='SHOWALL'; //definicimos la acción para el control de acceso.
-	}else{
-		$accion=$_REQUEST['action'];
-	}
-	
-	$ACL=new ACL();
-
-	if($ACL->Acceso('USUARIOS',$accion)===false){
-		new MESSAGE('AccesoRestringido','Index_Controller.php');
-
-
-	}else{
 // En funcion del action realizamos las acciones necesarias
 
 		Switch ($_REQUEST['action']){
@@ -134,6 +113,6 @@ if (!isset($_REQUEST['action'])){
 				
 		}
 
-	}
+	//}
 
 ?>

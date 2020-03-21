@@ -16,8 +16,7 @@ USE `INCID_Test`;
 --
 GRANT ALL PRIVILEGES ON `INCID_Test`.* TO `roxytfg`@`localhost` WITH GRANT OPTION;
 
--- --------------------------------------------------------
-
+--
 --
 -- Estructura de tabla para la tabla `USUARIOS`
 --
@@ -29,34 +28,37 @@ CREATE TABLE USUARIOS (
   `nombre` varchar(30) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `rol` varchar(60) NULL
+  `id_rol` int(3) NOT NULL DEFAULT 2
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Estructura de tabla para la tabla `PERMISOS`
---
-
-CREATE TABLE PERMISOS (
-`permiso` varchar(15) NOT NULL,
-`descripcion` varchar(30) NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Estructura de tabla para la tabla `ROLES`
---
 
 CREATE TABLE ROLES (
+`id_rol` int(11) NOT NULL,
 `rol` varchar(15) NOT NULL,
-`descripcion` varchar(25) NULL
+`descripcion` varchar(50) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Estructura de tabla para la tabla `PERMISOS_ROLES`
---
+CREATE TABLE ENTIDADES (
+`id_entidad` int(11) NOT NULL,
+`entidad` varchar(15) NOT NULL,
+`descripcion` varchar(50) NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE PERMISOS_ROLES (
-`rol` varchar(15) NOT NULL,
-`permiso` varchar(15) NULL
+CREATE TABLE ACCIONES(
+`id_accion` int(11) NOT NULL,
+`accion` varchar(20) NOT NULL,
+`descripcion` varchar(50) NULL
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE PERMISOS(
+`id_entidad` int(11) NOT NULL,
+`id_accion` int(11) NOT NULL
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE PERMISOS_ROLES(
+`id_rol` int(11) NOT NULL,
+`id_entidad` int(11) NOT NULL,
+`id_accion` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
@@ -64,25 +66,93 @@ CREATE TABLE PERMISOS_ROLES (
 --
 -- Índices para tablas volcadas
 --
--- Indices de la tabla `USUARIOS`
 --
-ALTER TABLE USUARIOS
+ALTER TABLE `USUARIOS`
   ADD PRIMARY KEY (`login`),
   ADD UNIQUE KEY `DNI` (`DNI`),
   ADD UNIQUE KEY `email` (`email`);
---
--- Indices de la tabla `PERMISOS`
---
-ALTER TABLE `PERMISOS`
-  ADD PRIMARY KEY (`permiso`);
---
--- Indices de la tabla `ROLES`
---
-ALTER TABLE `ROLES`
-  ADD PRIMARY KEY (`rol`);
---
--- Indices de la tabla `PERMISOS_ROLES`
---
-ALTER TABLE `PERMISOS_ROLES`
-  ADD PRIMARY KEY (`permiso`,`rol`);
 
+ALTER TABLE `ROLES`
+  ADD PRIMARY KEY (`id_rol`),
+  ADD UNIQUE KEY `rol` (`rol`);
+
+ALTER TABLE `ENTIDADES`
+  ADD PRIMARY KEY (`id_entidad`),
+  ADD UNIQUE KEY `entidad` (`entidad`);
+ 
+ALTER TABLE `ACCIONES`
+  ADD PRIMARY KEY(`id_accion`),
+  ADD UNIQUE KEY `accion` (`accion`);
+
+ALTER TABLE `PERMISOS`
+  ADD PRIMARY KEY (`id_entidad`,`id_accion`);
+
+ALTER TABLE `PERMISOS_ROLES`
+  ADD PRIMARY KEY (`id_rol`,`id_entidad`,`id_accion`);
+
+ALTER TABLE `ROLES`
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `ENTIDADES`
+  MODIFY `id_entidad` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `ACCIONES`
+  MODIFY `id_accion` int(11) NOT NULL AUTO_INCREMENT;
+
+
+
+---- INSERCIÓN DE ROLES ---
+
+INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (1, 'admin', 'administrador total del sistema');
+INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (2, 'usuario', 'Cualquier usuario');
+INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (3, 'responsable', 'Responsable de aceptar las obras');
+
+--- INSERCION DE ENTIDATES ---
+
+
+INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (1, 'USUARIOS', 'gestion de usuarios');
+INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (2, 'PERMISOS', 'gestion de permisos');
+
+
+--- INSERCION DE ACCIONES ---
+
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (1, 'ADD', 'funcion de añadir');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (2, 'EDIT', 'funcion de editar');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (3, 'DELETE', 'funcion de borrar');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (4, 'SEARCH', 'funcion de buscar');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (5, 'SHOWALL', 'Mostrar todos lso elementos e la entidad');
+INSERT INTO ACCIONES (`id_accion`, `accion`, `descripcion`) VALUES (6, 'SHOWCURRENT', 'Mostrar elemento actual');
+
+--- INSERCIÓN DE PERMISOS ---
+
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,1);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,2);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,3);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,4);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,5);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (1,6);
+
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,1);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,2);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,3);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,4);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,5);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,6);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,1);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,2);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,3);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,4);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,5);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,6);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,1);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,2);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,3);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,4);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,5);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,6);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,5);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,6);
+
+
+INSERT INTO USUARIOS (`login`, `password`, `DNI`, `nombre`, `apellidos`, `email`, `id_rol`) VALUES ('admin', 'password', '36165166N', 'admin', 'root', 'admin@uvigo.es', 1);

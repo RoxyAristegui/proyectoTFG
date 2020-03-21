@@ -1,19 +1,18 @@
 <?php
-	include_once '../Functions/Authentication.php';
-/*	if (!isset($_SESSION['idioma'])) {
-		$_SESSION['idioma'] = 'SPANISH';
-	}
-	else{
-	}*/
-	//include '../Locale/Strings_' . $_SESSION['idioma'] . '.php';
-//error_reporting(E_ALL);
-//ini_set('display_errors', '1');
+
+  include_once '../Functions/Authentication.php';
+  include_once '../Functions/Acceso.php';
+
+
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 if(isset($_COOKIE["lang"])){
   $lang=$_COOKIE["lang"];
 }else{
   $lang='ES';
 }
-//include '../Locale/Strings_'.$lang.'.php';
+
 ?>
 
 <html>

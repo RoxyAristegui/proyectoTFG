@@ -20,7 +20,7 @@ function ExisteBD()
 	$global_array_test['error_obtenido'] = '';
 	$global_array_test['resultado'] = '';
 
-	mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+	mysqli_report(MYSQLI_REPORT_STRICT);
 
 	try{
 		$mysqli = new mysqli(host, user, 'aaaa' , BD);
