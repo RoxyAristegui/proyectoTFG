@@ -6,6 +6,7 @@ Class Rol extends Abstract_model{
 	var $id_rol;
 	var $rol;
 	var $descripcion;
+	var $erroresdatos=[];
 
  function __construct($rol,$id_rol='',$descripcion=''){
  	$this->id_rol=$id_rol;
@@ -18,7 +19,56 @@ Class Rol extends Abstract_model{
 
  }
 
+function Validar_atributos(){
+	$this->Comprobar_rol();
+	$this->Comprobar_descripcion();
+
+	if($this->erroresdatos==[]){
+		return true;
+	}else{
+	return $this->erroresdatos;
+	}
+}
+
+function Comprobar_rol()
+{
+
+	$validar= new Validar();
+	if($validar->No_Vacio($this->rol)===false){
+		$this->code='000125';
+		$this->ok=false;
+		$this->resource='rol';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+
+	if($validar->Es_alfanumerico($this->rol)===false){
+		$this->code='000124';
+		$this->ok=false;
+		$this->resource='rol';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+}
+
+function Comprobar_descripcion(){
+	$validar= new Validar();
+	if($validar->Es_string_espacios($this->descripcion)===false){
+		$this->code='000172';
+		$this->ok=false;
+		$this->resource='rol';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+}
+
+
  function ADD(){
+
+ 	if($this->Validar_atributos()!==true){
+ 		return $this->erroresdatos;
+ 	}
+ 	
 
 	$existe=$this->getByName();
 	if(gettype($existe)=="array"){
@@ -198,7 +248,7 @@ function setRolUsuario($login){
 		{
 			$this->ok=true;
 			$this->resource='EDIT';
-			$this->code  = '000311';
+			$this->code  = '000317';
 			$this->construct_response(); //modificacion en bd correcta
 		}
 		else

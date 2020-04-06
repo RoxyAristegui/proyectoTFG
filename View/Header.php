@@ -1,12 +1,11 @@
 <?php
 
   include_once '../Functions/Authentication.php';
-  include_once '../Functions/Acceso.php';
 
 
 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 if(isset($_COOKIE["lang"])){
   $lang=$_COOKIE["lang"];
 }else{
@@ -143,38 +142,44 @@ if(isset($_COOKIE["lang"])){
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
              
-          
-          <?php	if (IsAuthenticated()){	?>
+                
+                <?php	if (IsAuthenticated()){	?>
 
-			   <a class="nav-link dropdown-toggle text-gray-600" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			  <img src='../Locale/img/ninjaicon.png' class="img-profile" width="50px" height="50px">
-         <span class="ml-2 d-none d-lg-inline text-gray-600 "><?php echo $_SESSION['login'] ?></span>
+      			   <a class="nav-link dropdown-toggle text-gray-600" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      			  <img src='../Locale/img/ninjaicon.png' class="img-profile" width="50px" height="50px">
+               <span class="ml-2 d-none d-lg-inline text-gray-600 "><?php echo $_SESSION['login'] ?></span>
 
-				</a>
-				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-	                <a class="dropdown-item " href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>
-	                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 "></i>
-	                  <span class="VerPerfil"> Ver perfil</span>
-	                </a>
-	               
-	                <div class="dropdown-divider"></div>
-	                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-	                  <span class="desconectar">Desconectar  </span>
-	                </a>
-	              </div>
+      				</a>
+      				<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+      	                <a class="dropdown-item " href='../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=<?php echo $_SESSION['login']; ?>'>
+      	                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400 "></i>
+      	                  <span class="VerPerfil"> Ver perfil</span>
+      	                </a>
+      	               
+      	                <div class="dropdown-divider"></div>
+      	                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+      	                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+      	                  <span class="desconectar">Desconectar  </span>
+      	                </a>
+      	              </div>
 
-			<?php	
-			}
-			else{
-				?>
-				    <a class="nav-link text-gray-600 " href="../Controller/Register_Controller.php" id="userDropdown" role="button" aria-haspopup="true" aria-expanded="false">
-				 <span class="Registrar">Registrar</span>
-			
-			</a>
-			<?php
-				}	
-			?>
+      			<?php	
+      			}
+      			else{
+      				?>
+      				    <a class="nav-link text-gray-600 " href="../Controller/Register_Controller.php"  role="button" aria-haspopup="true" aria-expanded="false">
+      				 <span class="Registrar">Registrar</span>
+      			
+      			</a>
+          </li>
+         
+            <li class="nav-item dropdown no-arrow">
+               <a class="nav-link text-gray-600 " href="../Controller/Login_Controller.php"  role="button" aria-haspopup="true" aria-expanded="false">
+               <span class="Log-in">Log in</span></a>
+            
+      			<?php
+      				}	
+      			?>
 
 
             </li>

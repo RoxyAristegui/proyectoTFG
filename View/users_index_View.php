@@ -10,8 +10,12 @@ class Index {
 	
 		include '../View/Header.php';
 ?>
-		<H1> BIENVENIDO A LA ARQUITECTURA BASE DE IU' </H1>
-		<BR>
+<div class="row">
+		<H1 class="Bienvenido display-3 mx-auto"> </H1>
+	</div>
+	<div class="row">
+		<h2 class="display-4 mx-auto"><?php echo $_SESSION['login'] ?></h2>
+		</div>
 <?php
 		include '../View/Footer.php';
 	}

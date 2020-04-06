@@ -6,7 +6,7 @@
 // modificado en 6/11/2019 para incluir clase abstracta de modelo
 //-------------------------------------------------------
 include_once 'Abstract_Model_Class.php';
-include 'Validar_Model.php';
+include_once 'Validar_Model.php';
 
 class USUARIOS_Model extends Abstract_Model {
 

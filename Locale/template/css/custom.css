@@ -19,12 +19,14 @@
   padding-right: 4em;
   padding-left: 4em;
 }
+
 .icon::before{
   display: inline-block;
   font-style: normal;
   font-variant: normal;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
+  padding-right: 0.5em
 }
 .delete::before{
  font-family: "Font Awesome 5 Free";
@@ -46,6 +48,33 @@ font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content: "\f234";
 }
+.check::before{
+font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content:"\f058";
+}
+.check:hover{
+  color:#36b9cc;
+}
+.circle::before{
+    font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content:"\f111";
+}
+
+.lupa::before{
+      font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content:"\f002";
+}
+
+.red{
+  color:red !important;
+}
+.green{
+  color:#11b911 !important;
+}
+
 
 a{
   color:#36b9cc;
@@ -64,4 +93,21 @@ padding:0.5em;
 
 #rolAeliminar{
   color:red;
+}
+
+#elem{
+  color:red;
+}
+
+.Select{
+  background: red;
+}
+.list-group-flush .list-group-item{
+  text-transform: capitalize;
+}
+li a{
+  display:block;
+}
+.list-group-item-info a{
+  color:black;
 }

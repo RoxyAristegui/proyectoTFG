@@ -3,6 +3,7 @@ arrayEN={
 //header 
 	NomProyect:'INCID',
 	Idioma : 'Languaje',
+	LogIn :'Log in',
 	seleccionaIdioma :'Select a languaje',
 	Usuario: 'User',
 	VerPerfil : 'Profile',
@@ -14,11 +15,27 @@ arrayEN={
 	TeVas : 'Ready to Leave?',
 	SeleccionaDesconectarSi : 'Select "Logout" below if you are ready to end your current session',
 
-
 	//menu LAteral
 	Inicio : 'Home',
 	GestionUsuarios : 'Users management',
-	GestionPermisos : 'Access managment',
+	GestionPermisos : 'Access management',
+	GestionRoles : 'Rol management',
+	GestionEntidades:'Entities management',
+	GestionAcciones:'Actions management',
+	DefinirPermisos:'Define permissions',
+	AsignarARol:'Role asignament',
+	ListarUsuarios:'Users list',
+	Componentes:'items',
+
+
+	//generales
+	AllUSers : 'All Users',
+	AccesoRestringido : 'ACCESS DENIED',
+	BusquedaAvanzada : 'Advanced search',
+	Bienvenido:'Welcome',
+
+
+
 
 	//usuarios
 	Login :'Login',
@@ -44,6 +61,7 @@ arrayEN={
 	AñadirUsuario : 'Add user',
 	EditarUsuario : 'Edit user',
 	BorrarUsuario : 'Delete user',
+	BuscarUsuario : 'Search user',
 	Detalle : 'Detail',
 
 	//placeholders
@@ -56,9 +74,35 @@ arrayEN={
 	DebeSerEmailValido : 'Introduce a valid email',
 
 
-	//generales
-	AllUSers : 'All Users',
-	AccesoRestringido : 'ACCESS DENIED',
+	Permisos:'Permissions',
+
+	//Roles
+	Roles : 'Roles',
+	AddRol : 'Add new Role',
+	RolesAsignadosAUsuarios : 'User role list',
+	RolesAsignadosAUsuariosTexto : 'To change the role user, set a role in the selectable, and press ok',
+	RolesCreados: 'Role list',
+	Rol : 'Role',
+	Descripcion : 'Description',
+	RolName : 'Role name',
+	Crear : 'Create',
+	estasSeguroEliminarRol : 'Are you sure to delete the role',
+	EliminarRol : 'Delete role',
+
+		//Acciones
+	Acciones : 'Actions',
+	SeguroEliminarAccion : 'Sure you want to delete this action?',
+	NombreAccion : 'Action name',
+	AccionesCreadas:'Created actions',
+	Anadiraccion : 'Add action',
+	EditarAciones:'Edit actions',
+
+	Entidades:'Entities',
+	SeguroEliminarEntidad: 'Sure you want to delete this entitie?',
+	NombreEntidad : 'Entity name',
+	EntidadesCreadas:'Created entities',
+	EditarEntidades: 'Edit entities',
+	AnadirEntidad: 'Add entity',
 
 
 //codigos de errores

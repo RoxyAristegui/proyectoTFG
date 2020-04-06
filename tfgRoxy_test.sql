@@ -1,7 +1,5 @@
--- jrodeiro - 7/10/2017
--- script de creación de la bd, usuario, asignación de privilegios a ese usuario sobre la bd
--- creación de tabla e insert sobre la misma.
---
+
+
 -- CREAR LA BD BORRANDOLA SI YA EXISTIESE
 --
 DROP DATABASE IF EXISTS INCID_Test;
@@ -10,12 +8,6 @@ CREATE DATABASE `INCID_Test` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 -- SELECCIONAMOS PARA USAR
 --
 USE `INCID_Test`;
-
---
--- DAMOS PERMISO DE USO al usuario Y DAMOS PERMISOS SOBRE LA BASE DE DATOS.
---
-GRANT ALL PRIVILEGES ON `INCID_Test`.* TO `roxytfg`@`localhost` WITH GRANT OPTION;
-
 --
 --
 -- Estructura de tabla para la tabla `USUARIOS`
@@ -66,6 +58,7 @@ CREATE TABLE PERMISOS_ROLES(
 --
 -- Índices para tablas volcadas
 --
+-- Indices de la tabla `USUARIOS`
 --
 ALTER TABLE `USUARIOS`
   ADD PRIMARY KEY (`login`),
@@ -112,6 +105,7 @@ INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (3, 'responsable', 'Re
 
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (1, 'USUARIOS', 'gestion de usuarios');
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (2, 'PERMISOS', 'gestion de permisos');
+INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (3, 'ROLES', 'gestion de roles');
 
 
 --- INSERCION DE ACCIONES ---
@@ -139,6 +133,13 @@ INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,4);
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,5);
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,6);
 
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,1);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,2);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,3);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,4);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,5);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,6);
+
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,1);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,2);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,3);
@@ -151,6 +152,15 @@ INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,3);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,4);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,6);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,1);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,2);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,3);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,4);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,6);
 

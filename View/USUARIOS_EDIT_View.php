@@ -45,7 +45,7 @@
 			<div class="form-group row">
 				<label for='email' class="col-sm-2 col-form-label">Email</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'email' id = 'email' class="form-control" size = '40' placeholder="EmailDebeSerValido" value = '<?php echo $this->tupla['email']; ?>' >
+					<input type = 'text' name = 'email' id = 'email' class="form-control" size = '40' placeholder="DebeSerEmailValido" value = '<?php echo $this->tupla['email']; ?>' >
 				</div>
 			</div>
 			<div class="form-group row">

@@ -33,6 +33,19 @@
     </div>
   </div>
 
+
+<script type="text/javascript">
+  function getUrlVars() {
+      var vars = {};
+      var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+          vars[key] = value;
+      });
+      return vars;
+  }
+
+</script>
+  
+
     <script src="../Locale/template/vendor/jquery/jquery.min.js"></script>
   <script src="../Locale/template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

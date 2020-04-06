@@ -10,6 +10,7 @@ abstract class Abstract_Model{
 	private static $directorioLog = directorioLog;
 	private static $log_name = log_name;
 	protected $db_name = BD;
+	protected $db_test=BD_test;
 	protected $query;
 	protected $rows = array();
 	private $conn;
@@ -47,8 +48,15 @@ abstract class Abstract_Model{
 # Conectar a la base de datos
 
 	private function open_connection() {
-		$this->conn = new mysqli(self::$db_host, self::$db_user,
-		self::$db_pass, $this->db_name);
+		//Se utiliza una base de datos diferente para los test
+		if($_SESSION['test']==1){
+	$this->conn = new mysqli(self::$db_host, self::$db_user,
+			self::$db_pass, $this->db_test);
+		}else{
+
+			$this->conn = new mysqli(self::$db_host, self::$db_user,
+			self::$db_pass, $this->db_name);
+		}
 	}
 
 # Desconectar la base de datos
@@ -112,6 +120,9 @@ abstract class Abstract_Model{
 			$this->close_connection();
 		}
 	}
+
+#devuelve una túpla de resultado 
+
 		protected function get_one_result_from_query() {
 	//	echo 'select query : '.$this->query.'<br>';
 		$this->open_connection();

@@ -19,8 +19,6 @@ class MESSAGE{
 
 		include '../View/Header.php';
 
-		//	<div class="container-fluid">
-		var_dump($this->string);
 		//comprobar primero si es un array de arrays
 		if(isset($this->string[0]['code'])){ 
 

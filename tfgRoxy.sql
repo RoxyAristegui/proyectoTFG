@@ -17,6 +17,8 @@ USE `INCID_TFG`;
 CREATE USER IF NOT EXISTS `roxytfg`@`localhost` IDENTIFIED BY 'isJY5h';
 GRANT USAGE ON *.* TO `roxytfg`@`localhost` REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
 GRANT ALL PRIVILEGES ON `INCID_TFG`.* TO `roxytfg`@`localhost` WITH GRANT OPTION;
+-- LE DAMOS PERMISO AL USUARIO PARA CREAR LA TABLA DE TEST EN EL FUTURO
+GRANT ALL PRIVILEGES ON `INCID_Test`.* TO `roxytfg`@`localhost` WITH GRANT OPTION;
 
 -- --------------------------------------------------------
 
@@ -116,6 +118,7 @@ INSERT INTO ROLES (`id_rol`, `rol`, `descripcion`) VALUES (3, 'responsable', 'Re
 
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (1, 'USUARIOS', 'gestion de usuarios');
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (2, 'PERMISOS', 'gestion de permisos');
+INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (3, 'ROLES', 'gestion de roles');
 
 
 --- INSERCION DE ACCIONES ---
@@ -143,6 +146,13 @@ INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,4);
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,5);
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (2,6);
 
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,1);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,2);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,3);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,4);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,5);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (3,6);
+
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,1);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,2);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,3);
@@ -155,6 +165,15 @@ INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,3);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,4);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,2,6);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,1);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,2);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,3);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,4);
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,3,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (2,1,6);
 

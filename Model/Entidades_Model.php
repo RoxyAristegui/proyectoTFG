@@ -2,19 +2,69 @@
 
 include_once 'Abstract_Model_Class.php';
 
+include_once 'Validar_Model.php';
+
 Class Entidad extends Abstract_Model{
 	var $id_entidad;
 	var $entidad;
 	var $desccripcion;
-		function __construct($entidad,$id_entidad='',$descripcion=''){
+	var $erroresdatos=[];
+
+function __construct($entidad,$id_entidad='',$descripcion=''){
 		$this->id_entidad=$id_entidad;
 		$this->entidad=$entidad;
 		$this->descripcion=$descripcion;
 
 	}
 
-	function ADD(){
 
+function Validar_atributos(){
+	$this->Comprobar_entidad();
+	$this->Comprobar_descripcion();
+
+	if($this->erroresdatos==[]){
+		return true;
+	}else{
+	return $this->erroresdatos;
+	}
+}
+
+function Comprobar_entidad()
+{
+
+	$validar= new Validar();
+	if($validar->No_Vacio($this->entidad)===false){
+		$this->code='000125';
+		$this->ok=false;
+		$this->resource='entidad';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+
+	if($validar->Es_alfanumerico($this->entidad)===false){
+		$this->code='000124';
+		$this->ok=false;
+		$this->resource='entidad';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+}
+
+function Comprobar_descripcion(){
+	$validar= new Validar();
+	if($validar->Es_string_espacios($this->descripcion)===false){
+		$this->code='000172';
+		$this->ok=false;
+		$this->resource='descripcion';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+}
+
+	function ADD(){
+if($this->Validar_atributos()!==true){
+	return $this->erroresdatos;
+}
 	
 	$existe=$this->getByName();
 	if(gettype($existe)!="array"){
@@ -97,13 +147,13 @@ Class Entidad extends Abstract_Model{
 }
 	function DELETE(){
 
-if($this->id_entidad==''){
-	$this->ok=false;
-			$this->resource='entidad_DEL';
-			$this->code  = '000344';
-			$this->construct_response(); //no se ha encontrado la entidad
-			return $this->feedback;
-}
+		if($this->id_entidad==''){
+			$this->ok=false;
+					$this->resource='entidad_DEL';
+					$this->code  = '000344';
+					$this->construct_response(); //no se ha encontrado la entidad
+					return $this->feedback;
+		}
 		$this->query="DELETE from ENTIDADES where id_entidad= '".$this->id_entidad."'";
 		$this->execute_single_query();
 		
@@ -113,13 +163,14 @@ if($this->id_entidad==''){
 			$this->execute_single_query();
 			$this->query="DELETE from PERMISOS_ROLES where id_entidad=".$this->id_entidad;
 			$this->execute_single_query();
-			
-		}
+
+			return $this->feedback;
+		}else{
 		 $this->ok=false;;
 		 $this->code='000342';
 		 $this->construct_response();
 		 return $this->feedback;
-		
+		}
 	} 
 
 	function SEARCH(){

@@ -58,6 +58,14 @@ function Es_string_espacios($string){
 	}
 }
 
+function No_Vacio($string){
+	if(!preg_match('/[a-zA-Z0-9]+/', $string) || $string==''){
+			return false;
+	}else{
+		return true;
+	}
+}
+
 
 function Formato_email($string){
 	 if(filter_var($string, FILTER_VALIDATE_EMAIL)){

@@ -1,9 +1,13 @@
 <?php 
 session_start();
 
-include_once 'Permisos_Model.php';
+include_once 'Acciones_Model.php';
+include_once 'Entidades_Model.php';
+include_once 'Rol_Model.php';
+include_once 'Permisos_Rol_Model.php';
 
-class ACL extends Abstract_Model{
+
+class ACL{
 
 	var $login;
 	var $permisos=array();
@@ -25,66 +29,17 @@ function __construct($login=''){
 
 	$rol= new Rol('');
 	$this->rol=$rol->getRolUsuario($this->login);
-	$this->getPermisosRol();
+	
+	$permiso= new Permisos_Rol($this->rol);
+	$this->permisos=$permiso->getById();
+	//$this->getPermisosRol();
 	}
 
 function __destruct(){
 
 }
-function ADD(){
-	$this->query="insert into PERMISOS_ROLES (id_rol,id_permiso,id_accion) values('".$this->id_rol."','".$this->id_permiso."','".$this->id_accion."')";
-}
-
-function DELETE(){
-	$this->query="delete from PERMISOS_ROLES where id_rol='".$this->id_rol."' and id_permiso = '".$this->id_permiso."' and id_accion='".$this->id_accion."'";
-}
-
-function EDIT(){
-
-}
-function SEARCH(){
-
-}
-
-//obtiene todos los permisos por usuarios
-function getById(){
-
-}
-
-function getByName(){
-
-}
-
-function getPermisosRol(){
-
-		$this->query="select * from PERMISOS_ROLES where( id_rol='".$this->rol."')";
-		$this->get_results_from_query();
-
-		if($this->feedback['ok']===true){
-			foreach($this->rows as $row){
-				$permiso=["id_entidad"=>$row['id_entidad'],"id_accion"=>$row['id_accion']];
-			array_push($this->permisos, $permiso);
-			}
-		
-			return $this->permisos;
-		
-		}else{
-			$this->ok=false;
-			$this->code="000330";
-			$this->resource='getPermisosRol';	
-			$this->construct_response();
-			return $this->feedback;
-		}
-
-}
-
-
-function Acceso($entidadAc,$accionAc="SHOWALL"){
-	if($accionAc==''){
-		$accionAC="SHOWALL";
-	}
-	print_r($this->login);
-	print_r($this->permisos);
+function Acceso($entidadAc,$accionAc){
+	
 	$acceso=false;
 	if($this->permisos!=NULL){
 		foreach($this->permisos as $permiso){

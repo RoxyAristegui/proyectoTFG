@@ -1,11 +1,13 @@
 <?php 
 
 include_once 'Abstract_Model_Class.php';
+include_once 'Validar_Model.php';
 
 class Accion extends Abstract_Model{
 	var $id_accion;
 	var $accion;
 	var $descripcion;
+	var $erroresdatos=[];
 
 	function __construct($accion,$id_accion='',$descripcion=''){
 		$this->id_accion=$id_accion;
@@ -16,8 +18,55 @@ class Accion extends Abstract_Model{
 
 	}
 
-	function ADD(){
-		
+
+function Validar_atributos(){
+	$this->Comprobar_accion();
+	$this->Comprobar_descripcion();
+
+	if($this->erroresdatos==[]){
+		return true;
+	}else{
+	return $this->erroresdatos;
+	}
+}
+
+function Comprobar_accion()
+{
+
+	$validar= new Validar();
+	if($validar->No_Vacio($this->accion)===false){
+		$this->code='000125';
+		$this->ok=false;
+		$this->resource='accion';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+
+	if($validar->Es_alfanumerico($this->accion)===false){
+		$this->code='000124';
+		$this->ok=false;
+		$this->resource='accion';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+}
+
+function Comprobar_descripcion(){
+	$validar= new Validar();
+	if($validar->Es_string_espacios($this->descripcion)===false){
+		$this->code='000172';
+		$this->ok=false;
+		$this->resource='descripcion';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+}
+
+function ADD(){
+
+	if($this->Validar_atributos()!==true){
+		return $this->erroresdatos;
+	}
 		//primero comprobamos que la accion o está ya definida
 		
 	$existe=$this->getByName();
@@ -113,6 +162,10 @@ class Accion extends Abstract_Model{
 			$this->execute_single_query();
 			$this->query="delete from permisos_roles where id_accion=".$this->id_accion;
 			$this->execute_single_query();
+
+			$this->ok=true;;
+			 $this->code='000323';
+			 $this->construct_response();
 			 return $this->feedback;
 				//}
 

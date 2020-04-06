@@ -17,7 +17,14 @@
 	   <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-info"> 
-				<i class="fas fa-user-plus"></i> <a href='../Controller/USUARIOS_Controller.php?action=ADD' class='Añadir'>Añadir</a>
+              	<div class="clearfix">
+              		<div class="float-left">
+					  <a href='../Controller/USUARIOS_Controller.php?action=ADD' class='Añadir ADDUser icon'> Añadir</a>
+					</div>
+					<div class="float-right">
+						<a href="../Controller/USUARIOS_Controller.php?action=SEARCH" class="BusquedaAvanzada lupa icon"> Búsqueda avanzada</a>
+					</div>
+				</div>
 			  </h6>
             </div>
             <div class="card-body">
@@ -66,6 +73,8 @@
 			</table>		
 		</div>
 	</div>
+	
+		
 </div>
 
 					

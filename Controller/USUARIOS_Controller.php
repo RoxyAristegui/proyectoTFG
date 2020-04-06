@@ -10,9 +10,9 @@
 	include '../View/USUARIOS_SEARCH_View.php';
 	include '../View/USUARIOS_ADD_View.php';
 	include '../View/USUARIOS_EDIT_View.php';
-	include '../View/USUARIOS_DELETE_View.php';
-	include '../View/USUARIOS_SHOWCURRENT_View.php';
-	include '../View/MESSAGE_View.php';
+	include_once '../View/USUARIOS_DELETE_View.php';
+	include_once '../View/USUARIOS_SHOWCURRENT_View.php';
+	include_once '../View/MESSAGE_View.php';
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia USUARIOS y la devuelve
 	function get_data_form(){
@@ -29,7 +29,9 @@
 		$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
 		return $usuarios;
 	}
-
+	if (!isset($_REQUEST['action'])){
+		$_REQUEST['action'] = '';
+	}
 
 // En funcion del action realizamos las acciones necesarias
 

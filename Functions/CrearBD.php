@@ -20,13 +20,15 @@ class CrearBD{
 	var $mysql_pass;
 	
 	// Name of the file
-	var	$filename = '../tfgRoxy.sql';
+	var	$filename ;
 	
 
-	function __construct($mysql_host,$mysql_username,$mysql_pass){
+	function __construct($mysql_host,$mysql_username,$mysql_pass,$filename){
 		$this->mysql_host=$mysql_host;
 		$this->mysql_pass=$mysql_pass;
 		$this->mysql_username=$mysql_username;
+		$this->filename=$filename;
+		
 	}
 
 	function leerSQL(){
@@ -49,7 +51,7 @@ class CrearBD{
 					
 				$query = $query . $line;
 				if ($endWith == ';') {
-					mysqli_query($conn,$query) or die('Error de mysql');
+					mysqli_query($conn,$query) or die('Error de mysql'.var_dump($conn->error) );
 					$query= '';		
 				}
 			}
@@ -59,6 +61,11 @@ class CrearBD{
 			$return=array("ok"=>true,"code"=>"000052","resource"=>"CrearBd");
 			return $return;
 		}
+}
+
+function eliminarBD($bd){
+$conn =new mysqli($this->mysql_host, $this->mysql_username, $this->mysql_pass);
+mysqli_query($conn,'DROP DATABASE IF EXISTS '.$bd);
 }
 
 }

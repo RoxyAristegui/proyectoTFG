@@ -290,6 +290,63 @@ function validar_es_string_espacios_test(){
 
 }
 
+function validar_no_vacio(){
+
+	global $Validacion_errors_array_test;
+// creo array de almacen de test individual
+	$USUARIOS_array_test1 = array();
+
+// Comprobar si el string no tiene solo letras
+//-------------------------------------------------------------------------------
+
+	$USUARIOS_array_test1['entidad'] = 'VALIDAR';	
+	$USUARIOS_array_test1['metodo'] = 'no vacio';
+	$USUARIOS_array_test1['error'] = 'vacio';
+	$USUARIOS_array_test1['error_esperado'] = false;
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+	
+	$string = ' ';
+	$validar = new Validar();
+	$USUARIOS_array_test1['error_obtenido'] = $validar->No_Vacio($string);
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
+
+// Comprobar si los carácteres son correctos
+//--------------------------------------
+
+	$USUARIOS_array_test1['entidad'] = 'VALIDAR';	
+	$USUARIOS_array_test1['metodo'] = 'no_vacio';
+	$USUARIOS_array_test1['error'] = 'caracteres correctos';
+	$USUARIOS_array_test1['error_esperado'] = true;
+	$USUARIOS_array_test1['error_obtenido'] = '';
+	$USUARIOS_array_test1['resultado'] = '';
+	
+	$string = 'abcda d';
+	$validar = new Validar();
+	$USUARIOS_array_test1['error_obtenido'] = $validar->No_Vacio($string);
+	if ($USUARIOS_array_test1['error_obtenido'] === $USUARIOS_array_test1['error_esperado'])
+	{
+		$USUARIOS_array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$USUARIOS_array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($Validacion_errors_array_test, $USUARIOS_array_test1);
+
+	
+}
+
 function validar_formato_email_test(){
 	global $Validacion_errors_array_test;
 // creo array de almacen de test individual
@@ -352,5 +409,5 @@ validar_es_string_test();
 validar_es_alfanumerico_test();
 validar_es_string_espacios_test();
 validar_formato_email_test();
-
+validar_no_vacio();
 ?>
