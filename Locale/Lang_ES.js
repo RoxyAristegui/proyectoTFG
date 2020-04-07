@@ -88,6 +88,7 @@ arrayES={
 	Crear : 'Crear',
 	estasSeguroEliminarRol : 'Estás seguro de que quieres eliminar el rol ',
 	EliminarRol :  ' Eliminar Rol',
+	EditarRoles: 'Editar Roles',
 
 	//Acciones
 	Acciones : 'Acciones',

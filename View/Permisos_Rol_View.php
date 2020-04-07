@@ -117,10 +117,10 @@ class Permisos_Rol_View{
 				<?php } ?>
 				<div class="row mb-4 mt-4">
 					<div class="col-md-6 col-sm-6 col-xs-12">
-						<a class="btn btn-outline-info btn-block" href="../Controller/ROLES_Controller.php">Editar Roles</a>
+						<a class="btn btn-outline-info btn-block EditarRoles" href="../Controller/ROLES_Controller.php">Editar Roles</a>
 					</div>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-						<a class="btn btn-outline-info btn-block" href="../Controller/PERMISOS_Controller.php">Definir Permisos</a>
+						<a class="btn btn-outline-info btn-block DefinirPermisos" href="../Controller/PERMISOS_Controller.php">Definir Permisos</a>
 					</div>
 
 				</div>

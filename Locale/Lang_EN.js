@@ -88,6 +88,8 @@ arrayEN={
 	Crear : 'Create',
 	estasSeguroEliminarRol : 'Are you sure to delete the role',
 	EliminarRol : 'Delete role',
+	EditarRoles: 'Edit Roles',
+
 
 		//Acciones
 	Acciones : 'Actions',

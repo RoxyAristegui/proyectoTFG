@@ -59,7 +59,7 @@
         <div id="collapsePermisos" class="collapse" aria-labelledby="" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item DefinirPermisos" href="../Controller/PERMISOS_Controller.php">Definir Permisos</a>
-            <a class="collapse-item AsignarPermisos" href="../Controller/PERMISOS_Rol_Controller.php">Asignar a Rol</a>
+            <a class="collapse-item AsignarARol" href="../Controller/PERMISOS_Rol_Controller.php">Asignar a Rol</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header Componentes">Componentes :</h6>
            
