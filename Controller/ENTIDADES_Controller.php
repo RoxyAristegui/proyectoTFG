@@ -36,7 +36,7 @@
 			
 			}else{
 		 		$entidad=new Entidad('');
-			 	$lista=$entidad->SEARCH();
+			 	$lista=$entidad->ListaConPermiso();
 
 				new Acciones_view($lista);
 				

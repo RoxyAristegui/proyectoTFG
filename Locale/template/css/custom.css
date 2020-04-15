@@ -75,7 +75,9 @@ font-family: "Font Awesome 5 Free";
   color:#11b911 !important;
 }
 
-
+.gray{
+ color: #858796;
+}
 a{
   color:#36b9cc;
 }

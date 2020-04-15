@@ -214,4 +214,26 @@ if($this->Validar_atributos()!==true){
 	
 	return $this->rows['id_entidad'];
 	}
+
+
+	function ListaConPermiso(){
+		$lista=$this->SEARCH();
+		$listaConPermisos=[];
+
+		foreach($lista as $entidad){
+
+			$this->query="select * from PERMISOS_ROLES where id_entidad=".$entidad['id_entidad'];
+			$this->get_results_from_query();
+			if($this->feedback['code']=='00007'){
+				$tienePermiso= "";
+			}else{
+				$tienePermiso= "LaEntidadEstaAsignadaARol";
+			}
+
+			$na=["id_entidad"=>$entidad['id_entidad'],"entidad"=>$entidad['entidad'],"descripcion"=>$entidad['descripcion'],"asignada"=>$tienePermiso];
+			array_push($listaConPermisos,$na);
+			
+		}
+		return $listaConPermisos;
+	}
 }

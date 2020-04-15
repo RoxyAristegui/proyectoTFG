@@ -39,7 +39,7 @@
 
 
 		 	$acciones=new Accion('');
-			$lista=$acciones->SEARCH();
+			$lista=$acciones->ListaConPermiso();
 			new Acciones_view($lista);
 
 			if(isset($rtn['code'])){

@@ -12,6 +12,7 @@ arrayEN={
 	Registrar : 'Register',
 	volver : 'Return',
 	Cancelar : 'Cancel',
+	confirmar:'OK',
 	TeVas : 'Ready to Leave?',
 	SeleccionaDesconectarSi : 'Select "Logout" below if you are ready to end your current session',
 
@@ -98,6 +99,7 @@ arrayEN={
 	AccionesCreadas:'Created actions',
 	Anadiraccion : 'Add action',
 	EditarAciones:'Edit actions',
+	LaAccionEstaAsignadaARol: 'The action is asigned',
 
 	Entidades:'Entities',
 	SeguroEliminarEntidad: 'Sure you want to delete this entitie?',
@@ -105,6 +107,8 @@ arrayEN={
 	EntidadesCreadas:'Created entities',
 	EditarEntidades: 'Edit entities',
 	AnadirEntidad: 'Add entity',
+	LaEntidadEstaAsignadaARol: 'The entitie is asigned',
+
 
 
 //codigos de errores
@@ -114,28 +118,64 @@ arrayEN={
 	'00007' : 'the query returns empty',
 	'00005' : 'Error tring to connect with the DB',
 	'000051' : 'Error with the DB',
-	'000052' : 'Succesed sql insercion',
-	'000053' : 'The update was done',
+	
+	'000052': 'Sql done successfully',
+	'000074': 'Error trying to make the change',
+	'00004': 'The file cannot be found',
 
-	'000071' : 'already exists an user with this login or email',
-	'000072' : "Doesn't exist an user with thease name",
-	'000073' : "The passwords doesn't match",
-	'000074' : 'Error al intentar realizar el cambio en la BD',
+	'000053': 'Registration completed successfully',
+	'000054': 'Modification made successfully',
+	'000055': 'Deletion performed successfully',
 
-//errores de validacion de usuario
-	'000121':'The length of the name must be more than 3',
-	'000122':'The length of the name must be less than 30 characters',
-	'000123':'The name only admits leterss',
-	'000131' : 'The length of the login must be more than 5 characters',
-	'000132':'The length of the login must be less than 30 characters',
-	'000133':'The login only admits letters and numbers',
-	'000141':'The length of the password must be more than 5 characters',
-	'000142':'The length of the password must be less than 30 characters',
-	'000143':'The password only admits letters and numbers',
-	'000151':'The length of the last name must be more than 3 characters',
-	'000152':'The length of the last name must be less than 30 characters',
-	'000153':'The last name only andmits letters and spaces',
+	'000071': 'A user already exists with that Login',
+	'000072': 'There is no user with that name',
+	'000073': 'The password does not match',
+	'000075': 'There is no user with that email',
+	'000076': 'A user with that email already exists',
+	'000077': 'A user with that id already exists',
 
-	'000161':'Introduce a valid email',
+	// permissions
+	'000310': 'The Role could not be created',
+	'000311': 'The role was created successfully',
+	'000312': 'The Role could not be removed',
+	'000313': 'Cannot delete, the role is assigned to some user',
+	'000314': 'The role was not found',
+	'000315': 'The user role could not be modified',
+	'000316': 'A role with that name already exists',
+	'000317': 'The role has been successfully changed',
+
+	'000330': 'no permissions found for that role',
+
+	'000320': 'The action could not be created',
+	'000321': 'The action was created successfully',
+	'000322': 'The action could not be deleted',
+	'000323': 'The action has been deleted',
+	'000324': 'The action could not be found',
+	'000326': 'An action with that name already exists',
+
+	'000341': 'The entity was created successfully',
+	'000340': 'The entity could not be created',
+	'000343': 'Entity has been deleted',
+	'000342': 'The entity could not be deleted',
+	'000346': 'An entity with that data already exists',
+	'000344': 'Entity not found',
+
+	//errores de validacion
+	'000121': 'The name length must be greater than 3',
+	'000122': 'The length of the name must be less than 30 characters',
+	'000123': 'The name only admits letters',
+	'000124': 'The name only supports letters and numbers',
+	'000125': 'The name cannot be empty',
+	'000131': 'The login length must be greater than 5',
+	'000132': 'The login length must be less than 30 characters',
+	'000133': 'The login only supports letters and numbers',
+	'000141': 'The password length must be greater than 5',
+	'000142': 'The password length must be less than 30 characters',
+	'000143': 'The password only supports letters and numbers',
+	'000151': 'The length of the last name must be greater than 3',
+	'000152': 'The length of the last name must be less than 50 characters',
+	'000153': 'The name only admits letters',
+	'000161': 'Enter a valid email address',
+	'000162': 'Please enter a valid ID',
 
 }

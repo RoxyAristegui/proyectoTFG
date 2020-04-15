@@ -206,7 +206,7 @@ function ADD(){
 	}
 
 	function getByName(){
-		$this->query="select * from acciones where accion='".$this->accion."'";
+		$this->query="select * from ACCIONES where accion='".$this->accion."'";
 	
 		$this->get_one_result_from_query();
 		if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
@@ -217,5 +217,26 @@ function ADD(){
 		}
 	
 		return $this->rows['id_accion'];
+		}
+
+		function ListaConPermiso(){
+			$lista=$this->SEARCH();
+			$listaConPermisos=[];
+
+			foreach($lista as $accion){
+
+				$this->query="select * from PERMISOS_ROLES where id_accion=".$accion['id_accion'];
+				$this->get_results_from_query();
+				if($this->feedback['code']=='00007'){
+					$tienePermiso= "";
+				}else{
+					$tienePermiso= "LaAccionEstaAsignadaARol";
+				}
+
+				$na=["id_accion"=>$accion['id_accion'],"accion"=>$accion['accion'],"descripcion"=>$accion['descripcion'],"asignada"=>$tienePermiso];
+				array_push($listaConPermisos,$na);
+				
+			}
+			return $listaConPermisos;
 		}
 }

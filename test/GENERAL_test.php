@@ -207,4 +207,5 @@ include '../View/Footer.php';
 
 
 $_SESSION['test']=0;
+unset($_SESSION['test']);
 $bd->eliminarBD('INCID_Test');

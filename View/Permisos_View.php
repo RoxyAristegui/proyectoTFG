@@ -59,7 +59,7 @@ class Permisos_View{
 								}
 
 								if($activado=='no'){
-									echo	'<td><a class="icon circle red" href="PERMISOS_Controller.php?action=ADD&id_entidad='.$this->entidades[$i]['id_entidad'].'&id_accion='.$this->acciones[$j]['id_accion'].'"></a></td>';
+									echo	'<td><a class="icon circle gray" href="PERMISOS_Controller.php?action=ADD&id_entidad='.$this->entidades[$i]['id_entidad'].'&id_accion='.$this->acciones[$j]['id_accion'].'"></a></td>';
 									}else{ 
 									echo	'<td><a class="icon circle green" href="PERMISOS_Controller.php?action=DELETE&id_entidad='.$this->entidades[$i]['id_entidad'].'&id_accion='.$this->acciones[$j]['id_accion'].'"></a></td>';
 									}

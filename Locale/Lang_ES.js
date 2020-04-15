@@ -12,6 +12,7 @@ arrayES={
 	Registrar : 'Registrar',
 	volver : 'Volver',
 	Cancelar : 'Cancelar',
+	Confirmar:'Confirmar',
 	TeVas : 'Estas seguro?',
 	SeleccionaDesconectarSi : 'Selecciona desconectar si quieres cerrar la sesión actual',
 
@@ -98,12 +99,16 @@ arrayES={
 	Anadiraccion : 'Añadir acción',
 	EditarAciones:'Editar acciones',
 
+	LaAccionEstaAsignadaARol: 'La acción está asignada a un Rol ',
+
 	Entidades:'Entidades',
 	SeguroEliminarEntidad: 'Estás seguro de eliminar la entidad',
 	NombreEntidad : 'Nombre de la entidad',
 	EntidadesCreadas:'Entidades creadas',
 	EditarEntidades: 'Editar entidades',
-	AnadirEntidad: 'Añadir entidad',
+	AnadirEntidad: 'Añadir entidad',	
+	LaEntidadEstaAsignadaARol: 'La entidad está asignada a un Rol',
+
 
 
 //codigos de errores

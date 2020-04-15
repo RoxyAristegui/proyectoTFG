@@ -49,7 +49,7 @@ abstract class Abstract_Model{
 
 	private function open_connection() {
 		//Se utiliza una base de datos diferente para los test
-		if($_SESSION['test']==1){
+		if(isset($_SESSION['test']) && $_SESSION['test']==1){
 	$this->conn = new mysqli(self::$db_host, self::$db_user,
 			self::$db_pass, $this->db_test);
 		}else{

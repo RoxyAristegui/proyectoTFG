@@ -12,16 +12,17 @@ data-destino : url a la que se le pide confirmación
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
+        <h5 class="modal-title" id="title"></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-       <span id="msj" class="<?php echo $msjConfModal ?>"> </span> <span id="elem">
+       <span id="msj" > </span> <span id="elem">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" class="Cancelar">Cancelar</button>
-        <a id='confirmGo' href='' type="button" class="btn btn-primary">Confirmar</a>
+        <button type="button" class="btn btn-secondary Cancelar" data-dismiss="modal" >Cancelar</button>
+        <a id='confirmGo' href='' type="button" class="btn btn-primary Confirmar">Confirmar</a>
       </div>
     </div>
   </div>
@@ -31,10 +32,16 @@ data-destino : url a la que se le pide confirmación
 
 		$('#SolicitarConfModal').on('show.bs.modal', function (event) {
 	    var button = $(event.relatedTarget) // Button that triggered the modal
-	    var elem = button.data('elem')
+	    var msj=button.data('msj')
+      var elem = button.data('elem')
 	    var url= button.data('destino')
+      var title=button.data('title')
+
 		var modal = $(this)
   		modal.find("#elem").text(elem)
-  		modal.find("#confirmGo").attr('href',url);
+  		modal.find("#confirmGo").attr('href',url)
+      modal.find("#msj").attr('class',msj)
+      modal.find("#title").attr('class',"modal-title font-weight-bold "+title)
+      setLang();
   	})
 	</script>	

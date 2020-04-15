@@ -52,8 +52,8 @@ class Acciones_View{
 							echo "<tr>";
 							echo "<td>".$accion['accion']."</td>";
 							echo "<td>".$accion['descripcion']."</td>";
-							$msjConfModal="SeguroEliminarAccion";
-							echo "<td><button type='button' data-toggle='modal' data-target='#SolicitarConfModal' class='icon delete btn-default btn' data-elem='".$accion['accion']."' data-destino='../Controller/ACCIONES_Controller.php?action=DELETE&id=".$accion['id_accion']."'></button></td>";
+							
+							echo "<td><button type='button' data-toggle='modal' data-target='#SolicitarConfModal' class='icon delete btn-default btn' data-elem='".$accion['accion']."' data-destino='../Controller/ACCIONES_Controller.php?action=DELETE&id=".$accion['id_accion']."' data-msj='SeguroEliminarAccion' data-title='".$accion['asignada']."'></button></td>";
 							echo "<tr>";
 						
 						}	?>
