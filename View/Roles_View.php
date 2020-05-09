@@ -35,8 +35,8 @@ class Roles_View{
 		            <div class="card-body">
 		            	<form action="../Controller/ROLES_Controller.php?action=ADD" method="post">
 		            		<div class="form-group">
-		            		<input type="text" name="rol" class="form-control mb-3" placeholder="RolName">
-		            		<textarea name="descripcion" placeholder="Descripcion" class="form-control mb-3"></textarea>
+		            		<input type="text" name="rol" class="form-control mb-3" placeholder="RolName" required>
+		            		<textarea name="descripcion" placeholder="Descripcion" class="form-control mb-3" required></textarea>
 		            		<input type="submit" class="btn btn-outline-info Crear" value="Crear">
 		            	</div>
 		            	</form>
@@ -54,7 +54,7 @@ class Roles_View{
 					</div>
 					<div class="card-body">
 						<p class="RolesAsignadosAUsuariosTexto"> Para cambiar el rol, selecciona el rol que quieras asignarle y pulsa en confirmar. </p>
-						<div class="col-md-8 offset-md-2 col-sm-12">
+						<div class="row">
 							
 						<table class="table table-bordered">
 							<thead>
@@ -112,12 +112,19 @@ class Roles_View{
 						<ul class="list-group list-group-flush">
 						<?php 
 						foreach($this->listaRoles as $rol){
-							
-						echo '<li class="list-group-item"><div class="row justify-content-center mb-1" >';
-							echo "<div class='col-5 col-md-3'>".$rol['rol']."</div>";
-							echo "<div class='col-auto'><button type='button' data-toggle='modal' data-target='#eliminarRolModal' class='btn delete btn-default ' data-rol='".$rol['rol']."' data-rolid='".$rol['id_rol']."'></button></div>";
-							echo "<div class='col-auto'><a href='../Controller/PERMISOS_Rol_Controller.php?id_rol=".$rol['id_rol']."' class='btn  edit'></a></diV>";
-								echo "</div></li>";
+							?>
+							<li class="list-group-item"><div class="row justify-content-center mb-1" >
+								<div class='col-5 col-xl-3'> 
+								 <span data-toggle='popover' data-content='<?php echo $rol['descripcion'] ?>' data-trigger='focus' data-placement="top"> 
+								 	<?php echo $rol['rol'] ?>	
+								 	<i class='fas fa-info-circle'></i>
+								 </span>
+								 </div>
+							<div class='col-auto'>
+								<button type='button' data-toggle='modal' data-target='#eliminarRolModal' class='btn delete icon btn-default ' data-rol='<?php echo $rol['rol'] ?>' data-rolid='<?php echo $rol['id_rol'] ?>'></button></div>
+							<div class='col-auto'><a href='../Controller/PERMISOS_Rol_Controller.php?id_rol=<?php echo $rol['id_rol']?>' class='btn icon edit'></a></diV>
+								</div></li>
+								<?php 
 						}	?>
 						</ul>
 						</div>
@@ -159,6 +166,7 @@ class Roles_View{
 				location.href="ROLES_Controller.php?action=EDIT&id_rol="+id_rol+"&login="+login;
 
 			}
+
 		</script>
 
         	<?php
@@ -167,7 +175,7 @@ class Roles_View{
 
         	<script type="text/javascript">
 
-        		//guardar la cariable con la id del rol para eliminarlo en el modal
+        		//guardar la variable con la id del rol para eliminarlo en el modal
 	$('#eliminarRolModal').on('show.bs.modal', function (event) {
 	    var button = $(event.relatedTarget) // Button that triggered the modal
 	    var id = button.data('rolid') // Extract info from data-* attributes
@@ -185,6 +193,13 @@ class Roles_View{
 		window.location.replace("../Controller/ROLES_Controller.php?action=DELETE&id="+id);
 
 	})
+
+
+
+			$("span").click(function(){
+				$(this).popover("toggle")
+				trigger:focus;
+			})
 		</script>
 <?php
         }

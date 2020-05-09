@@ -113,3 +113,14 @@ li a{
 .list-group-item-info a{
   color:black;
 }
+
+@media(max-width: 450px){
+
+  .list-group-item{
+    padding-right:0;
+    padding-left: 0;
+  }
+  .btn .icon{
+    padding: 0
+  }
+}

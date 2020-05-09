@@ -62,7 +62,7 @@ function Validar_atributos(){
 
 
 // Comprueba el formato del login 
-//	alfanumericol, entre 3 y 15 carácteres
+//	alfanumericol, entre 5 y 15 carácteres
 //	no vacio
 // si se detectaron errores los añade al array de erroers
 function Comprobar_login()
@@ -124,7 +124,8 @@ function Comprobar_nombre()
 	return $this->erroresdatos;
 }
 
-//Comrpeuba el formato de los apellidos, alfanumérico con espacios
+//Comrpeuba el formato de los apellidos,
+// alfanumérico con espacios, entre 3 y 30 caractéres
 function Comprobar_apellidos(){
 	$validar= new Validar();
 	if($validar->Longitud_minima($this->apellidos,3)===false){
@@ -151,7 +152,7 @@ function Comprobar_apellidos(){
 	return $this->erroresdatos;
 }
 
-// comprueba la pass, letras y números, entre 3 y 30 carácteres
+// comprueba la pass, letras y números, entre 5 y 30 carácteres
 // si se detectaron errores los añade al array de erroers
 function Comprobar_password(){
 	$validar= new Validar();
