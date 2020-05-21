@@ -25,31 +25,38 @@
 			<div class="form-group row">
 				<label for='password' class="col-sm-2 col-form-label">Contraseña</label>
 			 	<div class="col-sm-8">
-				 	<input type = 'text' name = 'password' id = 'password' class="form-control" placeholder = 'LetrasyNumeros' minlength="5" maxlength="15" required>
+
+				 	<input type = 'text' name = 'password' id = 'password' class="form-control" placeholder = 'LetrasyNumeros' minlength="5" maxlength="30" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='nombre' class="col-sm-2 col-form-label">Nombre</label>
 			 	<div class="col-sm-8">
+
 					<input type = 'text' name = 'nombre' class="form-control" id = 'nombre' placeholder = 'SoloLetras' minlength="3" maxlength="30" required>
+
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='apellidos' class="col-sm-2 col-form-label">Apellidos</label>
 			 	<div class="col-sm-8">
+
 					<input type = 'text' name = 'apellidos' id = 'apellidos' class="form-control" placeholder = 'SoloLetrasEspacios' minlength="3" maxlength="30" required>
+
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='email' class="col-sm-2 col-form-label">Email</label>
 			 	<div class="col-sm-8">
-					<input type = 'email' name = 'email' id = 'email' class="form-control" minlength="6" placeholder="DebeSerEmailValido"  required>
+
+					<input type = 'email' name = 'email' id = 'email' class="form-control" placeholder="DebeSerEmailValido"  minlength="5" maxlength="50" required>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for='dni' class="col-sm-2 col-form-label">DNI</label>
 			 	<div class="col-sm-8">
-					<input type = 'text' name = 'dni' id = 'dni' class="form-control" size = '9' placeholder="IntroduceDni" required minlength="9" maxlength="10" pattern="(([X-Z]{1})([-]?)(\d{7})([-]?)([A-Z]{1}))|((\d{8})([-]?)([A-Z]{1}))">
+
+					<input type = 'text' name = 'dni' id = 'dni' class="form-control" placeholder="IntroduceDni" minlength="9" maxlength="9" pattern="^[0-9]{8,8}[A-Za-z]$" required>
 				</div>
 			</div>
 

@@ -17,16 +17,8 @@ class ACL{
 function __construct($login=''){
 		
 	$this->login=$login;
-	if($this->login==''){
-		if(isset($_SESSION['login'])){
-			$this->login=$_SESSION['login'];
-		}else{
-			//si el usuario no ha iniciado sesión, mandarlo a ello
-			header('Location: ../Controller/Login_Controller.php');
+	$this->Autenticado();
 	
-		}
-	}
-
 	$rol= new Rol('');
 	$this->rol=$rol->getRolUsuario($this->login);
 	
@@ -55,6 +47,19 @@ function Acceso($entidadAc,$accionAc){
 
 	}else{
 		return false;
+	}
+
+}
+
+function Autenticado(){
+	if($this->login==''){
+		if(isset($_SESSION['login'])){
+			$this->login=$_SESSION['login'];
+		}else{
+			//si el usuario no ha iniciado sesión, mandarlo a ello
+			header('Location: ../Controller/Login_Controller.php');
+	
+		}
 	}
 
 }
