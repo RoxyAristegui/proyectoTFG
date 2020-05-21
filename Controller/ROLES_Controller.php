@@ -5,10 +5,9 @@
 	//include '../Functions/Authentication.php';
 	include_once '../Functions/ControlarAcceso.php';
 
-
-	//include_once '../Model/Rol_Model.php';
 	include_once '../Model/USUARIOS_Model.php';
 	include_once '../View/Roles_View.php';
+		include_once '../View/Roles_User_View.php';
 	include_once '../View/MESSAGE_View.php';
 
 
@@ -16,63 +15,80 @@
 		$_REQUEST['action'] = '';
 	}
 
+ 
+
+
 // En funcion del action realizamos las acciones necesarias
 
 		Switch ($_REQUEST['action']){
 			case 'ADD':
-				$rol=$_POST['rol'];
-				$desc=$_POST['descripcion'];
-				$rol=new rol($rol,$desc);
-				$rtn=$rol->ADD();
-				
+				if($_POST){
+					$rol=$_POST['rol'];
+					$desc=$_POST['descripcion'];
+					$rol=new rol($rol,$desc);
+					$rtn=$rol->ADD();
+
+				//los errores de insercion pueden venir en un array(error con la BD) o array de arrays (datos no válidos)
+			
+					if(isset($rtn[0]['ok']) || $rtn['ok']===false){	
+
+						new MESSAGE($rtn,"ROLES_Controller.php");
+					
+					}
+				}
+
+			
+			 	$roles= new Rol('');
+				$listaroles=$roles->SEARCH();
+				new Roles_View($listaroles);
+			
 				break;
 
 			case 'DELETE':
-				$id=$_REQUEST['id'];
-				$rol= new rol('',$id);
-				$rtn=$rol->DELETE();
-				
+				if(isset($_REQUEST['id'])){
+					$id=$_REQUEST['id'];
+					$rol= new rol('',$id);
+					$rtn=$rol->DELETE();
+				}	
+				$roles= new Rol('');
+				$listaroles=$roles->SEARCH();
+				new Roles_View($listaroles);
+			
 				break;	
+
 			case 'EDIT':
-				$id=$_REQUEST['id_rol'];
-				$login=$_REQUEST['login'];
-				$rol=new rol('',$id);
-				$rtn=$rol->setRolUsuario($login);
-				
+
+				if(isset($_REQUEST['id_rol'])){
+					$id=$_REQUEST['id_rol'];
+					$login=$_REQUEST['login'];
+					$rol=new rol('',$id);
+					$rtn=$rol->setRolUsuario($login);
+				}
+				$usuarios= new USUARIOS_Model('','','','','','');
+				$usuarios=$usuarios->SEARCH();
+			 	$roles= new Rol('');
+				$listaroles=$roles->SEARCH();
+				new Roles_User_View($listaroles,$usuarios);
+
 				break;	
+
 			 default:
-				$rtn['ok']=true;
+				$usuarios= new USUARIOS_Model('','','','','','');
+				$usuarios=$usuarios->SEARCH();
+ 				$roles= new Rol('');
+				$listaroles=$roles->SEARCH();
+				new Roles_User_View($listaroles,$usuarios);
 				break;
 		}
 
-		//los errores pueden venir en array o en array de arrays
-		//se muestran en un mensaje
-		if(isset($rtn[0]['ok']) || $rtn['ok']===false){	
-
-			new MESSAGE($rtn,"ROLES_Controller.php");
-			
-		}else{
-			
-			// si se ha realizado correctamente se vuelve a mostrar la página
-			$usuarios= new USUARIOS_Model('','','','','','');
-			$usuarios=$usuarios->SEARCH();
-
-
-			$roles= new Rol('');
-			$listaroles=$roles->SEARCH();
-			new Roles_View($listaroles,$usuarios);
-
-			//
-			if(isset($rtn['code'])){
-				//lanzar modal de confirmacion;
-				$mensajeModal=$rtn['code'];
-				include '../View/Mensaje_Modal.php';
-				new Modal($mensajeModal);
-			}
-
-
-		}
+	
 		
+			if(isset($rtn['code'])){
+						//lanzar modal de confirmacion;
+						$mensajeModal=$rtn['code'];
+						include '../View/Mensaje_Modal.php';
+						new Modal($mensajeModal);
+					}
 
 	
 

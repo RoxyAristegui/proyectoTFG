@@ -58,12 +58,15 @@
         
         <div id="collapsePermisos" class="collapse" aria-labelledby="" data-parent="#accordionSidebar" style="">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item DefinirPermisos" href="../Controller/PERMISOS_Controller.php">Definir Permisos</a>
-            <a class="collapse-item AsignarARol" href="../Controller/PERMISOS_Rol_Controller.php">Asignar a Rol</a>
+
+            <a class="collapse-item CambiarRolUsuario" h href='../Controller/ROLES_Controller.php?'> Cambiar rol de usuario</a>
+            <a class="collapse-item CambiarPermisosRol" href="../Controller/PERMISOS_Rol_Controller.php">Cabbiar permisos de rol</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header Componentes">Componentes :</h6>
            
-            <a class="collapse-item GestionRoles" h href='../Controller/ROLES_Controller.php'> Gestion de roles</a>
+
+            <a class="collapse-item DefinirPermisos" href="../Controller/PERMISOS_Controller.php">Definir Permisos</a>
+            <a class="collapse-item GestionRoles" h href='../Controller/ROLES_Controller.php?action=ADD'> Gestion de roles</a>
             <a class="collapse-item GestionEntidades" h href='../Controller/ENTIDADES_Controller.php'>Gestion de entidades</a>
             <a class="collapse-item GestionAcciones" h href='../Controller/ACCIONES_Controller.php'>Gestion de acciones</a>
           </div>

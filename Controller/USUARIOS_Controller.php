@@ -44,6 +44,11 @@
 				else{
 					$USUARIOS = get_data_form(); //se recogen los datos del formulario
 					$respuesta = $USUARIOS->ADD();
+					if($currentUser->rol=='4'){
+						$tecnico=new Rol('',5);
+						$tecnico->setRolUsuario($USUARIOS->login);
+						
+					}
 					new MESSAGE($respuesta, '../Controller/USUARIOS_Controller.php');
 				}
 				break;

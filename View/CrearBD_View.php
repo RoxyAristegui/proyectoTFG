@@ -1,7 +1,7 @@
 <?php 
 class CrearBd_View{
 	function __construct(){
-$this->render();
+    $this->render();
 	}
 
 	function render(){

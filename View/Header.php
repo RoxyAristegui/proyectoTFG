@@ -85,7 +85,7 @@ if(isset($_COOKIE["lang"])){
               </div>
             </div>
           </form-->
-          <div class="nav-item ">
+          <!--div class="nav-item ">
           <a class="nav-link navbar-brand NomProyect d-none d-md-inline" href="../Controller/Index_Controller.php">
           
 

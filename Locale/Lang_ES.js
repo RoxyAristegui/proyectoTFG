@@ -24,7 +24,8 @@ arrayES={
 	GestionEntidades:'Gestión de Entidades',
 	GestionAcciones:'Gestión de Acciones',
 	DefinirPermisos:'Definir Permisos',
-	AsignarARol:'Asignar a Rol',
+	CambiarPermisosRol:'Cambiar permisos de rol',
+	CambiarRolUsuario:'Cambiar rol de usuario',
 	ListarUsuarios:'Listar usuarios',
 	Componentes:'Componentes',	
 

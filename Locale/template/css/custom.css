@@ -113,3 +113,25 @@ li a{
 .list-group-item-info a{
   color:black;
 }
+
+.card-body .list-group-item{
+
+  padding:0.75rem 0 !important;
+}
+
+form input:invalid {
+  box-shadow: 0 0 5px 1px #ff353552
+}
+
+
+@media(max-width: 450px){
+
+  .list-group-item{
+    padding-right:0;
+    padding-left: 0;
+  }
+  .btn .icon{
+    padding: 0
+  }
+}
+© 2020 GitHub, Inc.
