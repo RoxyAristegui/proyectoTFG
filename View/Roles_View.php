@@ -63,12 +63,14 @@ class Roles_View{
 								<div class='col-5 col-xl-3'> 
 								 <span data-toggle='popover' data-content='<?php echo $rol['descripcion'] ?>' data-trigger='focus' data-placement="top"> 
 								 	<?php echo $rol['rol'] ?>	
-								 	<i class='fas fa-info-circle'></i>
+								 	<i class='fas fa-xs fa-info-circle'></i>
 								 </span>
 								 </div>
 							<div class='col-auto'>
-								<button type='button' data-toggle='modal' data-target='#eliminarRolModal' class='btn delete icon btn-default ' data-rol='<?php echo $rol['rol'] ?>' data-rolid='<?php echo $rol['id_rol'] ?>'></button></div>
-							<div class='col-auto'><a href='../Controller/PERMISOS_Rol_Controller.php?id_rol=<?php echo $rol['id_rol']?>' class='btn icon edit'></a></diV>
+								<!--button type='button' data-toggle='modal' data-target='#eliminarRolModal' class='btn delete icon btn-default ' data-rol='<?php echo $rol['rol'] ?>' data-rolid='<?php echo $rol['id_rol'] ?>'></button-->
+							<button type='button' data-toggle='modal' data-target='#SolicitarConfModal' class=' delete btn-default btn' data-elem='<?php echo $rol['rol'] ?>' data-destino='../Controller/ROLES_Controller.php?action=DELETE&id=<?php echo $rol['id_rol'] ?>'  data-msj='estasSeguroEliminarRol' data-title='<?php echo $rol['rol'] ?>'></button>		
+							</div>
+							<div class='col-auto'><a href='../Controller/PERMISOS_Rol_Controller.php?id_rol=<?php echo $rol['id_rol']?>' class='btn  edit'></a></diV>
 								</div></li>
 								<?php 
 
@@ -83,56 +85,23 @@ class Roles_View{
 	
 		
 
-<div class="modal fade" id="eliminarRolModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title eliminarRol" >Eliminar Rol</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <span class="estasSeguroEliminarRol"> Estás seguro de que quieres elimianr el rol</span> <span id='rolAeliminar'></span> ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-        <button id='confirmEliminar' value='' type="button" class="btn btn-primary">Eliminar</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 
         	<?php
-        	include "../View/Footer.php";
+        	include "Footer.php";
+			include 'Solicitar_Confirmacion_Modal.php';
         	?>
 
         	<script type="text/javascript">
 
-        		//guardar la variable con la id del rol para eliminarlo en el modal
-	$('#eliminarRolModal').on('show.bs.modal', function (event) {
-	    var button = $(event.relatedTarget) // Button that triggered the modal
-	    var id = button.data('rolid') // Extract info from data-* attributes
-	    var rol= button.data('rol')
-		var modal = $(this)
-  		modal.find("#confirmEliminar").val(id)
-  		modal.find("#rolAeliminar").text(rol)
-  		
-	})
-
-
-	$("#confirmEliminar").click(function(){
-
- 		var id=$(this).val();
-		window.location.replace("../Controller/ROLES_Controller.php?action=DELETE&id="+id);
-
-	})
-
 
 
 			$("span").click(function(){
+				$(this).popover("toggle")
+				trigger:focus;
+			})
+
+			$("span").hover(function(){
 				$(this).popover("toggle")
 				trigger:focus;
 			})

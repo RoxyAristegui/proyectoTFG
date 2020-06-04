@@ -64,6 +64,7 @@ arrayES={
 	BorrarUsuario : 'Borrar usuario',
 	BuscarUsuario : 'Buscar usuario',
 	Detalle : 'Detalle',
+	EstasSeguroEliminarUsuario: 'Estas seguro de que quieres eliminar el usuario',
 
 	//placeholders
 	LetrasyNumeros : 'Utiliza letras y números',
@@ -126,6 +127,7 @@ arrayES={
 	'000053' : 'Registro realizado con éxito',
 	'000054' : 'Modificación realizada con éxito',
 	'000055' : 'Borrado realizado con éxito',
+	'000056' : 'No se han encontrado datos con ese criterio',
 
 	'000071' :'Ya existe un usuario con ese Login',
 	'000072' : 'No existe usuario con ese nombre',

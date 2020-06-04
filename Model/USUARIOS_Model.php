@@ -7,6 +7,7 @@
 //-------------------------------------------------------
 include_once 'Abstract_Model_Class.php';
 include_once 'Validar_Model.php';
+include_once "Rol_Model.php";
 
 class USUARIOS_Model extends Abstract_Model {
 
@@ -17,11 +18,12 @@ class USUARIOS_Model extends Abstract_Model {
 	var $email;
 	var $dni;
 	var $erroresdatos;
+	var $id_rol;
 
 //Constructor de la clase
 //
 
-function __construct($login,$password,$nombre,$apellidos,$email,$dni){
+function __construct($login,$password,$nombre,$apellidos,$email,$dni,$id_rol=2){
 	$this->login = $login;
 	$this->password = $password;
 	$this->nombre = $nombre;
@@ -29,7 +31,7 @@ function __construct($login,$password,$nombre,$apellidos,$email,$dni){
 	$this->email = $email;
 	$this->dni=$dni;
 	$this->erroresdatos = array();
-
+	$this->id_rol=$id_rol;
 }
 
 
@@ -289,7 +291,6 @@ function usuario_unico(){
 // de los atributos del objeto. Comprueba si la clave/s esta vacia y si 
 //existe ya en la tabla
 
-/* TODO poner dni unico*/
 function ADD()
 {
 	if($this->Validar_atributos()===true && $this->usuario_unico()===true){
@@ -300,14 +301,16 @@ function ADD()
 				nombre,
 				apellidos,
 				email,
-				DNI) 
+				DNI,
+				id_rol) 
 					VALUES (
 						'".$this->login."',
 						'".$this->password."',
 						'".$this->nombre."',
 						'".$this->apellidos."',
 						'".$this->email."',
-						'".$this->dni."'
+						'".$this->dni."',
+						'".$this->id_rol."'
 						)";
 
 			$this->execute_single_query();
@@ -337,8 +340,14 @@ function SEARCH()
 			)
 	";
 	$this->get_results_from_query();
-	if ($this->feedback['code'] == '00007')
-	{
+	if ($this->feedback['code'] != '00008'){	
+		if($this->feedback['code']==='00007'){
+					$this->ok=true;
+					$this->code = '000056';
+					$this->construct_response();
+				}
+	
+	
 			return $this->feedback; //error de ejecucion de la sql de recuperación de datos
 	}
 
@@ -447,7 +456,8 @@ function EDIT()
 					password = '$this->password',
 					nombre = '$this->nombre',
 					apellidos = '$this->apellidos',
-					email = '$this->email'
+					email = '$this->email',
+					id_rol= '$this->id_rol'
 				WHERE (
 					login = '$this->login'
 				)
@@ -511,7 +521,7 @@ function login(){
 
 }//fin metodo login
 
-//
+//TODO, SOLO SE VAN A REGISTRAR LOS PROOVEDORES!
 function Register(){
 
 	if($this->Validar_atributos()===true && $this->usuario_unico()===true){
@@ -549,6 +559,7 @@ function Register(){
 		return $this->erroresdatos;
 	}
 }
+
 
 }//fin de clase
 

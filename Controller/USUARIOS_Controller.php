@@ -13,6 +13,7 @@
 	include_once '../View/USUARIOS_DELETE_View.php';
 	include_once '../View/USUARIOS_SHOWCURRENT_View.php';
 	include_once '../View/MESSAGE_View.php';
+	include_once '../View/Mensaje_Modal.php';
 
 // la función get_data_form() recoge los valores que vienen del formulario por medio de post y la action a realizar, crea una instancia USUARIOS y la devuelve
 	function get_data_form(){
@@ -24,9 +25,9 @@
 		$email = $_POST['email'];
 		$dni=$_POST['dni'];
 		$action = $_POST['action'];
-
+		$id_rol=$_POST['id_rol'];
 		
-		$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni);
+		$usuarios = new USUARIOS_Model($login,$password,$nombre,$apellidos,$email,$dni,$id_rol);
 		return $usuarios;
 	}
 	if (!isset($_REQUEST['action'])){
@@ -39,16 +40,15 @@
 			case 'ADD':
 				
 				if (!$_POST){ // se incoca la vista de add de usuarios
-					new USUARIOS_ADD();
+						$roles= new Rol("","");
+					$listaRoles=$roles->SEARCH();
+
+					new USUARIOS_ADD($listaRoles);
 				}
 				else{
 					$USUARIOS = get_data_form(); //se recogen los datos del formulario
 					$respuesta = $USUARIOS->ADD();
-					if($currentUser->rol=='4'){
-						$tecnico=new Rol('',5);
-						$tecnico->setRolUsuario($USUARIOS->login);
-						
-					}
+					
 					new MESSAGE($respuesta, '../Controller/USUARIOS_Controller.php');
 				}
 				break;
@@ -56,12 +56,22 @@
 				if (!$_POST){ //nos llega el id a eliminar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 					$valores = $USUARIOS->getById();
-					new USUARIOS_DELETE($valores); //se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
+					$rol = new Rol ('',$valores['id_rol']);
+					$rolname=$rol->getById()['rol'];
+					new USUARIOS_DELETE($valores,$rolname); 
+					//se le muestra al usuario los valores de la tupla para que confirme el borrado mediante un form que no permite modificar las variables 
 				}
 				else{ // llegan los datos confirmados por post y se eliminan
 					$USUARIOS = get_data_form();
 					$respuesta = $USUARIOS->DELETE();
-					new MESSAGE($respuesta, '../Controller/USUARIOS_Controller.php');
+					$USUARIOS_ALL = new USUARIOS_Model('','','','','','');
+					$datos = $USUARIOS_ALL->SEARCH();
+
+					$lista = array('login','DNI','nombre', 'apellidos','email','rol');
+
+					new USUARIOS_SHOWALL($lista, $datos);
+					 new Modal($respuesta['code']);
+				//	new MESSAGE($respuesta, '../Controller/USUARIOS_Controller.php');
 				}
 				break;
 			case 'EDIT':
@@ -69,9 +79,12 @@
 				if (!$_POST){ //nos llega el usuario a editar por get
 					$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','',''); // Creo el objeto
 					$valores = $USUARIOS->getById(); // obtengo todos los datos de la tupla
+					$roles= new Rol("","");
+					$listaRoles=$roles->SEARCH();
+
 					if (is_array($valores))
 					{
-						new USUARIOS_EDIT($valores); //invoco la vista de edit con los datos 
+						new USUARIOS_EDIT($valores,$listaRoles); //invoco la vista de edit con los datos 
 							//precargados
 					}else
 					{
@@ -80,7 +93,6 @@
 				}else{
 
 					$USUARIOS = get_data_form(); //recojo los valores del formulario
-
 					$respuesta = $USUARIOS->EDIT(); // update en la bd en la bd
 					new MESSAGE($respuesta, '../Controller/USUARIOS_Controller.php');
 				}
@@ -94,17 +106,25 @@
 				else{
 					$USUARIOS = get_data_form();
 					$datos = $USUARIOS->SEARCH();
+					//si no se encuentra ningun resultado se muestra un error
 
-					$lista = array('login','DNI','nombre', 'apellidos','password','email');
+					if(isset($datos['code'])){
+						new MESSAGE($datos,'../Controller/USUARIOS_Controller.php?action=SEARCH');
+					}else{
 
-					new USUARIOS_SHOWALL($lista, $datos, '../index.php');
+						$lista = array('login','DNI','nombre', 'apellidos','email','rol');	
+						new USUARIOS_SHOWALL($lista, $datos);
+					}
+
 				}
 				break;
 			case 'SHOWCURRENT':
 			
 				$USUARIOS = new USUARIOS_Model($_REQUEST['login'],'','','','','');
 				$valores = $USUARIOS->getById();
-				new USUARIOS_SHOWCURRENT($valores);
+				$rol = new Rol ('',$valores['id_rol']);
+				$rolname=$rol->getById()['rol'];
+				new USUARIOS_SHOWCURRENT($valores,$rolname);
 				break;
 			default:
 				
@@ -115,7 +135,7 @@
 						$USUARIOS = get_data_form();
 					}
 					$datos = $USUARIOS->SEARCH();
-					$lista = array('login','DNI','nombre', 'apellidos','password','email');
+					$lista = array('login','DNI','nombre','apellidos','email','rol');
 					new USUARIOS_SHOWALL($lista, $datos);
 				
 		}

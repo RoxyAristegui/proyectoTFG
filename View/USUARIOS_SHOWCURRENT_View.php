@@ -3,14 +3,19 @@
 	class USUARIOS_SHOWCURRENT{
 
 
-		function __construct($tupla){	
+		function __construct($tupla,$rol){	
 			$this->tupla = $tupla;
+			$this->rol=$rol;
 			$this->render();
+			
 		}
 
 		function render(){
 
 			include '../View/Header.php'; //header necesita los strings
+			//$rol= new Rol('',$this->tupla['id_rol']);
+		//	$rolname=$rol->getById();
+			//$rolname= $rolname["rol"];
 		?>
 	
 	<div class="container">
@@ -51,6 +56,12 @@
 				<label for='dni' class="col-sm-2 col-form-label">DNI</label>
 			 	<div class="col-sm-8">
 					<input type = 'text' name = 'dni' id = 'dni' class="form-control-plaintext" size = '40' value = '<?php echo $this->tupla['DNI']; ?>' readonly>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for='rol' class="col-sm-2 col-form-label">Rol</label>
+			 	<div class="col-sm-8">
+					<input type = 'text' name = 'rol' id = 'rol' class="form-control-plaintext" size = '40' value = '<?php echo $this->rol ?>' readonly>
 				</div>
 			</div>
 				<a type='button' class="btn btn-outline-info edit icon" href='../Controller/USUARIOS_Controller.php?action=EDIT&login=<?php echo $this->tupla['login']?>' value="EDIT"></button>

@@ -3,7 +3,8 @@
 	class USUARIOS_ADD{
 
 
-		function __construct(){	
+		function __construct($listaRoles){	
+			$this->listaRoles=$listaRoles;
 			$this->render();
 		}
 
@@ -15,7 +16,7 @@
 			<div class="container">
 		<h1 class="AñadirUsuario">Añadir usuario</h1>	
 
-		<form name = 'Form' action='../Controller/USUARIOS_Controller.php' method='post' >
+		<form name = 'Form' action='../Controller/USUARIOS_Controller.php' method='post' onsubmit="confirmar()">
 			<div class="form-group row">
 				<label for='login' class="col-sm-2 col-form-label">Login</label>
 			 	<div class="col-sm-8">
@@ -59,8 +60,27 @@
 					<input type = 'text' name = 'dni' id = 'dni' class="form-control" placeholder="IntroduceDni" minlength="9" maxlength="9" pattern="^[0-9]{8,8}[A-Za-z]$" required>
 				</div>
 			</div>
+			<div class="form-group row">
+				<label for='rol' class="col-sm-2 col-form-label">Rol</label>
+			<div class="col-sm-8">
+					 <select class="form-control"id="rol" name="id_rol" >
+					  <?php
+					 
+					
+					   foreach($this->listaRoles as $rol){
+					  	if($rol['id_rol']==2){
+					  		echo "<option value=".$rol['id_rol']." selected>".$rol['rol']."</option>";
+					  	}else{
+					 	echo  "<option value='".$rol['id_rol']."' >".$rol['rol']."</option>";
+					     } 
 
-				<button type='submit' name='action' class="btn btn-outline-info addUser icon" value="ADD"></button>
+					   } ?>
+					    </select>
+
+					
+				</div>
+			</div>
+				<button type='submit' name='action' class="btn btn-outline-info addUser icon" value="ADD" id="confirm"></button>
 				<a href='../Controller/Index_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>
@@ -68,6 +88,7 @@
 		</div>
 		<?php
 			include '../View/Footer.php';
+		
 		} //fin metodo render
 
 	} //fin REGISTER

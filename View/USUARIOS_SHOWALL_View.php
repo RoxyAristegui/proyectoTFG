@@ -12,6 +12,7 @@
 		function render(){
 
 			include '../View/Header.php'; //header necesita los strings
+			print_r($this->datos);
 ?>
 	<h1 class="MostrarTodos">Todos los usuarios</h1>
 	   <div class="card shadow mb-4">
@@ -37,7 +38,7 @@
 					<?php 	} ?>
 						<th>Editar</th>
 						<th>Borrar</th>
-					</tr>
+					</tr> 
 				  </thead>
 			      <tfoot>
 					<tr>
@@ -52,7 +53,14 @@
 				  <?php	foreach($this->datos as $fila)	{ ?>
 					<tr>
 				    <?php	foreach ($this->lista as $columna) {	?>
-							<td><?php echo $fila[$columna]; ?></td>
+							<td><?php
+								if($columna=="rol"){
+									$rol= new Rol("",$fila['id_rol']);
+									$rolname=$rol->getById();
+									echo $rolname['rol'];
+								}else{
+								 	echo $fila[$columna]; } ?></td>
+								
 							<?php	} ?>
 						<td>
 						<a href='

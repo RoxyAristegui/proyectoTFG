@@ -3,8 +3,9 @@
 	class USUARIOS_EDIT{
 
 
-		function __construct($tupla){	
+		function __construct($tupla,$listaRoles){	
 			$this->tupla = $tupla;
+			$this->listaRoles= $listaRoles;
 			$this->render();
 		}
 
@@ -52,6 +53,25 @@
 				<label for='dni' class="col-sm-2 col-form-label">DNI</label>
 			 	<div class="col-sm-8">
 					<input type = 'text' name = 'dni' id = 'dni' class="form-control" value = '<?php echo $this->tupla['DNI']; ?>' readonly>
+				</div>
+			</div><div class="form-group row">
+				<label for='roles' class="col-sm-2 col-form-label">Roles</label>
+			 	<div class="col-sm-8">
+					 <select class="form-control"id="id_rol" name="id_rol" >
+					  <?php
+					 
+					
+					   foreach($this->listaRoles as $rol){
+					  	if($this->tupla['id_rol']==$rol['id_rol']){
+					  		echo "<option value=".$rol['id_rol']." selected>".$rol['rol']."</option>";
+					  	}else{
+					 	echo  "<option value='".$rol['id_rol']."' >".$rol['rol']."</option>";
+					     } 
+
+					   } ?>
+					    </select>
+
+					
 				</div>
 			</div>
 

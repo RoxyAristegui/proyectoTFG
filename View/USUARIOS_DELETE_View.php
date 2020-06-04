@@ -3,8 +3,9 @@
 class USUARIOS_DELETE{
 
 
-	function __construct($tupla){	
+	function __construct($tupla,$rol){	
 		$this->tupla = $tupla;
+		$this->rol=$rol;
 		$this->render();
 	}
 
@@ -16,7 +17,7 @@ class USUARIOS_DELETE{
 	<div class="container">
 		<h1 class="BorrarUsuario">Borrar usuario</h1>	
 
-		<form name = 'Form' action='../Controller/USUARIOS_Controller.php' method='post' onsubmit="return comprobar_registro();">
+		<form name = 'Form' action='../Controller/USUARIOS_Controller.php' method='post' onsubmit="confirmar_eliminar()">
 			<div class="form-group row">
 				<label for='login' class="col-sm-2 col-form-label">Login</label>
 			 	<div class="col-sm-8">
@@ -53,8 +54,15 @@ class USUARIOS_DELETE{
 					<input type = 'text' name = 'dni' id = 'dni' class="form-control-plaintext" size = '40' value = '<?php echo $this->tupla['DNI']; ?>' readonly>
 				</div>
 			</div>
-
-				<button type='submit' name='action' class="btn btn-outline-info delete icon" value="DELETE"></button>
+				<div class="form-group row">
+				<label for='rol' class="col-sm-2 col-form-label">rol</label>
+			 	<div class="col-sm-8">
+					<input type = 'text' name = 'id_rol' id = 'id_rol' class="form-control-plaintext" size = '40' value = '<?php echo $this->rol ?>' readonly>
+				</div>
+			</div>
+				<input type="hidden" name="action" value="DELETE">
+				<button type='submit' name='action' class="btn btn-outline-info delete icon" id="eliminar" value="DELETE"></button>
+			
 				<a href='../Controller/Index_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>
@@ -62,6 +70,27 @@ class USUARIOS_DELETE{
 		</div>
 	<?php
 		include '../View/Footer.php';
+		include "Solicitar_Confirmacion_Modal.php";
+		?>
+		<script type="text/javascript">
+	
+
+	function confirmar_eliminar(){
+		event.preventDefault()
+		$('#SolicitarConfModal').find("#elem").text('<?php echo $this->tupla['login']?> ?')
+
+	      $('#SolicitarConfModal').find("#msj").attr('class','EstasSeguroEliminarUsuario')
+	  	 setLang();
+		$("#SolicitarConfModal").modal("show");
+		$("#confirmGo").click(function(){
+			$("form").submit();
+	
+		});
+
+	}
+		</script>
+<?php
+
 	} //fin metodo render
 
 } //fin REGISTER
