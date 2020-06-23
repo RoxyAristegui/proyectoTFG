@@ -20,8 +20,8 @@ Class Rol extends Abstract_model{
  }
 
 function Validar_atributos(){
-	$this->Comprobar_rol();
-	$this->Comprobar_descripcion();
+	$this->comprobar_rol();
+	$this->comprobar_descripcion();
 
 	if($this->erroresdatos==[]){
 		return true;
@@ -30,7 +30,7 @@ function Validar_atributos(){
 	}
 }
 
-function Comprobar_rol()
+function comprobar_rol()
 {
 
 	$validar= new Validar();
@@ -51,7 +51,7 @@ function Comprobar_rol()
 	}
 }
 
-function Comprobar_descripcion(){
+function comprobar_descripcion(){
 	$validar= new Validar();
 	if($validar->Es_string_espacios($this->descripcion)===false){
 		$this->code='000172';

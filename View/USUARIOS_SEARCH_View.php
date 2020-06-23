@@ -3,7 +3,8 @@
 	class USUARIOS_SEARCH{
 
 
-		function __construct(){	
+		function __construct($listaRoles){
+		$this->listaRoles=$listaRoles;	
 			$this->render();
 		}
 
@@ -49,6 +50,25 @@
 				<label for='dni' class="col-sm-2 col-form-label">DNI</label>
 			 	<div class="col-sm-8">
 					<input type = 'text' name = 'dni' id = 'dni' class="form-control" size = '9' placeholder="IntroduceDni" >
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label for='rol' class="col-sm-2 col-form-label">Rol</label>
+			<div class="col-sm-8">
+					 <select class="form-control"id="rol" name="id_rol" >
+					  <?php
+					 
+					
+						echo "<option value='' selected> Seleccione una opcion </option>";
+					   foreach($this->listaRoles as $rol){
+					 	echo  "<option value='".$rol['id_rol']."' >".$rol['rol']."</option>";
+					     
+
+					   } ?>
+					    </select>
+
+					
 				</div>
 			</div>
 

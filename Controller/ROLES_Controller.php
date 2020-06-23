@@ -58,17 +58,36 @@
 
 			case 'EDIT':
 
-				if(isset($_REQUEST['id_rol'])){
+				/*if(isset($_REQUEST['id_rol'])){
 					$id=$_REQUEST['id_rol'];
 					$login=$_REQUEST['login'];
 					$rol=new rol('',$id);
 					$rtn=$rol->setRolUsuario($login);
+				}
+				*/
+
+				if(isset($_REQUEST['loginlist'])){
+					$ids=$_REQUEST['loginlist'];
+					$rol=$_REQUEST['Rol'];
+					$array=(json_decode($ids));
+					
+					foreach ($array as $login) {
+						$usuario= new USUARIOS_Model($login,'','','','','');
+						$rtn=$usuario->setRol($rol);
+						if($rtn['ok']==false){
+							new MESSAGE($rsp,"ROLES_Controller.php");
+							die();
+						}
+					}
+
 				}
 				$usuarios= new USUARIOS_Model('','','','','','');
 				$usuarios=$usuarios->SEARCH();
 			 	$roles= new Rol('');
 				$listaroles=$roles->SEARCH();
 				new Roles_User_View($listaroles,$usuarios);
+
+
 
 				break;	
 

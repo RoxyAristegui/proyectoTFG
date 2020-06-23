@@ -36,7 +36,7 @@ $usuarioCaracteres=new USUARIOS_Model("lo gin","","","","","");
 $usuarioCorrecto=new USUARIOS_Model("miusuario","password2","nombre","apellidos apellidos","email@mail.com","53604521P");
 
 $passCorto=new USUARIOS_Model("log","pass","no","ap","","");
-$passLargo=new USUARIOS_Model("","logeandovadsdsdsdsdsdsdsdsdsdsddsdsmosssssssssssssssss","","","","");
+$passLargo=new USUARIOS_Model("","logeandovadsdsdsdsdsdsdsddsdsdsdsdsdsdsdsdsdsdsdssdsdsddsdsmosssssssssssssssss","","","","");
 $passCaracteres=new USUARIOS_Model("","pass2/","nom2/","","","");
 
 $nomCorto=new USUARIOS_Model("log","pass","no","ap","","");

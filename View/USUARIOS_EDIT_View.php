@@ -2,7 +2,8 @@
 
 	class USUARIOS_EDIT{
 
-
+		var $tupla;
+		var $listaRoles;
 		function __construct($tupla,$listaRoles){	
 			$this->tupla = $tupla;
 			$this->listaRoles= $listaRoles;

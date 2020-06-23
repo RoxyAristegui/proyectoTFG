@@ -177,9 +177,8 @@ function getRolUsuario_Rol_Test(){
 
 	$rolUser = new Rol('');
 	$login='usuarioprueba';
-	$user=new USUARIOS_Model($login,'password','nombre','apellidos','e@mail.com','26711548S');
+	$user=new USUARIOS_Model($login,'password','nombre','apellidos','e@mail.com','26711548S','2');
 	$user->ADD();
-
 	$array_test1['error_obtenido'] = $rolUser->getRolUsuario($login);
 	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
 	{

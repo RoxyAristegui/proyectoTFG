@@ -18,8 +18,8 @@ if(isset($_REQUEST['action'])){
 }else{
 	$action='SHOWALL';
 }
-
-	if(($action=='SHOWCURRENT' || $action=='EDIT') && $currentUser->login==$_REQUEST['login']){
+echo isset($_REQUEST['login']);
+	if(($action=='SHOWCURRENT' || $action=='EDIT') && isset($_REQUEST['login']) && $currentUser->login==$_REQUEST['login']){
 		//para ver tu perfil, o editar tu perfil no necesitas permiso
 		$acceso=true;
 	

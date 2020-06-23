@@ -25,7 +25,7 @@ arrayES={
 	GestionAcciones:'Gestión de Acciones',
 	DefinirPermisos:'Definir Permisos',
 	CambiarPermisosRol:'Cambiar permisos de rol',
-	CambiarRolUsuario:'Cambiar rol de usuario',
+	AsignarUsuariosARol:'Asignar usuarios a Rol',
 	ListarUsuarios:'Listar usuarios',
 	Componentes:'Componentes',	
 
@@ -83,7 +83,7 @@ arrayES={
 	Roles : 'Roles',
 	AddRol : 'Añadir Rol',
 	RolesAsignadosAUsuarios : 'Roles asignados a usuarios',
-	RolesAsignadosAUsuariosTexto : 'Para cambiar el rol a un usuario, elige el rol deseado en el desplegable y selecciona ok',
+	RolesAsignadosAUsuariosTexto : 'Selecciona los usuarios a los que desea cambiar, el rol deseado, y pulse ',
 	RolesCreados: 'Roles creados',
 	Rol : 'Rol',
 	Descripcion : 'Descripcion',
@@ -179,6 +179,7 @@ arrayES={
 	'000153':'El nombre sólo admite letras',
 	'000161':'Introduce un email valido',
 	'000162':'Introduce un dni válido',
+
 	//acciones
 	'000172':'La descripcion solo admite letras y números'
 

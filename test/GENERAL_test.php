@@ -6,7 +6,7 @@ include_once '../View/Header.php';
 /* Creamos la base de datos de pruebas */
 
 include "../Model/config.php";
-include "../Functions/CrearBD.php";
+include "../Model/CrearBD.php";
 $filename='../tfgRoxy_test.sql';
 
 $bd=new CrearBD(host,user,pass,$filename);

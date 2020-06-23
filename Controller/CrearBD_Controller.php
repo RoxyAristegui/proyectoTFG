@@ -1,6 +1,6 @@
 <?php
 
-	include '../Functions/CrearBD.php';
+	include '../Model/CrearBD.php';
 	include '../View/CrearBD_View.php';
 	include '../View/MESSAGE_View.php';
 

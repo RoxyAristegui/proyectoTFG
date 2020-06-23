@@ -1,7 +1,7 @@
 
 <?php 
 class Acciones_View{
-	var $listaRoles;
+	var $listaAcciones;	
 
 	function __construct($lista){
 		$this->listaAcciones = $lista;	

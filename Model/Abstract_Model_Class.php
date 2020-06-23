@@ -29,9 +29,6 @@ abstract class Abstract_Model{
 	abstract protected function SEARCH();
 	abstract protected function getById();
 	abstract protected function getByName();
-	//abstract protected function login();
-	//abstract protected function Register();
-	//abstract protected function Validar_atributos();
 
 # los siguientes métodos pueden definirse con exactitud y
 # no son abstractos
@@ -107,7 +104,6 @@ abstract class Abstract_Model{
 					$this->code  = '00007'; // el recordset viene vacio
 					$this->construct_response();
 				}else{
-				//	while ($this->rows[] = $result->fetch_assoc());
 				for($i=0;$i<$result->num_rows;$i++){
 					$this->rows[]=$result->fetch_assoc();
 					}

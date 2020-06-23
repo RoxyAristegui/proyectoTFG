@@ -1,7 +1,8 @@
 <?php
 
 	class USUARIOS_SHOWCURRENT{
-
+		var $tupla;
+		var $rol;
 
 		function __construct($tupla,$rol){	
 			$this->tupla = $tupla;

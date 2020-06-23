@@ -101,7 +101,9 @@
 			case 'SEARCH':
 			
 				if (!$_POST){
-					new USUARIOS_SEARCH();
+					$roles= new Rol("","");
+					$listaRoles=$roles->SEARCH();
+					new USUARIOS_SEARCH($listaRoles);
 				}
 				else{
 					$USUARIOS = get_data_form();

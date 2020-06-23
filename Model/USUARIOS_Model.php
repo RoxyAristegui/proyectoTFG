@@ -23,7 +23,7 @@ class USUARIOS_Model extends Abstract_Model {
 //Constructor de la clase
 //
 
-function __construct($login,$password,$nombre,$apellidos,$email,$dni,$id_rol=2){
+function __construct($login,$password,$nombre,$apellidos,$email,$dni,$id_rol=""){
 	$this->login = $login;
 	$this->password = $password;
 	$this->nombre = $nombre;
@@ -78,7 +78,8 @@ function Comprobar_login()
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Longitud_maxima($this->login,15)===false){
+
+	if($validar->Longitud_maxima($this->login,25)===false){
 		$this->code='000132';
 		$this->ok=false;
 		$this->resource='Login';
@@ -96,7 +97,7 @@ function Comprobar_login()
 }
 
 // Comprueba el formato del nombre 
-//	alfanumericol, entre 3 y 30 carácteres
+//	solo letras, entre 3 y 30 carácteres
 //	no vacio
 // si se detectaron errores los añade al array de erroers
 function Comprobar_nombre()
@@ -127,7 +128,7 @@ function Comprobar_nombre()
 }
 
 //Comrpeuba el formato de los apellidos,
-// alfanumérico con espacios, entre 3 y 30 caractéres
+// alfanumérico con espacios, entre 3 y 50 caractéres
 function Comprobar_apellidos(){
 	$validar= new Validar();
 	if($validar->Longitud_minima($this->apellidos,3)===false){
@@ -154,7 +155,7 @@ function Comprobar_apellidos(){
 	return $this->erroresdatos;
 }
 
-// comprueba la pass, letras y números, entre 5 y 30 carácteres
+// comprueba la pass, letras y números, entre 5 y 60 carácteres
 // si se detectaron errores los añade al array de erroers
 function Comprobar_password(){
 	$validar= new Validar();
@@ -165,7 +166,7 @@ function Comprobar_password(){
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 	}
-	if($validar->Longitud_maxima($this->password,30)===false){
+	if($validar->Longitud_maxima($this->password,60)===false){
 		$this->code='000142';
 		$this->ok=false;
 		$this->resource='Password';
@@ -182,12 +183,19 @@ function Comprobar_password(){
 	return $this->erroresdatos;
 }
 
-//comprueba que el email tenga un formato válido
+//comprueba que el email tenga un formato válido y menos de 60 caracteres
 // si se detectaron errores los añade al array de erroers
 function Comprobar_email(){
 	$validar= new Validar();
 	if($validar->Formato_email($this->email)===false){
 		$this->code='000161';
+		$this->ok=false;
+		$this->resource='email';
+		$this->construct_response();
+		array_push($this->erroresdatos, $this->feedback);
+	}
+	if($validar->Longitud_maxima($this->email,60)===false){
+		$this->code='000163';
 		$this->ok=false;
 		$this->resource='email';
 		$this->construct_response();
@@ -243,6 +251,7 @@ function login_unico(){
 
 //inserta un error en el array de errores si el email ya existe
 function email_unico(){
+
 		$this->query = "SELECT *
 					FROM USUARIOS
 					WHERE (
@@ -269,7 +278,7 @@ function dni_unico(){
 	$this->get_results_from_query();
 	if ($this->feedback['code'] == '00008'){  // el recordset vuelve con datos
 		$this->ok=false;
-		$this->code  = '000077'; // el dni_unico ya existe
+		$this->code  = '000077'; // el dni ya existe
 		$this->construct_response();
 		array_push($this->erroresdatos, $this->feedback);
 		return false;
@@ -336,12 +345,14 @@ function SEARCH()
 				nombre LIKE '%".$this->nombre."%' AND
 				apellidos LIKE '%".$this->apellidos."%' AND
 				email LIKE '%".$this->email."%' AND
-				DNI LIKE '%".$this->dni."%'
+				DNI LIKE '%".$this->dni."%' AND
+				id_rol LIKE '%".$this->id_rol."%'
 			)
 	";
+	
 	$this->get_results_from_query();
 	if ($this->feedback['code'] != '00008'){	
-		if($this->feedback['code']==='00007'){
+		if($this->feedback['code']=='00007'){
 					$this->ok=true;
 					$this->code = '000056';
 					$this->construct_response();
@@ -424,9 +435,9 @@ function getByName(){
 	return $this->rows;
 }
 
-// funcion de bñusqueda: recupera todos los atributos de un usuario a partir de su email
-//devuelve un array [clVE]=valor;
-function BuscarPorEmail()
+// funcion de busqueda: recupera todos los atributos de un usuario a partir de su email
+//devuelve un array [clave]=valor;
+function getByEmail()
 {
     $this->query = "SELECT *
 			FROM USUARIOS
@@ -451,36 +462,46 @@ function BuscarPorEmail()
 function EDIT()
 {
 	if($this->Validar_atributos()===true){
-		$this->query = "UPDATE USUARIOS
-				SET 
-					password = '$this->password',
-					nombre = '$this->nombre',
-					apellidos = '$this->apellidos',
-					email = '$this->email',
-					id_rol= '$this->id_rol'
-				WHERE (
-					login = '$this->login'
-				)
-				";
+		$compEmail=$this->getByEmail();
 
-		$this->execute_single_query();
+		if(isset($compEmail['code']) || $compEmail['login']==$this->login){
+			//comprobamos que el email no está siendo usado por otro usuario
+		
+			$this->query = "UPDATE USUARIOS
+					SET 
+						password = '$this->password',
+						nombre = '$this->nombre',
+						apellidos = '$this->apellidos',
+						email = '$this->email',
+						id_rol= '$this->id_rol'
+					WHERE (
+						login = '$this->login'
+					)
+					";
+			$this->execute_single_query();
 
-		if ($this->feedback['code']==='00001')
-		{
-			$this->ok=true;
-			$this->resource='EDIT';
-			$this->code  = '000054';
-			$this->construct_response(); //modificacion en bd correcta
+			if ($this->feedback['code']==='00001')
+			{
+				$this->ok=true;
+				$this->resource='EDIT';
+				$this->code  = '000054';
+				$this->construct_response(); //modificacion en bd correcta
+			}
+			else
+			{	$this->ok=false;
+				$this->resource='EDIT';
+				$this->code  = '000074'; //error al modificar el usuario en la bd
+				$this->construct_response();
+			}
+
+			return $this->feedback;
+		}else{
+			$this->ok=false;
+				$this->resource='EDIT';
+				$this->code  = '000076';
+				$this->construct_response(); //ya existe un usuario con ese email
+				return $this->feedback;
 		}
-		else
-		{	$this->ok=false;
-			$this->resource='EDIT';
-			$this->code  = '000074'; //error al modificar el usuario en la bd
-			$this->construct_response();
-		}
-
-		return $this->feedback;
-	
 		
 	}else{
 		return $this->erroresdatos;
@@ -522,7 +543,7 @@ function login(){
 }//fin metodo login
 
 //TODO, SOLO SE VAN A REGISTRAR LOS PROOVEDORES!
-function Register(){
+function register(){
 
 	if($this->Validar_atributos()===true && $this->usuario_unico()===true){
 
@@ -560,6 +581,28 @@ function Register(){
 	}
 }
 
+ function setRol($id_rol){
+ 	$this->query="
+ 		UPDATE USUARIOS SET id_rol='$id_rol'
+ 		 WHERE login='$this->login'";
+ 		 	$this->execute_single_query();
+
+		if ($this->feedback['code']==='00001')
+		{
+			$this->ok=true;
+			$this->resource='EDIT';
+			$this->code  = '000054';
+			$this->construct_response(); //modificacion en bd correcta
+		}
+		else
+		{	$this->ok=false;
+			$this->resource='EDIT';
+			$this->code  = '000074'; //error al modificar el usuario en la bd
+			$this->construct_response();
+		}
+
+		return $this->feedback;
+ }
 
 }//fin de clase
 

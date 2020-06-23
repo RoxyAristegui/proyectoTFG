@@ -1,7 +1,7 @@
 <?php
 
 	class USUARIOS_ADD{
-
+		var $listaRoles;
 
 		function __construct($listaRoles){	
 			$this->listaRoles=$listaRoles;

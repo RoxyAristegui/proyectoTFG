@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once '../Model/Access_DB.php';
+include_once '../Functions/Access_DB.php';
 include '../Functions/Authentication.php';
 
 if(IsAuthenticated()){
@@ -33,7 +33,7 @@ else{
 		//si se ha hecho login correcto, se vuelve a la vista prncipal
 		session_start();
 		$_SESSION['login'] = $_REQUEST['login'];
-		header('Location:../index.php');
+		header('Location:index_Controller.php');
 	}
 	else{
 		//si ha ocurrido algune error, se muestra en pantalla;

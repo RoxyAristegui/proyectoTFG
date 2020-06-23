@@ -2,7 +2,8 @@
 
 	class USUARIOS_SHOWALL{
 
-
+		var $lista;
+		var $datos;
 		function __construct($lista,$datos){
 			$this->datos = $datos;
 			$this->lista = $lista;	
@@ -12,7 +13,7 @@
 		function render(){
 
 			include '../View/Header.php'; //header necesita los strings
-			print_r($this->datos);
+			
 ?>
 	<h1 class="MostrarTodos">Todos los usuarios</h1>
 	   <div class="card shadow mb-4">
