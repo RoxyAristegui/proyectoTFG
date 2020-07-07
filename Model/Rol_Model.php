@@ -95,7 +95,7 @@ function comprobar_descripcion(){
 	}else{
 		$this->ok=false;
 			$this->resource='ADD_rol';
-			$this->code  = '000316'; //error al modificar el rol en la bd
+			$this->code  = '000316'; //ya existe un rol con ese nombre
 			$this->construct_response();
 	}
 	return $this->feedback;
@@ -161,36 +161,38 @@ if(is_array($existe)){
 
  function DELETE(){
  	if($this->id_rol!=''){
-	$existe=$this->SEARCH();
-	if(isset($existe->rows)){
-			//el rol está asignado a un usuario;
-		$this->ok=false;
-		$this->code= '000313';
-		$this->construct_response();
-		return $this->feedback;
-	}
-
-	$this->query='delete from ROLES where id_rol='.$this->id_rol;
-	$this->execute_single_query();
+		$existe= $this->getUsersByRol();
 	
-	if($this->feedback['ok']===true){
-		$this->code="000055"; //Borrado realizado con exito;
-		$this->ok=true;
-		$this->construct_response();
-		return $this->feedback;
+		if(!isset($existe['code'])){
+				//el rol está asignado a un usuario;
+			$this->ok=false;
+			$this->code= '000313';
+			$this->construct_response();
+			return $this->feedback;
+		}
+
+		$this->query='delete from ROLES where id_rol='.$this->id_rol;
+		$this->execute_single_query();
+		
+		if($this->feedback['ok']===true){
+			$this->code="000055"; //Borrado realizado con exito;
+			$this->ok=true;
+			$this->construct_response();
+			return $this->feedback;
+		}else{
+			$this->code="000312";
+			$this->ok=false;
+			$this->construct_response();
+			return $this->feedback; 
+			//No se ha podido eliminar el rol
+		}
+
 	}else{
-		$this->code="000312";
-		$this->ok=false;
-		$this->construct_response();
-		return $this->feedback; 
-		//No se ha podido eliminar el rol
+		$this->code="000314";
+			$this->ok=false;
+			$this->construct_response();
+			return $this->feedback; 
 	}
-}else{
-	$this->code="000314";
-		$this->ok=false;
-		$this->construct_response();
-		return $this->feedback; 
-}
 
 }
 
@@ -224,7 +226,7 @@ function getByName(){
 	}
 
 
-//Esto pasarlo a la pantalla de usuariooooooos
+
  function getRolUsuario($login){
  		$this->query="select id_rol from USUARIOS where login='".$login."'";
 		$this->get_one_result_from_query();
@@ -241,23 +243,26 @@ function getByName(){
  }
 
 
-function setRolUsuario($login){
-	$this->query="UPDATE USUARIOS SET id_rol = ".$this->id_rol." where login='".$login."'";
-	$this->execute_single_query();
-	if ($this->feedback['code']==='00001')
-		{
-			$this->ok=true;
-			$this->resource='EDIT';
-			$this->code  = '000317';
-			$this->construct_response(); //modificacion en bd correcta
-		}
-		else
-		{	$this->ok=false;
-			$this->resource='EDIT';
-			$this->code  = '000315'; //error al modificar el rol en la bd
-			$this->construct_response();
-		}
-		return $this->feedback;
+function getUsersByRol(){
+	
+    $this->query = "SELECT *
+			FROM USUARIOS
+			WHERE 
+				id_rol = '$this->id_rol'
+			";
+
+	$this->get_one_result_from_query();
+	
+	if ($this->feedback['code'] == '00007')
+	{
+		$this->code="000075";
+		$this->ok=false; // no existe usuario con ese rol
+		$this->construct_response();
+			return $this->feedback; 
+	}
+
+	return $this->rows;
+
 }
 
 }

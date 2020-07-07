@@ -28,7 +28,6 @@ abstract class Abstract_Model{
 	abstract protected function ADD();
 	abstract protected function SEARCH();
 	abstract protected function getById();
-	abstract protected function getByName();
 
 # los siguientes métodos pueden definirse con exactitud y
 # no son abstractos

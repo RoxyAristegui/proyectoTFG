@@ -69,6 +69,7 @@ arrayEN={
 	LetrasyNumeros : 'only letters and numbers',
 	SoloLetras : 'only letters',
 	SoloLetrasEspacios : 'only letters and spaces',
+	SoloNumeros : 'only numbers',
 	IntroduceLogin : 'Introduce your login name',
 	IntroduceEmail : 'Introduce your email',
 	IntroduceDni : 'Introduce your id',

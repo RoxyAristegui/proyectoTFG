@@ -73,7 +73,7 @@
 			</div>
 
 				<button type='submit' name='action' class="btn btn-outline-info icon lupa" value="SEARCH"></button>
-				<a href='../Controller/Index_Controller.php' class="icon volver ml-3"> </a>
+				<a href='../Controller/USUARIOS_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>
 	

@@ -13,9 +13,9 @@ function Add_Accion_Test(){
 // comprobar success
 //-------------------------------------------------------------------------------
 	
-	$array_test1['entidad'] = 'ACCIONES';	
+	$array_test1['entidad'] = 'accion';	
 	$array_test1['metodo'] = 'add';
-	$array_test1['error'] = 'Añadido nuevo';
+	$array_test1['error'] = 'Exito';
 	$array_test1['error_esperado'] = '000321';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
@@ -39,9 +39,9 @@ function Add_Accion_Test(){
 //comprobar error
 //-------------------------------------------------------------------------------
 	
-	$array_test1['entidad'] = 'ACCIONES';	
+	$array_test1['entidad'] = 'accion';	
 	$array_test1['metodo'] = 'add';
-	$array_test1['error'] = 'Añadir duplicado';
+	$array_test1['error'] = 'Error por duplicado';
 	$array_test1['error_esperado'] = '000326';
 	$array_test1['error_obtenido'] = '';
 	$array_test1['resultado'] = '';
@@ -73,7 +73,7 @@ function Edit_Accion_Test(){
 // comprobar success
 //-------------------------------------------------------------------------------
 	
-	$array_test1['entidad'] = 'ACCIONES';	
+	$array_test1['entidad'] = 'accion';	
 	$array_test1['metodo'] = 'edit';
 	$array_test1['error'] = 'Exito';
 	$array_test1['error_esperado'] = '000054';
@@ -100,7 +100,7 @@ function Edit_Accion_Test(){
 // comprobar fallo
 //-------------------------------------------------------------------------------
 	
-	$array_test1['entidad'] = 'ACCIONES';	
+	$array_test1['entidad'] = 'accion';	
 	$array_test1['metodo'] = 'edit';
 	$array_test1['error'] = 'Error por duplicado';
 	$array_test1['error_esperado'] = '000326';
@@ -129,7 +129,93 @@ function Edit_Accion_Test(){
 
 //----Comprobar no hay id---------------------------------------------------------------------------
 	
-	$array_test1['entidad'] = 'ACCIONES';	
+	$array_test1['entidad'] = 'accion';	
+	$array_test1['metodo'] = 'edit';
+	$array_test1['error'] = 'No hay id';
+	$array_test1['error_esperado'] = '000324';
+	$array_test1['error_obtenido'] = '';
+	$array_test1['resultado'] = '';
+	
+	$accion = new Accion('accion7');
+	$array_test1['error_obtenido'] = $accion->EDIT()['code'];
+	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
+	{
+		$array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($Acciones_array_test, $array_test1);
+	$accion->DELETE();
+
+
+
+}
+
+
+function Delete_Accion_Test(){
+
+	global $Acciones_array_test;
+
+// creo array de almacen de test individual
+	$array_test1 = array();
+
+// comprobar success
+//-------------------------------------------------------------------------------
+	
+	$array_test1['entidad'] = 'accion';	
+	$array_test1['metodo'] = 'DELETE';
+	$array_test1['error'] = 'Exito';
+	$array_test1['error_esperado'] = '000323';
+	$array_test1['error_obtenido'] = '';
+	$array_test1['resultado'] = '';
+	
+	$accion = new Accion('accion4');
+	$accion->ADD();
+
+	$array_test1['error_obtenido'] = $accion->DELETE()['code'];
+	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
+	{
+		$array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($Acciones_array_test, $array_test1);
+	
+// comprobar fallo
+//-------------------------------------------------------------------------------
+	
+	$array_test1['entidad'] = 'accion';	
+	$array_test1['metodo'] = 'DELETE';
+	$array_test1['error'] = 'No existe la accion';
+	$array_test1['error_esperado'] = '000324';
+	$array_test1['error_obtenido'] = '';
+	$array_test1['resultado'] = '';
+	
+	
+	$accion=  new Accion('accion5');
+	
+	$array_test1['error_obtenido'] = $accion->DELETE()['code'];
+	if ($array_test1['error_obtenido'] === $array_test1['error_esperado'])
+	{
+		$array_test1['resultado'] = 'OK';
+	}
+	else
+	{
+		$array_test1['resultado'] = 'FALSE';
+	}
+
+	array_push($Acciones_array_test, $array_test1);
+
+
+//----Comprobar no hay id---------------------------------------------------------------------------
+	
+	$array_test1['entidad'] = 'accion';	
 	$array_test1['metodo'] = 'edit';
 	$array_test1['error'] = 'No hay id';
 	$array_test1['error_esperado'] = '000324';
@@ -167,7 +253,7 @@ function getByName_Acciones_test(){
 	$accion = new accion('accion8');
 	$accion->ADD();
 
-	$array_test1['entidad'] = 'Accion';	
+	$array_test1['entidad'] = 'accion';	
 	$array_test1['metodo'] = 'getByName';
 	$array_test1['error'] = 'Exito';
 	$array_test1['error_esperado'] = $accion->id_accion;
@@ -282,3 +368,4 @@ Add_Accion_Test();
 Edit_Accion_Test();
 getById_Acciones_Test();
 getByName_Acciones_test();
+Delete_Accion_Test();

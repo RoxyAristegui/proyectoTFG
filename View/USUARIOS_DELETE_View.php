@@ -63,7 +63,7 @@ class USUARIOS_DELETE{
 				<input type="hidden" name="action" value="DELETE">
 				<button type='submit' name='action' class="btn btn-outline-info delete icon" id="eliminar" value="DELETE"></button>
 			
-				<a href='../Controller/Index_Controller.php' class="icon volver ml-3"> </a>
+				<a href='../Controller/USUARIOS_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>
 	
@@ -71,25 +71,24 @@ class USUARIOS_DELETE{
 	<?php
 		include '../View/Footer.php';
 		include "Solicitar_Confirmacion_Modal.php";
-		?>
-		<script type="text/javascript">
 	
+	?>
+	<script type="text/javascript">
+		function confirmar_eliminar(){
+		    event.preventDefault()
+		    $('#SolicitarConfModal').find("#elem").text('<?php echo $this->tupla['login']?> ?')
 
-	function confirmar_eliminar(){
-		event.preventDefault()
-		$('#SolicitarConfModal').find("#elem").text('<?php echo $this->tupla['login']?> ?')
+		        $('#SolicitarConfModal').find("#msj").attr('class','EstasSeguroEliminarUsuario')
+		       setLang();
+		    $("#SolicitarConfModal").modal("show");
+		    $("#confirmGo").click(function(){
+		      $("form").submit();
+		  
+		    });
 
-	      $('#SolicitarConfModal').find("#msj").attr('class','EstasSeguroEliminarUsuario')
-	  	 setLang();
-		$("#SolicitarConfModal").modal("show");
-		$("#confirmGo").click(function(){
-			$("form").submit();
-	
-		});
-
-	}
-		</script>
-<?php
+		  }
+    </script>
+  <?php 
 
 	} //fin metodo render
 

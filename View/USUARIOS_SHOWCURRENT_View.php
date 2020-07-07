@@ -66,7 +66,7 @@
 				</div>
 			</div>
 				<a type='button' class="btn btn-outline-info edit icon" href='../Controller/USUARIOS_Controller.php?action=EDIT&login=<?php echo $this->tupla['login']?>' value="EDIT"></button>
-				<a href='../Controller/Index_Controller.php' class="icon volver ml-3"> </a>
+				<a href='../Controller/USUARIOS_Controller.php' class="icon volver ml-3"> </a>
 
 	
 	

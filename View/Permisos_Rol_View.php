@@ -103,7 +103,7 @@ class Permisos_Rol_View{
 									
 									}else{ 
 										//este permiso no está definido
-									echo	"<td><span class='icon circle'></span></td>";
+									echo	"<td><span class='icon circle gray'></span></td>";
 									}
 									
 							} ?>

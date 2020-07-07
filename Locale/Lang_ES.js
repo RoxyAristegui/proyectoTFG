@@ -70,6 +70,7 @@ arrayES={
 	LetrasyNumeros : 'Utiliza letras y números',
 	SoloLetras : 'Solo letras',
 	SoloLetrasEspacios : 'Solo letras y espacios',
+	SoloNumeros : 'Solo números',
 	IntroduceLogin : 'Introduce tu nombre de usuario',
 	IntroduceEmail : 'Introduce tu email',
 	IntroduceDni : 'Introduce tu dni',
@@ -92,6 +93,7 @@ arrayES={
 	estasSeguroEliminarRol : 'Estás seguro de que quieres eliminar el rol ',
 	EliminarRol :  ' Eliminar Rol',
 	EditarRoles: 'Editar Roles',
+	AsociarUsuariosRol: 'Asociar usuarios a rol',
 
 	//Acciones
 	Acciones : 'Acciones',
@@ -111,6 +113,13 @@ arrayES={
 	AnadirEntidad: 'Añadir entidad',	
 	LaEntidadEstaAsignadaARol: 'La entidad está asignada a un Rol',
 
+	//proveedores
+	AnhadirDatosEmpresa:'Añadir datos de empresa',
+	nombreEmpresa: 'Nombre de la empresa',
+	PersonaDeContacto: 'Persona de Contacto',
+	TelefonoFijoOPrincipal: 'Teléfono fijo o principal',
+	movil: 'Teléfono movil',
+	EstasSeguroEliminarProveeedor : 'Estás seguro de que deseas eliminar el proveedor ',
 
 
 //codigos de errores
@@ -135,8 +144,12 @@ arrayES={
 	'000075' : 'No existe usuario con ese email',
 	'000076' : 'Ya existe un usuario con ese email',
 	'000077' : 'Ya existe un usuario con ese dni',
+	'000078' : 'No se ha encontrado el usuario',
 
-	//permisos
+	
+
+	
+//permisos
 	'000310' : 'No se ha podido crear el Rol',
 	'000311' : 'El rol se ha creado correctamente',
 	'000312' : 'No se ha podido eliminar el Rol',
@@ -162,7 +175,12 @@ arrayES={
 	'000346' : 'Ya existe una entidad con esos datos',
 	'000344' : 'No se ha encontrado la entidad',
 
+	'000172':'La descripcion solo admite letras y números',
+
+
+
 //errores de validacion 
+	//usuarios
 	'000121':'La longitud del nombre debe ser mayor a 3',
 	'000122':'La longitud del nombre debe ser menor de 30 caracteres',
 	'000123':'El nombre sólo admite letras',
@@ -180,8 +198,34 @@ arrayES={
 	'000161':'Introduce un email valido',
 	'000162':'Introduce un dni válido',
 
-	//acciones
-	'000172':'La descripcion solo admite letras y números'
+	//proveedores 
+	'004101':'El nombre de empresa no puede estar vacío',
+	'004102':'La longitud del nombre de empresa debe ser menor de 100 caracteres',
+	'004103':'El nombre de empresa sólo admite caracteres alfanuméricos',
+	'004111': 'La longitud del CIF debe ser mayor a 8',
+	'004112':'La longitud del CIF debe ser menor de 10 caracteres',
+	'004113':'El CIF solo admite letras y números',
+	'004121':'La dirección de la empresa no puede estar vacío',
+	'004122':'La longitud de la dirección debe ser menor de 100 caracteres',
+	'004123':'La dirección solo admite carácteres alfanumericos',
+	'004131':'La localidad de la empresa no puede estar vacío',
+	'004132':'La longitud de la localidad debe ser menor de 30 caracteres',
+	'004133':'La localidad sólo admite letras',
+	'004141': 'La longitud del CP debe ser mayor a 4',
+	'004142':'La longitud del CP debe ser menor de 6 caracteres',
+	'004143':'El CP solo admite números',
+	'004151':'El email de contacto no puede estar vacío',
+	'004152':'La longitud del email debe ser menor de 100 caracteres',
+	'004153':'intoduce un formato de email válido',
+	'004161':'El telefono de contacto no puede estar vacío',
+	'004162':'El formato del teléfono no es correcto',
+	'004163':'El formato del mobil no es correcto',
+	'004171':'El nombre de la persona de contacto no puede estar vacío',
+	'004172':'La longitud del nombre de la persoa de contacto debe ser menor de 120 caracteres',
+	'004173':'EL nombre de la persona de contacto solo acepta letras y espacios',
+
+	'004071':'Ya está registrada una empresa con ese CIF',
+
 
 
 }

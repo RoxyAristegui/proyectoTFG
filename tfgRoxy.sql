@@ -66,12 +66,21 @@ CREATE TABLE PERMISOS_ROLES(
 `id_accion` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-
+CREATE TABLE PROVEEDORES(
+`CIF` varchar(9) NOT NULL,
+`empresa` varchar(100) NOT NULL,
+`direccion` varchar(100) NOT NULL,
+`localidad` varchar(30) NOT NULL,
+`CP` int(5) NOT NULL,
+`email` varchar(100) NOT NULL,
+`telefono` int(9) NOT NULL,
+`movil` int(9) NULL,
+`pers_contacto` varchar(100) NOT NULL,
+`login_admin` varchar(25) NOT NULL
+)ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Índices para tablas volcadas
---
--- Indices de la tabla `USUARIOS`
 --
 ALTER TABLE `USUARIOS`
   ADD PRIMARY KEY (`login`),
@@ -96,6 +105,10 @@ ALTER TABLE `PERMISOS`
 ALTER TABLE `PERMISOS_ROLES`
   ADD PRIMARY KEY (`id_rol`,`id_entidad`,`id_accion`);
 
+ALTER TABLE `PROVEEDORES`
+  ADD PRIMARY KEY (`CIF`);
+    
+---- PK AI ----
 ALTER TABLE `ROLES`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
 
@@ -104,6 +117,7 @@ ALTER TABLE `ENTIDADES`
 
 ALTER TABLE `ACCIONES`
   MODIFY `id_accion` int(11) NOT NULL AUTO_INCREMENT;
+
 
 
 
@@ -121,6 +135,7 @@ INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (2, 'PERMI
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (3, 'ROLES', 'gestion de roles');
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (4, 'ENTIDADES', 'gestion de ENTIDADES');
 INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (5, 'ACCIONES', 'gestion de acciones');
+INSERT INTO ENTIDADES (`id_entidad`, `entidad`, `descripcion`) VALUES (6, 'PROVEEDORES', 'gestion de proveedores');
 
 
 --- INSERCION DE ACCIONES ---
@@ -164,6 +179,12 @@ INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (5,1);
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (5,3);
 INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (5,5);
 
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (6,1);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (6,2);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (6,3);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (6,4);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (6,5);
+INSERT INTO PERMISOS (`id_entidad`, `id_accion`) VALUES (6,6);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,1);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,2);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,1,3);
@@ -193,4 +214,13 @@ INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,4,5);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,5,1);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,5,3);
 INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,5,5);
+
+
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,6,1);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,6,2);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,6,3);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,6,4);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,6,5);
+INSERT INTO PERMISOS_ROLES (`id_rol`,`id_entidad`, `id_accion`) VALUES (1,6,6);
+
 INSERT INTO USUARIOS (`login`, `password`, `DNI`, `nombre`, `apellidos`, `email`, `id_rol`) VALUES ('admin', 'password', '36165166N', 'admin', 'root', 'admin@uvigo.es', 1);

@@ -47,6 +47,15 @@ function Es_alfanumerico($string){
 		return true;
 }
 }
+//comprueba si un string tiene solo numeros
+//devuelve true si es corrrecto false en caso contrario
+function Es_numerico($string){
+	if (preg_match('/[^0-9]/',$string)){
+		return false;
+	}else{
+		return true;
+	}
+}
 
 //comprueba si un string tiene solo letras numeros y espacios
 //devuelve true si es corrrecto false en caso contrario
@@ -58,7 +67,7 @@ function Es_string_espacios($string){
 	}
 }
 
-function No_Vacio($string){
+function No_vacio($string){
 	if(!preg_match('/[a-zA-Z0-9]+/', $string) || $string==''){
 			return false;
 	}else{

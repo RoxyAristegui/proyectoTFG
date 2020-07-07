@@ -1,10 +1,6 @@
 <?php
 
-//Clase : USUARIOS_Modelo
-//Creado el : 22-09-2017
-//Creado por: jrodeiro
-// modificado en 6/11/2019 para incluir clase abstracta de modelo
-//-------------------------------------------------------
+
 include_once 'Abstract_Model_Class.php';
 include_once 'Validar_Model.php';
 include_once "Rol_Model.php";
@@ -582,10 +578,18 @@ function register(){
 }
 
  function setRol($id_rol){
+ 	$comprobar_user=$this->getById();
+ 	if(isset($comprobar_user['code'])){
+			$this->ok=false;
+			$this->resource='EDIT';
+			$this->code  = '000078'; //no se ha encontrado al usuario
+			$this->construct_response();
+ 	}else{
  	$this->query="
  		UPDATE USUARIOS SET id_rol='$id_rol'
  		 WHERE login='$this->login'";
- 		 	$this->execute_single_query();
+
+	 	$this->execute_single_query();
 
 		if ($this->feedback['code']==='00001')
 		{
@@ -601,8 +605,9 @@ function register(){
 			$this->construct_response();
 		}
 
-		return $this->feedback;
- }
+		
+ }return $this->feedback;
+}
 
 }//fin de clase
 

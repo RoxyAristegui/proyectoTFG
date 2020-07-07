@@ -54,9 +54,7 @@ font-family: "Font Awesome 5 Free";
   font-weight: 900;
   content:"\f058";
 }
-.check:hover{
-  color:#36b9cc;
-}
+
 .circle::before{
     font-family: "Font Awesome 5 Free";
   font-weight: 900;
@@ -80,6 +78,11 @@ font-family: "Font Awesome 5 Free";
   content:"\f14a";
 }
 
+.mas::before{
+      font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content:"\f067";
+}
 .red{
   color:red !important;
 }
@@ -113,6 +116,9 @@ padding:0.5em;
   color:red;
 }
 
+th{
+  text-transform: capitalize;
+}
 .Select{
   background: red;
 }

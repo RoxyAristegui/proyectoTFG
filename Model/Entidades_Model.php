@@ -164,6 +164,9 @@ if($this->Validar_atributos()!==true){
 			$this->query="DELETE from PERMISOS_ROLES where id_entidad=".$this->id_entidad;
 			$this->execute_single_query();
 
+			$this->ok=false;;
+			$this->code='000343';
+		 	$this->construct_response();
 			return $this->feedback;
 		}else{
 		 $this->ok=false;;

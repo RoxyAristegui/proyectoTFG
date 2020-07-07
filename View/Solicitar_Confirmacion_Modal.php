@@ -22,7 +22,7 @@ data-destino : url a la que se le pide confirmación
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary Cancelar" data-dismiss="modal" >Cancelar</button>
-        <a id='confirmGo' type="button" class="btn btn-primary Confirmar">Confirmar</a>
+        <a id='confirmGo' type="button" class="btn btn-primary Confirmar" href="">Confirmar</a>
       </div>
     </div>
   </div>

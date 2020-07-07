@@ -54,7 +54,7 @@ class Acciones_View{
 							echo "<td>".$entidad['descripcion']."</td>";
 							$msjConfModal="SeguroEliminarEntidad";
 
-							echo "<td><button type='button' data-toggle='modal' data-target='#SolicitarConfModal' class='icon delete btn-default btn' data-elem='".$entidad['entidad']."' data-destino='../Controller/ENTIDADES_Controller.php?action=DELETE&id=".$entidad['id_entidad']."'  data-msj='SeguroEliminarAccion' data-title='".$entidad['asignada']."'></button></td>";
+							echo "<td><button type='button' data-toggle='modal' data-target='#SolicitarConfModal' class='icon delete btn-default btn' data-elem='".$entidad['entidad']."' data-destino='../Controller/ENTIDADES_Controller.php?action=DELETE&id=".$entidad['id_entidad']."'  data-msj='SeguroEliminarEntidad' data-title='".$entidad['asignada']."'></button></td>";
 							echo "<tr>";
 						
 						}	?>
