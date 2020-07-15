@@ -33,6 +33,8 @@ else{
 		//si se ha hecho login correcto, se vuelve a la vista prncipal
 		session_start();
 		$_SESSION['login'] = $_REQUEST['login'];
+		$user= new USUARIOS_Model($_SESSION['login'],'','','','','');
+		$_SESSION['rol']=$user->getRol();
 		header('Location:index_Controller.php');
 	}
 	else{

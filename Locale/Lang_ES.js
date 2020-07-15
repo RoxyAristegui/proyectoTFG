@@ -121,6 +121,10 @@ arrayES={
 	movil: 'Teléfono movil',
 	EstasSeguroEliminarProveeedor : 'Estás seguro de que deseas eliminar el proveedor ',
 
+	//obras
+	AñadirObra: 'Añadir obra',
+	intoduceElCodigoDeLaObra: 'Introduce el codigo de la obra',
+
 
 //codigos de errores
 	'00001' : 'Inserción realizada con éxito',
@@ -225,6 +229,23 @@ arrayES={
 	'004173':'EL nombre de la persona de contacto solo acepta letras y espacios',
 
 	'004071':'Ya está registrada una empresa con ese CIF',
+	'004072': 'No existe una empresa con ese CIF',
+	'004080': 'Introduzca los datos de su empresa',
+
+	//obras
+	'005101':'El nombre de la obra no puede estar vacío',
+	'005103':'El nombre de la obra sólo admite caracteres alfanuméricos',
+	'005111': 'El codigo de la obra no puede estar vacío',
+	'005112':'La longitud del codigo de obra debe ser menor de 11 caracteres',
+	'005113':'El CIF solo admite números',
+	'005122':'La longitud de la situacion de la obra debe ser menor de 2 caracteres',
+	'005123':'La situacion de la obra solo admite números',
+	'005132':'La longitud del coste de obra debe ser menor de 11 caracteres',
+	'005133':'El coste sólo admite números',
+	'005142':'La longitud del solicitante debe ser menor de 120 caracteres',
+	'005143':'El nombre del solicitante solo admite caracteres alfanuméricos con espacios',
+	
+	'005072': 'No existe una empresa con ese codigo',
 
 
 

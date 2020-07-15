@@ -19,8 +19,7 @@ function __construct($login=''){
 	$this->login=$login;
 	$this->Autenticado();
 	
-	$rol= new Rol('');
-	$this->rol=$rol->getRolUsuario($this->login);
+	$this->rol=$_SESSION['rol'];
 	
 	$permiso= new Permisos_Rol($this->rol);
 	$this->permisos=$permiso->getById();

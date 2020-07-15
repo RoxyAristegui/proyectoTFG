@@ -3,7 +3,6 @@
 	include_once '../Functions/ControlarAcceso.php';
 
 
-	//include_once '../Model/Acciones_Model.php';
 	include_once '../View/Acciones_View.php';
 
 

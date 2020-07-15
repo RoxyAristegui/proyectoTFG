@@ -609,5 +609,32 @@ function register(){
  }return $this->feedback;
 }
 
+ function getRol(){
+ 		$this->query="select id_rol from USUARIOS where login='".$this->login."'";
+		$this->get_one_result_from_query();
+
+		if($this->feedback['ok']===false || $this->feedback['code']=='00007'){
+			$this->ok=false;
+			$this->code="000314";
+			$this->construct_response();
+			return $this->feedback;
+		}
+	
+		$this->id_rol=$this->rows['id_rol'];
+		return $this->rows['id_rol'];
+ }
+
+
+function proveedor_creo_empresa(){
+	$this->query="SELECT * from proveedores where login_admin='".$this->login."'";
+	$this->get_one_result_from_query();
+	if($this->feedback['code']=='00008'){
+		return true;
+	}else{
+		//viene sin datos, no se creo al proveedor;
+		return false;
+	}
+}
+
 }//fin de clase
 

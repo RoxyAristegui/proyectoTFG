@@ -344,6 +344,11 @@ function ADD(){
 
 	if($this->Validar_atributos()===true && $this->CIF_unico()===true){
 
+		if(isset($_SESSION['login'])){
+			$admin_prov=$_SESSION['login'];
+		}else{
+			$admin_prov='admin';
+		}
 
 		$this->query = "INSERT INTO PROVEEDORES (
 			CIF,
@@ -366,7 +371,7 @@ function ADD(){
  			'".$this->telefono."',
  			'".$this->movil."',
  			'".$this->pers_contacto."',
- 			'".$_SESSION['login']."'
+ 			'".$admin_prov."'
 	)";
 	$this->execute_single_query();
 			
@@ -472,7 +477,7 @@ function getById(){
 	
 	if ($this->feedback['code'] == '00007')
 	{
-			$this->code= "000072"; //error de ejecucion de la sql, noe xiste usuario con ese login
+			$this->code= "004072"; //error de ejecucion de la sql, no existe proveedor con ese cif
 			$this->ok="false";
 			$this->construct_response();
 			return $this->feedback;
@@ -480,6 +485,27 @@ function getById(){
 
 	return $this->rows;
 }
+
+function getByAdmin($login_admin){
+	   $this->query = "SELECT *
+			FROM PROVEEDORES
+			WHERE 
+				login_admin = '".$login_admin."'
+			";
+
+	$this->get_one_result_from_query();
+	
+	if ($this->feedback['code'] == '00007')
+	{
+			$this->code= "004080"; //error de ejecucion de la sql, noe xiste usuario con ese login
+			$this->ok="false";
+			$this->construct_response();
+			return $this->feedback;
+	}
+
+	return $this->rows;
+}
+
 
 
 }
