@@ -17,6 +17,7 @@ if (!isset($_REQUEST['action'])){
     $_REQUEST['action'] = '';
 }
 
+
 //comprobamos si ya se ha completado la actuacion y ya nos e puede añadir trabajadores.
 $comentarios=new Comentarios_Model('',$_REQUEST['codigo_obra'],$_REQUEST['id_acto'],'','','');
 $comentarios_existen=$comentarios->SEARCH();

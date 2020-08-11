@@ -279,6 +279,7 @@ INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (5, 'SHOWALL', 'Mos
 INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (6, 'SHOWCURRENT', 'Mostrar elemento actual');
 INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (7, 'ACEPT', 'Aceptar una acutacion');
 INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (8, 'ADDcoment', 'Añadir un comentario');
+INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (9, 'CLOSE', 'Finalizar una actuación');
 
 
 -- INSERCIÓN DE PERMISOS --
@@ -335,6 +336,7 @@ INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,5);
 INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,6);
 INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,7);
 INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,8);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,9);
 
 INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,1);
 INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,2);
@@ -395,6 +397,7 @@ INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,5);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,6);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,7);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,8);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,9);
 
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,1);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,2);
@@ -415,6 +418,46 @@ INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,6,6);
 
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,7,5);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,7,6);
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,8,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,8,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,8,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,8,6);	
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,9,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,9,3);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,9,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,9,6);
+
+--permisos de responsable--
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,1,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,1,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,1,3);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,1,4);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,1,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,1,6);
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,6,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,6,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,6,3);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,6,4);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,6,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,6,6);
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,7,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,7,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,7,3);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,7,4);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,7,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,7,6);
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,8,4);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,8,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,8,6);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,8,7);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,8,8);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (3,8,9);
 
 INSERT INTO USUARIOS (login, password, DNI, nombre, apellidos, email, id_rol) VALUES ('admin', 'password', '36165166N', 'admin', 'root', 'admin@uvigo.es', 1);
 
