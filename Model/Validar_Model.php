@@ -93,4 +93,13 @@ function Formato_dni($dni){
 		return false;
 	}
 }
+function Formato_fecha($fecha){
+	if(!preg_match('/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/', $fecha)){
+			return false;
+	}else{
+		return true;
+	}
+}
+
+
 }

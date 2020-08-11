@@ -16,6 +16,7 @@ class Index {
 	<div class="row">
 		<h2 class="display-4 mx-auto"><?php echo $_SESSION['login'] ?></h2>
 		</div>
+
 <?php
 		include '../View/Footer.php';
 	}

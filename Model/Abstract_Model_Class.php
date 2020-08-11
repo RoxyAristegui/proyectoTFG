@@ -18,11 +18,11 @@ abstract class Abstract_Model{
 	public $code = '00000';
 	public $resource = '';
 	public $feedback = array();
+	public $insert_id;
 	
 # métodos abstractos para ABM de clases que hereden
 
-	//abstract protected function get();
-	//abstract protected function set();
+
 	abstract protected function EDIT();
 	abstract protected function DELETE();
 	abstract protected function ADD();
@@ -68,8 +68,8 @@ abstract class Abstract_Model{
 			//echo 'single query : '.$this->query.'<br>';
 			$this->open_connection();
 			if ($this->conn->query($this->query)){
+          		$this->insert_id= $this->conn->insert_id;
 				$this->close_connection();
-			//	$this->save_log();
 				$this->ok = true;
 				$this->code  = '00001'; //sql ejecutada con exito
 				$this->construct_response();

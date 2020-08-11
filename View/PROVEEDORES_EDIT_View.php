@@ -14,7 +14,7 @@
 		?>
 
 			<div class="container">
-		<h1 class="EditarDatosEmpresa">Editar datos de empresa</h1>	
+		<h1 class="EditarProveedor">Editar datos de empresa</h1>
 
 		<form name = 'Form' action='../Controller/PROVEEDORES_Controller.php' method='post'>
 			<div class="form-group row">
@@ -59,7 +59,7 @@
 					<label for='telefono' class="col-lg-2 col-form-label col-sm-2">Telefono</label>
 				 	<div class="col-lg-8 float-right col-sm-10">
 
-						<input type = 'text' name = 'telefono' id = 'telefono' class="form-control" placeholder="TelefonoFijoOPrincipal" minlength="9" maxlength="9" pattern="^[0-9]{9,9}" value="<?php echo $this->tupla['telefono'];?>"  required>
+						<input type = 'text' name = 'telefono' id = 'telefono' class="form-control" placeholder="TelefonoFijoOPrincipal" minlength="9" maxlength="9"  pattern="^[0-9]{9,9}" value="<?php echo $this->tupla['telefono'];?>"  required>
 					</div>
 				</div>
 			
@@ -67,7 +67,7 @@
 					<label for='mobil' class="col-lg-2 col-form-label col-sm-2">Movil</label>
 				 	<div class="col-lg-10 p-lg-0 col-sm-10">
 
-						<input type = 'text' name = 'movil' id = 'movil' class="form-control" placeholder="movil" minlength="9" maxlength="9" pattern="^[0-9]{9,9}" value="<?php echo $this->tupla['movil'];?>"  >
+						<input type = 'text' name = 'movil' id = 'movil' class="form-control" placeholder="movil" maxlength="9" value="<?php echo $this->tupla['movil'];?>"  >
 					</div>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 				
 				</div>
 			</div>
-				<button type='submit' name='action' class="btn btn-outline-info check icon" value="EDIT" id="confirm"></button>
+				<button type='submit' name='action' class="btn btn-info check icon" value="EDIT" id="confirm"></button>
 				<a href='../Controller/PROVEEDORES_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>

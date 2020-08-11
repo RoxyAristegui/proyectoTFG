@@ -21,7 +21,7 @@
               <h6 class="m-0 font-weight-bold text-info"> 
               	<div class="clearfix">
               		<div class="float-left">
-					  <a href='../Controller/USUARIOS_Controller.php?action=ADD' class='Añadir ADDUser icon'> Añadir</a>
+					  <a href='../Controller/USUARIOS_Controller.php?action=ADD' class='Anhadir ADDUser icon'> Añadir</a>
 					</div>
 					<div class="float-right">
 						<a href="../Controller/USUARIOS_Controller.php?action=SEARCH" class="BusquedaAvanzada lupa icon"> Búsqueda avanzada</a>
@@ -37,7 +37,7 @@
 					<?php   foreach ($this->lista as $titulo) { ?> 
 						<th><?php echo $titulo; ?></th>
 					<?php 	} ?>
-						<th>Editar</th>
+						<th>Ver</th>
 						<th>Borrar</th>
 					</tr> 
 				  </thead>
@@ -46,7 +46,7 @@
 					<?php   foreach ($this->lista as $titulo) { ?> 
 						<th><?php echo $titulo; ?></th>
 					<?php 	} ?>
-						<th>Editar</th>
+						<th>Ver</th>
 						<th>Borrar</th>
 					</tr>
 				  </tfoot>
@@ -65,8 +65,8 @@
 							<?php	} ?>
 						<td>
 						<a href='
-							../Controller/USUARIOS_Controller.php?action=EDIT&login=
-								<?php echo $fila['login']; ?>'> <i class="fas fa-edit"></i> </a>
+							../Controller/USUARIOS_Controller.php?action=SHOWCURRENT&login=
+								<?php echo $fila['login']; ?>'> <i class="fas fa-eye"></i> </a>
 						</td>
 						<td>
 							<a href='
@@ -92,7 +92,7 @@
 			include '../View/Footer.php';
 		} //fin metodo render
 
-	} //fin REGISTER
+	}
 
 ?>
 

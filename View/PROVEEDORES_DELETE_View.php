@@ -14,7 +14,7 @@
 		?>
 
 			<div class="container">
-		<h1 class="EliminarDatosEmpresa">Eliminar datos de empresa</h1>	
+		<h1 class="EliminarProveedor">Eliminar datos de empresa</h1>
 
 		<form name = 'Form' action='../Controller/PROVEEDORES_Controller.php' method='post' onsubmit="confirmar_eliminar()">
 			<div class="form-group row">
@@ -89,7 +89,7 @@
 				</div>
 			</div>
 				<input type="hidden" name="action" value="DELETE">
-				<button type='submit' name='action' class="btn btn-outline-info delete icon" id="eliminar" value="DELETE"></button>
+				<button type='submit' name='action' class="btn btn-info delete icon" id="eliminar" value="DELETE"></button>
 				<a href='../Controller/PROVEEDORES_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>

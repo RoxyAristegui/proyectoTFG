@@ -1,7 +1,7 @@
 
 arrayES={
 	//header 
-	NomProyect:'INCID',
+
 	Idioma : 'Idioma',
 	LogIn:'Log in',
 	SeleccionaIdioma :'Selecciona un idioma',
@@ -18,7 +18,7 @@ arrayES={
 
 	//menu LAteral
 	Inicio : 'Inicio',
-	GestionUsuarios : 'Gestión de Usuarios',
+	Usuarios : 'Usuarios',
 	GestionPermisos : 'Gestión de Rermisos',
 	GestionRoles : 'Gestión de Roles',
 	GestionEntidades:'Gestión de Entidades',
@@ -27,7 +27,8 @@ arrayES={
 	CambiarPermisosRol:'Cambiar permisos de rol',
 	AsignarUsuariosARol:'Asignar usuarios a Rol',
 	ListarUsuarios:'Listar usuarios',
-	Componentes:'Componentes',	
+	Componentes:'Componentes',
+	GestionInterna:'Gestión interna',
 
 
 	//generales
@@ -35,6 +36,7 @@ arrayES={
 	AccesoRestringido : 'ACCESO RESTRINGIDO',
 	BusquedaAvanzada : 'Búsqueda avanzada',
 	Bienvenido:'Bienvenido',
+	SistemaDePeticionDeInfraestructurasDelCampusDeOurense:'Sistema de petición de infraestructuras del campus de ourense',
 
 
 
@@ -56,10 +58,10 @@ arrayES={
 	NuevoUsuario : 'Nuevo usuario',
 	Editar : 'Editar',
 	Borrar : 'Borrar',
-	Añadir : 'Añadir',
+	Anhadir : 'Añadir',
 	Buscar : 'Buscar',
 	MostrarTodos : 'Todos los usuarios',
-	AñadirUsuario : 'Añadir usuario',
+	AnhadirUsuario : 'Añadir usuario',
 	EditarUsuario : 'Editar usuario',
 	BorrarUsuario : 'Borrar usuario',
 	BuscarUsuario : 'Buscar usuario',
@@ -75,6 +77,9 @@ arrayES={
 	IntroduceEmail : 'Introduce tu email',
 	IntroduceDni : 'Introduce tu dni',
 	DebeSerEmailValido : 'Introduce un email válido',
+	Descripcion:'Descripcion',
+
+
 
 
 
@@ -114,17 +119,65 @@ arrayES={
 	LaEntidadEstaAsignadaARol: 'La entidad está asignada a un Rol',
 
 	//proveedores
+	Proveedores: 'Proveedores',
+	EditarProveedor: 'Editar datos de empresa ',
 	AnhadirDatosEmpresa:'Añadir datos de empresa',
+	BuscarProveedor:'Buscar proveedor',
+	EliminarProveedor: ' Eliminar Proveedor',
+	empresa:'Empresa',
+	dirección:' dirección',
 	nombreEmpresa: 'Nombre de la empresa',
 	PersonaDeContacto: 'Persona de Contacto',
+	contacto:'Contacto',
+	CP:'CP',
 	TelefonoFijoOPrincipal: 'Teléfono fijo o principal',
-	movil: 'Teléfono movil',
+	TelefonoMovil: 'Teléfono movil',
+	Movil:'Movil',
 	EstasSeguroEliminarProveeedor : 'Estás seguro de que deseas eliminar el proveedor ',
 
 	//obras
-	AñadirObra: 'Añadir obra',
+	Obras: 'Obras',
+	AnhadirObra: 'Añadir obra',
+	VerObra: 'Ver obra',
+	EliminarObra: 'Eliminar obra',
+	EditarObra: ' Editar obra',
 	intoduceElCodigoDeLaObra: 'Introduce el codigo de la obra',
+	fecha_creacion:'Fecha creación',
+	fecha_final: 'fecha finalizacion',
+	codigo_obra:'Código obra',
+	situacion: 'Situación',
+	solicitante: 'Solicitante',
+	area:'area',
+	coste:'coste',
+	proveedor:'proveedor',
 
+
+
+	//Actuaciones
+	Actuaciones:'Actuaciones',
+	fecha_actuacion:'fecha actuación',
+	descripcion:'Descripción',
+	aceptado:'Aceptado',
+	pendiente:'Pendiente',
+	cerrado:'cerrado',
+	id_acto:'id',
+	BuscarActuacion:'Buscar actuacion',
+	AnhadirActuacion:'Añadir Actuación',
+	EliminrActuacion:'Eliminar Actuación',
+	EditarActuacion:'Editar Actuación',
+	MostrarActuacion:'Mostrar Actuación',
+	FinalizarActuacion: 'Finalizar actuación',
+	ActuacionFinalizada:'Actuación finalizada',
+
+	trabajadores:'Trabajadores',
+	AnhadirTrabajador: 'Añadir Trabajador',
+	nombreCompleto:'Nombre completo',
+	HemosEncontradoEsteTrabajador:'Hemos encontrado un trabajador guardado con este dni, es este el trabajador?',
+	EsteDniYaEstaRegistrado: 'Este DNI ya se encuentra regitrado',
+
+	comentario:'Comentario',
+	imagen:'Imagen',
+	AnhadirComentario:'Añadir comentario',
 
 //codigos de errores
 	'00001' : 'Inserción realizada con éxito',
@@ -140,7 +193,8 @@ arrayES={
 	'000053' : 'Registro realizado con éxito',
 	'000054' : 'Modificación realizada con éxito',
 	'000055' : 'Borrado realizado con éxito',
-	'000056' : 'No se han encontrado datos con ese criterio',
+	'000056' : 'No se han encontrado datos',
+	'000057' : 'No se ha encontrado el objeto',
 
 	'000071' :'Ya existe un usuario con ese Login',
 	'000072' : 'No existe usuario con ese nombre',
@@ -230,6 +284,7 @@ arrayES={
 
 	'004071':'Ya está registrada una empresa con ese CIF',
 	'004072': 'No existe una empresa con ese CIF',
+	'004073': 'No se puede eliminar, el proveedor tiene asignadas obras',
 	'004080': 'Introduzca los datos de su empresa',
 
 	//obras
@@ -244,8 +299,33 @@ arrayES={
 	'005133':'El coste sólo admite números',
 	'005142':'La longitud del solicitante debe ser menor de 120 caracteres',
 	'005143':'El nombre del solicitante solo admite caracteres alfanuméricos con espacios',
+	'005153':'El codigo de area solo admite caracteres afanumericos',
+	'005152':'La longitud del código de area debe ser menor a 11 caracteres',
+	'005151':'El area no puede estar vacía',
+	'005163': 'Introduce una fecha de creación válida',
+	'005164': 'Introduce una fecha de finalización válida',
 	
-	'005072': 'No existe una empresa con ese codigo',
+	'005072': 'No existe una obra con ese codigo',
+	'005073': 'No se ha encontrado ningun area',
+	'005074': 'No se puede eliminar, hay actuaciones creadas para estas obras',
+	'005075': 'Introduce una fecha válida',
+	'005076': 'No se puede cambiar la fecha, ya se ha aceptado',
+
+	'005376':'No se puede editar la actuacion, ya se ha aceptado',
+	'005377': 'Debe aceptar la actuación primero para poder finalizarla',
+
+	//trabajadores
+
+	'006056' :'No se ha encontrado el trabajador',
+	'006071' :'Ya existe un trabajador registrado con ese nombre',
+	'006073' : 'Aun no se han añadido trabajdores',
+	'006074' : 'No se ha podido añadir el trabajador',
+	'006075' : 'No se pueden modificar los trabajadores, ya está completada la actuación',
+	//imagenes
+    '006001' :'Imagen subida con éxito',
+    '006002' : 'Hubo un problema al subir la imágen',
+    '006003' : 'No se aceptan imagenes con esa extensión, por favor seleccione otra',
+   '006004' : 'Ha habido algun problema, la imágen no se ha subido',
 
 
 

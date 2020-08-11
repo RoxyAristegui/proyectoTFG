@@ -1,5 +1,5 @@
--- jrodeiro - 7/10/2017
--- script de creación de la bd, usuario, asignación de privilegios a ese usuario sobre la bd
+
+-- script de creación de la bd, usuario y asignación de privilegios a ese usuario sobre la bd
 -- creación de tabla e insert sobre la misma.
 --
 -- CREAR LA BD BORRANDOLA SI YA EXISTIESE
@@ -36,6 +36,9 @@ CREATE TABLE USUARIOS (
   id_rol int(3) NOT NULL DEFAULT 4
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Estructura de tabla para la tabla ROLES
+--
 
 CREATE TABLE ROLES (
 id_rol int(11) NOT NULL,
@@ -43,11 +46,19 @@ rol varchar(15) NOT NULL,
 descripcion varchar(50) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Estructura de tabla para la tabla ENTIDADES
+--
+
 CREATE TABLE ENTIDADES (
 id_entidad int(11) NOT NULL,
 entidad varchar(15) NOT NULL,
 descripcion varchar(50) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Estructura de tabla para la tabla ACCIONES
+--
 
 CREATE TABLE ACCIONES(
 id_accion int(11) NOT NULL,
@@ -55,16 +66,28 @@ accion varchar(20) NOT NULL,
 descripcion varchar(50) NULL
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Estructura de tabla para la tabla PERMISOS
+--
+
 CREATE TABLE PERMISOS(
 id_entidad int(11) NOT NULL,
 id_accion int(11) NOT NULL
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Estructura de tabla para la tabla PERMISOS_ROLES
+--
 
 CREATE TABLE PERMISOS_ROLES(
 id_rol int(11) NOT NULL,
 id_entidad int(11) NOT NULL,
 id_accion int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Estructura de tabla para la tabla PROVEEDORES
+--
 
 CREATE TABLE PROVEEDORES(
 CIF varchar(9) NOT NULL,
@@ -79,23 +102,79 @@ pers_contacto varchar(100) NOT NULL,
 login_admin varchar(25) NOT NULL
 )ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Estructura de tabla para la tabla OBRAS
+--
+
 CREATE TABLE OBRAS (
  codigo_obra int(11) NOT NULL,
  nombre TEXT NOT NULL,
- fecha_creacion timestamp NOT NULL,
- fecha_final timestamp NULL
- CIF varchar(9) NOT NULL,
- codigo_area varchar(10) NOT NULL,
+ fecha_creacion DATE NOT NULL,
+ fecha_final DATE NULL,
+ CIF varchar(9) NULL,
+ codigo_area varchar(11) NOT NULL,
  situacion int(2) NULL,
- coste int(11) NOT NULL,
- solicitante varchar(120) NOT NULL
+ coste int(11) NULL,
+ solicitante varchar(120) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;	
 
+--
+-- Estructura de tabla para la tabla AREAS
+--
+
 CREATE TABLE AREAS (
-codigo_area int(11) NOT NULL,
+codigo_area varchar(11) NOT NULL,
 nombre varchar(250) NOT NULL,
-responsable varchar(25) 
+responsable varchar(25) NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;	
+
+--
+-- Estructura de tabla para la tabla ACTUACIONES
+--
+
+CREATE TABLE ACTUACIONES(
+ codigo_obra int(11) NOT NULL,
+ id_acto int(11) NOT NULL,
+ descripcion text NOT NULL,
+ fecha_actuacion DATE NOT NULL,
+ aceptado tinyint(1) DEFAULT 0,
+ cerrado tinyint(1) DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;	
+
+--
+-- Estructura de tabla para la tabla TRABAJADORES
+--
+
+CREATE TABLE TRABAJADORES(
+ DNI varchar(9) NOT NULL,
+ nombre_completo varchar(80) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Estructura de tabla para la tabla ACTUACIONES_TRABAJADORES
+--
+
+CREATE TABLE ACTUACIONES_TRABAJADORES(
+  DNI varchar(9) NOT NULL,
+ codigo_obra int(11) NOT NULL,
+ id_acto int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;	
+	
+--
+-- Estructura de tabla para la tabla ACTUACIONES_COMENTARIOS
+--
+
+
+CREATE TABLE ACTUACIONES_COMENTARIOS(
+ codigo_obra int(11) NOT NULL,
+ id_acto int(11) NOT NULL,
+ id_coment int(11) NOT NULL,
+ login varchar(15) NOT NULL,
+ fotos varchar(250) NOT NULL,
+ descripcion text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;	
+
+
 
 --
 -- Índices para tablas volcadas
@@ -131,7 +210,20 @@ ALTER TABLE OBRAS
   
 ALTER TABLE AREAS
  ADD PRIMARY KEY (codigo_area);
+ 
+ALTER TABLE ACTUACIONES
+ ADD PRIMARY KEY (codigo_obra,id_acto);
+	  
+ALTER TABLE TRABAJADORES
+ ADD PRIMARY KEY (DNI);
+  
+ALTER TABLE ACTUACIONES_TRABAJADORES
+ ADD PRIMARY KEY (DNI,codigo_obra,id_acto);
+ 
+ALTER TABLE ACTUACIONES_COMENTARIOS
+ ADD PRIMARY KEY (codigo_obra,id_acto,id_coment);
     
+	
 -- PK AI --
 
 ALTER TABLE ROLES
@@ -142,6 +234,16 @@ ALTER TABLE ENTIDADES
 
 ALTER TABLE ACCIONES
  MODIFY id_accion int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE ACTUACIONES
+ MODIFY id_acto int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE ACTUACIONES_COMENTARIOS
+ MODIFY id_coment smallint(4) NOT NULL AUTO_INCREMENT;
+
+
+
+
 
 
 
@@ -164,8 +266,9 @@ INSERT INTO ENTIDADES (id_entidad, entidad, descripcion) VALUES (3, 'ROLES', 'ge
 INSERT INTO ENTIDADES (id_entidad, entidad, descripcion) VALUES (4, 'ENTIDADES', 'gestion de ENTIDADES');
 INSERT INTO ENTIDADES (id_entidad, entidad, descripcion) VALUES (5, 'ACCIONES', 'gestion de acciones');
 INSERT INTO ENTIDADES (id_entidad, entidad, descripcion) VALUES (6, 'PROVEEDORES', 'gestion de proveedores');
-
-
+INSERT INTO ENTIDADES (id_entidad, entidad, descripcion) VALUES (7, 'OBRAS', 'gestion de obras');
+INSERT INTO ENTIDADES (id_entidad, entidad, descripcion) VALUES (8, 'ACTUACIONES', 'gestion de actuciones');
+INSERT INTO ENTIDADES (id_entidad, entidad, descripcion) VALUES (9, 'TRABAJADORES', 'gestion de trabajadores');
 -- INSERCION DE ACCIONES --
 
 INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (1, 'ADD', 'funcion de añadir');
@@ -174,6 +277,9 @@ INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (3, 'DELETE', 'func
 INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (4, 'SEARCH', 'funcion de buscar');
 INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (5, 'SHOWALL', 'Mostrar todos lso elementos e la entidad');
 INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (6, 'SHOWCURRENT', 'Mostrar elemento actual');
+INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (7, 'ACEPT', 'Aceptar una acutacion');
+INSERT INTO ACCIONES (id_accion, accion, descripcion) VALUES (8, 'ADDcoment', 'Añadir un comentario');
+
 
 -- INSERCIÓN DE PERMISOS --
 
@@ -214,6 +320,29 @@ INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (6,4);
 INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (6,5);
 INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (6,6);
 
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (7,1);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (7,2);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (7,3);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (7,4);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (7,5);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (7,6);
+
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,1);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,2);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,3);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,4);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,5);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,6);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,7);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (8,8);
+
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,1);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,2);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,3);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,4);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,5);
+INSERT INTO PERMISOS (id_entidad, id_accion) VALUES (9,6);
+
 --Permisos de admin--
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,1,1);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,1,2);
@@ -251,6 +380,29 @@ INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,6,4);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,6,5);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,6,6);
 
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,7,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,7,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,7,3);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,7,4);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,7,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,7,6);
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,3);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,4);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,6);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,7);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,8,8);
+
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,1);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,3);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,4);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (1,9,6);
+
 -- permisos de usuario --
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (2,1,5);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (2,1,6);
@@ -258,6 +410,14 @@ INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (2,1,6);
 -- permisos de proveedor--
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,6,1);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,6,2);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,6,5);
 INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,6,6);
 
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,7,5);
+INSERT INTO PERMISOS_ROLES (id_rol,id_entidad, id_accion) VALUES (4,7,6);
+
 INSERT INTO USUARIOS (login, password, DNI, nombre, apellidos, email, id_rol) VALUES ('admin', 'password', '36165166N', 'admin', 'root', 'admin@uvigo.es', 1);
+
+INSERT INTO AREAS (codigo_area,nombre,responsable) values ('OSCI','UN SITIO','PERICO');
+
+INSERT INTO AREAS (codigo_area,nombre,responsable) values ('OSpu','otro SITIO','palotes');

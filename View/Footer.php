@@ -1,13 +1,19 @@
 
 </div>
         <!-- /.container-fluid -->
+
+
+
+
 </div>
-  <!-- End of Main Content -->
 
-<footer>
-	Hoy es <?php echo date("d-M-Y", time()); ?>
+<footer class="footer bg-light">
+    <div class="container-fluid text-muted bg-white">
+
+         <span> <img src="../Locale/img/Logotipo_Universidade_de_Vigo.png" class="img-footer-uvigo" > </span> - <span class="SistemaDePeticionDeInfraestructurasDelCampusDeOurense"> </span>
+    </div>
 </footer>
-
+  <!-- End of Main Content -->
     </div>
     <!-- End of Content Wrapper -->
 

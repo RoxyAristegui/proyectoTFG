@@ -14,7 +14,7 @@
 		?>
 
 			<div class="container">
-		<h1 class="AñadirUsuario">Añadir usuario</h1>	
+		<h1 class="AnhadirUsuario">Añadir usuario</h1>
 
 		<form name = 'Form' action='../Controller/USUARIOS_Controller.php' method='post' onsubmit="confirmar()">
 			<div class="form-group row">
@@ -80,7 +80,7 @@
 					
 				</div>
 			</div>
-				<button type='submit' name='action' class="btn btn-outline-info addUser icon" value="ADD" id="confirm"></button>
+				<button type='submit' name='action' class="btn btn-info addUser icon" value="ADD" id="confirm"></button>
 				<a href='../Controller/USUARIOS_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>

@@ -57,6 +57,7 @@
 				break;	
 
 			case 'EDIT':
+			    //editar los roles de los usuarios.
 
 				if(isset($_REQUEST['loginlist'])){
 					$ids=$_REQUEST['loginlist'];
@@ -67,7 +68,7 @@
 						$usuario= new USUARIOS_Model($login,'','','','','');
 						$rtn=$usuario->setRol($rol);
 						if($rtn['ok']==false){
-							new MESSAGE($rsp,"ROLES_Controller.php");
+							new MESSAGE($rtn,"ROLES_Controller.php");
 							die();
 						}
 					}

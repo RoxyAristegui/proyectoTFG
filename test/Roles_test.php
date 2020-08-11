@@ -219,7 +219,7 @@ function Search_Rol_Test(){
 
 
 
-
+/*
 function getRolUsuario_Rol_Test(){
 
 	global $Roles_array_test;
@@ -283,7 +283,7 @@ function getRolUsuario_Rol_Test(){
 
 
 }
-
+*/
 
 function getByName_Roles_test(){
 		global $Roles_array_test;
@@ -567,7 +567,6 @@ Add_rol_Test();
 Edit_rol_Test();
 getById_Roles_Test();
 getByName_Roles_test();
-getRolUsuario_Rol_Test();
 Search_Rol_Test();
 setRolUsuario_Rol_Test();
 Delete_Rol_Test();

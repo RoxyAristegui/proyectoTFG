@@ -1,7 +1,7 @@
 
 arrayEN={
 //header 
-	NomProyect:'INCID',
+
 	Idioma : 'Languaje',
 	LogIn :'Log in',
 	seleccionaIdioma :'Select a languaje',
@@ -18,15 +18,17 @@ arrayEN={
 
 	//menu LAteral
 	Inicio : 'Home',
-	GestionUsuarios : 'Users management',
+	Usuarios : 'Users',
 	GestionPermisos : 'Access management',
 	GestionRoles : 'Rol management',
 	GestionEntidades:'Entities management',
 	GestionAcciones:'Actions management',
 	DefinirPermisos:'Define permissions',
+	CambiarPermisosRol:'Change rol permissions',
 	AsignarARol:'Role asignament',
 	ListarUsuarios:'Users list',
 	Componentes:'items',
+	GestionInterna:'internal managment',
 
 
 	//generales
@@ -34,8 +36,7 @@ arrayEN={
 	AccesoRestringido : 'ACCESS DENIED',
 	BusquedaAvanzada : 'Advanced search',
 	Bienvenido:'Welcome',
-
-
+	SistemaDePeticionDeInfraestructurasDelCampusDeOurense:'Ourense campus infrastructure request system',
 
 
 	//usuarios
@@ -56,14 +57,15 @@ arrayEN={
 	NuevoUsuario : 'New User',
 	Editar : 'Editar',
 	Borrar : 'Delete',
-	Añadir : 'Add',
+	Anhadir : 'Add',
 	Buscar : 'Search',
 	MostrarTodos : 'Show all',
-	AñadirUsuario : 'Add user',
+	AnhadirUsuario : 'Add user',
 	EditarUsuario : 'Edit user',
 	BorrarUsuario : 'Delete user',
 	BuscarUsuario : 'Search user',
 	Detalle : 'Detail',
+	EstasSeguroEliminarUsuario: 'Are you sure to delete the user',
 
 	//placeholders
 	LetrasyNumeros : 'only letters and numbers',
@@ -74,6 +76,7 @@ arrayEN={
 	IntroduceEmail : 'Introduce your email',
 	IntroduceDni : 'Introduce your id',
 	DebeSerEmailValido : 'Introduce a valid email',
+	Descripcion:'Description',
 
 
 	Permisos:'Permissions',
@@ -91,6 +94,7 @@ arrayEN={
 	estasSeguroEliminarRol : 'Are you sure to delete the role',
 	EliminarRol : 'Delete role',
 	EditarRoles: 'Edit Roles',
+	AsociarUsuariosRol: 'Change users rol',
 
 
 		//Acciones
@@ -110,7 +114,67 @@ arrayEN={
 	AnadirEntidad: 'Add entity',
 	LaEntidadEstaAsignadaARol: 'The entitie is asigned',
 
+	//proveedores
+	Proveedores: 'Provider',
+	EditarProveedor: 'Edit enterprise data',
+	AnhadirDatosEmpresa:'Add enterprise data',
+	BuscarProveedor:'Search provider',
+	EliminarProveedor: 'Delete provider',
+	empresa:'Company',
+	direccion:' direction',
+	localidad:'City',
+	nombreEmpresa: 'Copany name',
+	PersonaDeContacto: 'contact person',
+	contacto:'Contact',
+	CP:'PC',
+	telefono: 'Telephone',
+	TelefonoFijoOPrincipal: 'Phone number',
+	TelefonoMovil: 'mobile phone',
+	movil:'mobile',
+	EstasSeguroEliminarProveeedor : 'Are you sure you want to delete this provider?',
 
+//obras
+	Obras: 'Works',
+	AnhadirObra: 'Add Work',
+	VerObra: 'Work details',
+	EliminarObra: 'delete work',
+	EditarObra: ' Edit work',
+	intoduceElCodigoDeLaObra: 'Introduce work code',
+	fecha_creacion:'creation date',
+	fecha_final: 'finish date',
+	codigo_obra:'Work code',
+	situacion: 'Situation',
+	solicitante: 'applicant',
+	area:'area',
+	coste:'cost',
+	proveedor:'provider',
+
+
+	//Actuaciones
+	Actuaciones:'Peformance',
+	fecha_actuacion:'Performance date',
+	descripcion:'Description',
+	aceptado:'Acepted',
+	pendiente:'Pending',
+	cerrado:'Closed',
+	id_acto:'Id',
+	BuscarActuacion:'Search performance',
+	AnhadirActuacion:'Add performance',
+	EliminrActuacion:'Delete performance',
+	EditarActuacion:'Edit performance',
+	MostrarActuacion:'Show performance',
+	FinalizarActuacion: 'Finish Performance',
+	ActuacionFinalizada:'Finished Performance',
+
+	trabajadores:'Employees',
+	AnhadirTrabajador:'Add Employee',
+	nombreCompleto:'Name and LastName',
+	HemosEncontradoEsteTrabajador:'We have found a worker saved with this ID, is this the worker?',
+	EsteDniYaEstaRegistrado: 'This DNI is already registered',
+
+	comentario:'Coment',
+	imagen:'Image',
+	AnhadirComentario:'Add coment',
 
 //codigos de errores
 	'00001' : 'Success!',
@@ -119,7 +183,6 @@ arrayEN={
 	'00007' : 'the query returns empty',
 	'00005' : 'Error tring to connect with the DB',
 	'000051' : 'Error with the DB',
-	
 	'000052': 'Sql done successfully',
 	'000074': 'Error trying to make the change',
 	'00004': 'The file cannot be found',
@@ -127,6 +190,8 @@ arrayEN={
 	'000053': 'Registration completed successfully',
 	'000054': 'Modification made successfully',
 	'000055': 'Deletion performed successfully',
+	'000056' : 'No data has been found',
+	'000057' : 'Object nt found',
 
 	'000071': 'A user already exists with that Login',
 	'000072': 'There is no user with that name',
@@ -134,6 +199,7 @@ arrayEN={
 	'000075': 'There is no user with that email',
 	'000076': 'A user with that email already exists',
 	'000077': 'A user with that id already exists',
+	'000078' : 'User not found',
 
 	// permissions
 	'000310': 'The Role could not be created',
@@ -178,5 +244,77 @@ arrayEN={
 	'000153': 'The name only admits letters',
 	'000161': 'Enter a valid email address',
 	'000162': 'Please enter a valid ID',
+
+	// proveedores
+	'004101': 'The company name cannot be empty',
+	'004102': 'The length of the company name must be less than 100 characters',
+	'004103': 'The company name only supports alphanumeric characters',
+	'004111': 'The length of the CIF must be greater than 8',
+	'004112': 'The length of the CIF must be less than 10 characters',
+	'004113': 'The CIF only supports letters and numbers',
+	'004121': 'The company address cannot be empty',
+	'004122': 'The length of the address must be less than 100 characters',
+	'004123': 'The address only supports alphanumeric characters',
+	'004131': 'The location of the company cannot be empty',
+	'004132': 'The length of the locality must be less than 30 characters',
+	'004133': 'The locality only admits letters',
+	'004141': 'The length of the CP must be greater than 4',
+	'004142': 'The length of the CP must be less than 6 characters',
+	'004143': 'The CP only supports numbers',
+	'004151': 'The contact email cannot be empty',
+	'004152': 'The length of the email must be less than 100 characters',
+	'004153': 'enter a valid email format',
+	'004161': 'The contact phone cannot be empty',
+	'004162': 'The phone format is not correct',
+	'004163': 'The mobile format is not correct',
+	'004171': 'The name of the contact person cannot be empty',
+	'004172': 'The length of the contact person\'s name must be less than 120 characters',
+	'004173': 'The name of the contact person only accepts letters and spaces',
+
+	'004071': 'A company with that CIF is already registered',
+	'004072': 'There is no company with that CIF',
+	'004073': 'Cannot delete, the provider has works assigned',
+	'004080': 'Enter your company details',
+
+	//obras
+	'005101': 'The name of the work cannot be empty',
+	'005103': 'The name of the work only admits alphanumeric characters',
+	'005111': 'The work code cannot be empty',
+	'005112': 'The length of the work code must be less than 11 characters',
+	'005113': 'The CIF only supports numbers',
+	'005122': 'The length of the location of the work must be less than 2 characters',
+	'005123': 'The situation of the work only admits numbers',
+	'005132': 'The length of the construction cost must be less than 11 characters',
+	'005133': 'The cost only admits numbers',
+	'005142': 'The length of the requestor must be less than 120 characters',
+	'005143': 'The requestor name only supports alphanumeric characters with spaces',
+	'005153': 'The area code only supports Afanumeric characters',
+	'005152': 'The length of the area code must be less than 11 characters',
+	'005151': 'The area cannot be empty',
+	'005163': 'Please enter a valid creation date',
+	'005164': 'Please enter a valid end date',
+
+	'005072': 'There is no work with that code',
+	'005073': 'No area found',
+	'005074': 'It cannot be deleted, there are performances created for these works',
+	'005075': 'Please enter a valid date',
+	'005076': 'The date cannot be changed, it has already been accepted',
+
+	'005376': 'The performance cannot be edited, it has already been accepted',
+	'005377': 'You must acept first the performance',
+
+	// trabajadores
+
+	'006056': 'The worker was not found',
+	'006071': 'A registered worker with that name already exists',
+	'006073': 'No workers added yet',
+	'006074': 'The worker could not be added',
+	'006075': 'The workers cannot be modified, the action is already completed',
+	//imagenes
+
+    '006001': 'Image successfully uploaded',
+    '006002': 'There was a problem uploading the image',
+    '006003': 'Images with that extension are not accepted, please select another',
+   '006004': 'There has been a problem, the image has not been uploaded',
 
 }

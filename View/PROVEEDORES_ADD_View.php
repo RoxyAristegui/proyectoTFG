@@ -86,7 +86,7 @@
 				
 				</div>
 			</div>
-				<button type='submit' name='action' class="btn btn-outline-info mas icon" value="ADD" id="confirm"></button>
+				<button type='submit' name='action' class="btn btn-info mas icon" value="ADD" id="confirm"></button>
 				<a href='../Controller/PROVEEDORES_Controller.php' class="icon volver ml-3"> </a>
 
 		</form>

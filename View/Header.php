@@ -17,8 +17,8 @@ if(isset($_COOKIE["lang"])){
 	 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="Rosanna aristegui">
+  <meta name="description" content="Gestor de seguimiento de obras y actuaciones para la universidad de Vigo.">
+  <meta name="author" content="Rosanna aristegui Rodal">
 
 	<title>
 	Gestor de peticiones de incidencias
@@ -72,46 +72,10 @@ if(isset($_COOKIE["lang"])){
           </button>
 <?php 
 } ?>
-          <!-- Topbar Search -->
-          <!--form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form-->
-          <!--div class="nav-item ">
-          <a class="nav-link navbar-brand NomProyect d-none d-md-inline" href="../Controller/Index_Controller.php">
-          
-
-          </a>
-          </div>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            <!-- Nav Item - Search Dropdown (Visible Only XS)-->
-            <!--li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown -Search Messages -->
-              <!--div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li-->
 
 
             <!-- Nav Item - Messages -->

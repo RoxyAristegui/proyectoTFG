@@ -35,8 +35,8 @@ class Roles_View{
 		            	<form action="../Controller/ROLES_Controller.php?action=ADD" method="post">
 		            		<div class="form-group">
 		            		<input type="text" name="rol" class="form-control mb-3" placeholder="RolName" required>
-		            		<textarea name="descripcion" placeholder="Descripcion" class="form-control mb-3" ></textarea>
-		            		<input type="submit" class="btn btn-outline-info Crear" value="Crear">
+		            		<textarea name="descripcion" placeholder="descripcion" class="form-control mb-3" ></textarea>
+                                <button type="submit" class="btn btn-info icon check" value="Crear"></button>
 		            	</div>
 		            	</form>
 
@@ -59,19 +59,20 @@ class Roles_View{
 
 					
 							?>
-							<li class="list-group-item"><div class="row justify-content-center mb-1" >
-								<div class='col-5 col-xl-3'> 
-								 <span data-toggle='popover' data-content='<?php echo $rol['descripcion'] ?>' data-trigger='focus' data-placement="top"> 
-								 	<?php echo $rol['rol'] ?>	
-								 	<i class='fas fa-xs fa-info-circle'></i>
-								 </span>
-								 </div>
-							<div class='col-auto'>
-								<!--button type='button' data-toggle='modal' data-target='#eliminarRolModal' class='btn delete icon btn-default ' data-rol='<?php echo $rol['rol'] ?>' data-rolid='<?php echo $rol['id_rol'] ?>'></button-->
-							<button type='button' data-toggle='modal' data-target='#SolicitarConfModal' class=' delete btn-default btn' data-elem='<?php echo $rol['rol'] ?>' data-destino='../Controller/ROLES_Controller.php?action=DELETE&id=<?php echo $rol['id_rol'] ?>'  data-msj='estasSeguroEliminarRol' data-title='<?php echo $rol['rol'] ?>'></button>		
-							</div>
-							<div class='col-auto'><a href='../Controller/PERMISOS_Rol_Controller.php?id_rol=<?php echo $rol['id_rol']?>' class='btn  edit'></a></diV>
-								</div></li>
+							<li class="list-group-item">
+                                <div class="row justify-content-center mb-1" >
+                                    <div class='col-5 col-xl-3'>
+                                     <span data-toggle='popover' data-content='<?php echo $rol['descripcion'] ?>' data-trigger='focus' data-placement="top">
+                                        <?php echo $rol['rol'] ?>
+                                        <i class='fas fa-xs fa-info-circle'></i>
+                                     </span>
+                                     </div>
+                                    <div class='col-auto'>
+                                        <button type='button' data-toggle='modal' data-target='#SolicitarConfModal' class=' delete btn-default btn' data-elem='<?php echo $rol['rol'] ?>' data-destino='../Controller/ROLES_Controller.php?action=DELETE&id=<?php echo $rol['id_rol'] ?>'  data-msj='estasSeguroEliminarRol' data-title='<?php echo $rol['rol'] ?>'></button>
+                                    </div>
+                                    <div class='col-auto'><a href='../Controller/PERMISOS_Rol_Controller.php?id_rol=<?php echo $rol['id_rol']?>' class='btn  edit'></a></diV>
+								</div>
+                            </li>
 								<?php 
 
 						}	?>

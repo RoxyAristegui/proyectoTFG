@@ -22,15 +22,20 @@ $Acciones_array_test=array();
 $entidades_array_test=array();
 $Roles_array_test=Array();
 $PROV_array_test=Array();
+$OBRAS_array_test=Array();
+$ACTUACIONES_array_test=Array();
+
 // incluimos aqui tantos ficheros de test como entidades
 // 'TESTS GENERALES ----- 
 include 'Global_test.php';
-//echo 'TEST UNITARIOS ------ 
+// 'TEST UNITARIOS ------
 include 'USUARIOS_test.php';
 include 'Roles_test.php';
 include 'Entidades_test.php';
 include 'Acciones_test.php';
 include 'PROVEEDORES_test.php';
+include 'OBRAS_test.php';
+include "ACTUACIONES_test.php";
 
 // TEST VALIDACIONES----------
 include 'Validar_test.php';
@@ -175,6 +180,74 @@ include 'Validar_usuario_test.php';
 	</table>
 </div>
 
+<hr>
+<div class="testCollapse" data-toggle="collapse" data-target="#testObra">
+	<h2 class="btn btn-outline-info btn-lg">Desplegar test de Obras <i class="fas fa-sort-down"></i> </h2>
+</div>
+<div class="collapse" id="testObra">
+	<h4> Mostrando <?php echo count($OBRAS_array_test); ?> test de obras </h4>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+		<tr>
+			<th scope="col">    Entidad 		</th>
+			<th scope="col">	Método			</th>
+			<th scope="col">	Error testeado	</th>
+			<th scope="col">	Error Esperado	</th>
+			<th scope="col">	Error Obtenido	</th>
+			<th scope="col">	Resultado		</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		foreach ($OBRAS_array_test as $test)
+		{  ?>
+		<tr>
+			<td>	<?php echo $test['entidad'];?>		</td>
+			<td>	<?php echo $test['metodo']; ?>		</td>
+			<td>	<?php echo $test['error']; ?>		</td>
+			<td>	<?php var_dump($test['error_esperado']); ?>		</td>
+			<td>	<?php var_dump($test['error_obtenido']); ?>		</td>
+			<td>	<?php echo $test['resultado']; ?>	</td>
+		</tr>
+	<?php
+		}
+	?></tbody>
+	</table>
+</div>
+<hr>
+<div class="testCollapse" data-toggle="collapse" data-target="#testActu">
+	<h2 class="btn btn-outline-info btn-lg"> Desplegar Test de Actuaciones <i class="fas fa-sort-down"></i></h2>
+</div>
+<div class="collapse " id="testActu">
+	<h3> hay <?php echo count($ACTUACIONES_array_test); ?> test</h3>
+	<table class="table table-striped">
+		<thead class="thead-dark">
+		<tr>
+			<th scope="col">    Entidad 		</th>
+			<th scope="col">	Método			</th>
+			<th scope="col">	Error testeado	</th>
+			<th scope="col">	Error Esperado	</th>
+			<th scope="col">	Error Obtenido	</th>
+			<th scope="col">	Resultado		</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		foreach ($ACTUACIONES_array_test as $test)
+		{  ?>
+		<tr >
+			<td >	<?php echo $test['entidad'];?>		</td>
+			<td>	<?php echo $test['metodo']; ?>		</td>
+			<td>	<?php echo $test['error']; ?>		</td>
+			<td>	<?php var_dump($test['error_esperado']); ?>		</td>
+			<td>	<?php var_dump($test['error_obtenido']); ?>		</td>
+			<td>	<?php echo $test['resultado']; ?>	</td>
+		</tr>
+	<?php
+		}
+	?></tbody>
+	</table>
+</div>
 <hr>
 <div class="testCollapse" data-toggle="collapse" data-target="#testPermiso">
 	<h2 class="btn btn-outline-info btn-lg">Desplegar test de Permisos <i class="fas fa-sort-down"></i> </h2>

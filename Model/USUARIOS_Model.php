@@ -536,14 +536,14 @@ function login(){
 	$this->construct_response();
 	return $this->feedback;
 
-}//fin metodo login
+}
 
-//TODO, SOLO SE VAN A REGISTRAR LOS PROOVEDORES!
+
 function register(){
 
 	if($this->Validar_atributos()===true && $this->usuario_unico()===true){
 
-//creacion de nuevo usuario, se insertan sus dato, rol user por defecto
+//creacion de nuevo usuario, se insertan sus dato, rol proveedor por defecto
 		$this->query = 
 			"INSERT INTO USUARIOS (
 				login,
@@ -551,14 +551,16 @@ function register(){
 				nombre,
 				apellidos,
 				email,
-				DNI) 
+				DNI,
+				id_rol) 
 			VALUES (
 					'".$this->login."',
 					'".$this->password."',
 					'".$this->nombre."',
 					'".$this->apellidos."',
 					'".$this->email."',
-					'".$this->dni."'
+					'".$this->dni."',
+					'4'
 					)";
 						
 
@@ -578,6 +580,7 @@ function register(){
 }
 
  function setRol($id_rol){
+
  	$comprobar_user=$this->getById();
  	if(isset($comprobar_user['code'])){
 			$this->ok=false;

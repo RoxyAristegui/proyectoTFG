@@ -3462,6 +3462,7 @@ input[type="button"].btn-block {
 }
 
 .custom-control-label {
+  padding-left:2em;
   position: relative;
   margin-bottom: 0;
   vertical-align: top;
@@ -3534,7 +3535,7 @@ input[type="button"].btn-block {
 
 .custom-switch .custom-control-label::before {
   left: -2.25rem;
-  width: 1.75rem;
+  width: 3.75rem;
   pointer-events: all;
   border-radius: 0.5rem;
 }
@@ -3557,7 +3558,7 @@ input[type="button"].btn-block {
 
 .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
   background-color: #fff;
-  transform: translateX(0.75rem);
+  transform: translateX(2.75rem);
 }
 
 .custom-switch .custom-control-input:disabled:checked ~ .custom-control-label::before {
@@ -10588,13 +10589,21 @@ a:focus {
 }
 
 .bg-login-image {
-  background: url("https://source.unsplash.com/K4mSJ7kc0As/600x800");
+  background: url("../../img/en_preparacion.png");
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .bg-register-image {
-  background: url("https://source.unsplash.com/Mv9hjnEUHR4/600x800");
+
+  background: url("../../img/estamos-en-obras.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.bg-crearbd-image {
+
+  background: url("../../img/engranaje.jpg");
   background-position: center;
   background-size: cover;
 }

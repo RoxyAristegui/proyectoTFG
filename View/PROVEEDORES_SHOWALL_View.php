@@ -21,7 +21,7 @@
               <h6 class="m-0 font-weight-bold text-info"> 
               	<div class="clearfix">
               		<div class="float-left">
-					  <a href='../Controller/PROVEEDORES_Controller.php?action=ADD' class='Añadir mas icon'> Añadir</a>
+					  <a href='../Controller/PROVEEDORES_Controller.php?action=ADD' class='Anhadir mas icon'> Añadir</a>
 					</div>
 					<div class="float-right">
 						<a href="../Controller/PROVEEDORES_Controller.php?action=SEARCH" class="BusquedaAvanzada lupa icon"> Búsqueda avanzada</a>
@@ -31,6 +31,10 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
+            <?php
+                   if(isset($this->datos['code'])){
+            echo '<div class="'.$this->datos['code'].'"></div>';
+        }else { ?>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
 					<tr><th>Ver</th>
@@ -51,24 +55,23 @@
 					</tr>
 				  </tfoot>
 				  <tbody>
-				  <?php if(sizeof($this->datos)>0){	
-				  foreach($this->datos as $fila)	{ }?><tr>
-				  	<td>
-						<a href='../Controller/PROVEEDORES_Controller.php?action=SHOWCURRENT&CIF=
-								<?php echo $fila['CIF']; ?>'> <i class="fas fa-edit"></i> </a>
+				  <?php
+				  foreach($this->datos as $fila)	{ ?>
+				  <tr>
+				  	    <td>
+						    <a href='../Controller/PROVEEDORES_Controller.php?action=SHOWCURRENT&CIF=
+								<?php echo $fila['CIF']; ?>'> <i class="fas fa-eye"></i> </a>
 						</td>
 						<td>
-						<a href='../Controller/PROVEEDORES_Controller.php?action=DELETE&CIF=
-								<?php echo $fila['CIF']; ?>'> <i class="fas fa-edit"></i> </a>
+						    <a href='../Controller/PROVEEDORES_Controller.php?action=DELETE&CIF=
+								<?php echo $fila['CIF']; ?>'> <i class="fas fa-trash-alt"></i> </a>
 						</td>
 				    <?php	
-				    foreach ($this->lista as $columna) {	?>
-							<td><?php
+				    foreach ($this->lista as $columna) {
 							
-								 	echo $fila[$columna]; 
-								 	?> 
-								 	</td>
-							<?php } ?>
+								 	echo "<td>".$fila[$columna]."</td>";
+
+								  } ?>
 						
 					</tr>
 
@@ -76,7 +79,8 @@
 		
 				</tbody>
 
-			</table>		
+			</table>
+			<?php } ?>
 		</div>
 	</div>
 	
@@ -88,7 +92,7 @@
 			include '../View/Footer.php';
 		} //fin metodo render
 
-	} //fin REGISTER
+	}
 
 ?>
 

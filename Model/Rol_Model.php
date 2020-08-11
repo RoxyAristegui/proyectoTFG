@@ -34,7 +34,7 @@ function comprobar_rol()
 {
 
 	$validar= new Validar();
-	if($validar->No_Vacio($this->rol)===false){
+	if($validar->No_vacio($this->rol)===false){
 		$this->code='000125';
 		$this->ok=false;
 		$this->resource='rol';
@@ -226,7 +226,7 @@ function getByName(){
 	}
 
 
-
+/*
  function getRolUsuario($login){
  		$this->query="select id_rol from USUARIOS where login='".$login."'";
 		$this->get_one_result_from_query();
@@ -240,7 +240,7 @@ function getByName(){
 	
 		$this->id_rol=$this->rows['id_rol'];
 		return $this->rows['id_rol'];
- }
+ }*/
 
 
 function getUsersByRol(){

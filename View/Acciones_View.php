@@ -29,7 +29,7 @@ class Acciones_View{
 		            		<div class="form-group">
 		            		<input type="text" name="accion" class="form-control mb-2" placeholder="NombreAccion">
 		            		<textarea name="descripcion" placeholder="Descripcion" class="form-control mb-3"></textarea>
-		            		<input type="submit" class="btn btn-outline-info" value="Crear">
+                                <button type="submit" class="btn btn-info icon check" value="Crear"></button>
 		            	</div>
 		            	</form>
 

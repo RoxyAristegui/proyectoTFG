@@ -340,6 +340,7 @@ function CIF_unico(){
 		}else {return true;}
 }
 
+
 function ADD(){
 
 	if($this->Validar_atributos()===true && $this->CIF_unico()===true){
@@ -411,28 +412,37 @@ function EDIT(){
 	}
 }
 
-function DELETE(){
+function DELETE()
+{
+    include_once 'OBRAS_Model.php';
+    $obra= NEW OBRAS_Model('','','','',$this->CIF,'','','','');
+    $obra->SEARCH();
+     if($obra->feedback['code']=='00008'){
 
-   $this->query = "	DELETE FROM 
+            $this->ok = false;
+            $this->code = '004073'; //El proveedor tiene obras asignadas
+            $this->construct_response();
+            return $this->feedback;
+    } else {
+
+        $this->query = "	DELETE FROM 
    				PROVEEDORES
    			WHERE(
    				CIF = '$this->CIF'
    			)
    			";
-	$this->execute_single_query();
+        $this->execute_single_query();
 
-   	if ($this->feedback['ok'])
-	{
-		$this->ok=true;
-		$this->code = '000055'; //Borrado realizado con exito
-	}
-	else
-	{	//Error de gestor de base de datos
-		$this->ok=false;
-		$this->code = '000051';
-	}
-	$this->construct_response();
-	return $this->feedback;
+        if ($this->feedback['ok']) {
+            $this->ok = true;
+            $this->code = '000055'; //Borrado realizado con exito
+        } else {    //Error de gestor de base de datos
+            $this->ok = false;
+            $this->code = '000051';
+        }
+        $this->construct_response();
+        return $this->feedback;
+    }
 }
 
 function SEARCH(){
@@ -447,7 +457,7 @@ function SEARCH(){
 			telefono LIKE '%$this->telefono%' AND
 			movil LIKE '%$this->movil%' AND
 			pers_contacto LIKE '%$this->pers_contacto%' )";
-		
+
 			$this->get_results_from_query();
 
 				if ($this->feedback['code'] != '00008'){	
@@ -497,7 +507,7 @@ function getByAdmin($login_admin){
 	
 	if ($this->feedback['code'] == '00007')
 	{
-			$this->code= "004080"; //error de ejecucion de la sql, noe xiste usuario con ese login
+			$this->code= "004080"; //el proveedor aun no introdujo sus datos de empresa
 			$this->ok="false";
 			$this->construct_response();
 			return $this->feedback;
